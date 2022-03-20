@@ -6,6 +6,7 @@ Measure CI time
   * Flask
 * Postgres
 * Heroku / GCP Cloud functions?
+* Single page app
 
 ## Todo
 
