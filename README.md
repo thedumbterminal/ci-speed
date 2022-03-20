@@ -1,6 +1,18 @@
 # ci-speed
 Measure CI time
 
+## Install
+
+```
+scripts/install.sh
+```
+
+## Run
+
+```
+python wsgi.py
+```
+
 ## Tech
 * Python
   * Flask
