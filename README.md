@@ -1,6 +1,10 @@
 # ci-speed
 Measure CI time
 
+## Requirements
+
+* Heroku CLI https://devcenter.heroku.com/articles/heroku-cli
+
 ## Install
 
 ```
