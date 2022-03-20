@@ -17,6 +17,16 @@ scripts/install.sh
 python wsgi.py
 ```
 
+Dev server available at:
+
+http://127.0.0.1:5000
+
+## Deploy
+
+Deploys automatically to heroku on main branch merge, app available at:
+
+https://ci-speed.herokuapp.com
+
 ## Tech
 * Python
   * Flask
