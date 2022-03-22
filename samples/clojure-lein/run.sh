@@ -1,0 +1,1 @@
+docker run -it -v "$PWD":/app -w /app ardoq/leiningen:jdk11-2.9.4-jdk lein eftest
