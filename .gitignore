@@ -1,3 +1,7 @@
 __pycache__
 /samples/java-maven/target/
 /.idea/
+/samples/clojure-lein/target/
+/samples/clojure-lein/.lein-failures
+/samples/clojure-lein/clojure-lein.iml
+/samples/clojure-lein/.idea/
