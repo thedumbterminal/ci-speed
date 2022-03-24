@@ -22,6 +22,12 @@ Dev server available at:
 
 http://127.0.0.1:5000
 
+### Production mode
+
+```
+honcho start
+```
+
 ## Deploy
 
 Deploys automatically to heroku on main branch merge, app available at:
