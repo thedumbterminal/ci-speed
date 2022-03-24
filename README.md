@@ -4,6 +4,7 @@ Measure CI time
 ## Requirements
 
 * Heroku CLI https://devcenter.heroku.com/articles/heroku-cli
+* pyenv https://github.com/pyenv/pyenv#simple-python-version-management-pyenv
 
 ## Install
 
@@ -14,7 +15,7 @@ scripts/install.sh
 ## Run
 
 ```
-python wsgi.py
+python ./app/main.py
 ```
 
 Dev server available at:
