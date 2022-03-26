@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<testsuites>
+  <testsuite errors="0"
+             tests="4"
+             time="10.0734689235687"
+             name="src_Example_t"
+             failures="0">
+    <testcase name="(init)" time="0.0679359436035156" />
+    <testcase time="0.00070500373840332" name="1 - use Example;"></testcase>
+    <testcase name="2" time="0.000215053558349609"></testcase>
+    <testcase name="3" time="10.0011880397797"></testcase>
+    <testcase time="0.000419855117797852" name="4"></testcase>
+    <testcase name="(teardown)" time="0.00300502777099609" />
+    <system-out><![CDATA[1..4
+ok 1 - use Example;
+ok 2
+ok 3
+ok 4
+]]></system-out>
+    <system-err></system-err>
+  </testsuite>
+</testsuites>

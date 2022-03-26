@@ -28,6 +28,14 @@ http://127.0.0.1:5000
 honcho start
 ```
 
+## Example actions
+
+Upload test run:
+
+```
+curl -F 'file=@samples/junit_perl.xml' http://localhost:5000/test_run/
+```
+
 ## Deploy
 
 Deploys automatically to heroku on main branch merge, app available at:
