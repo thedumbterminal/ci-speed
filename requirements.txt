@@ -1,3 +1,4 @@
 flask-restx
 gunicorn
 honcho
+xmltodict

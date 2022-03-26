@@ -1,6 +1,6 @@
 from flask_restx import Resource, Namespace, fields
-
 from werkzeug.datastructures import FileStorage
+import xmltodict
 
 api = Namespace("test_run", description="Test run related operations")
 
@@ -18,6 +18,6 @@ class TestRun(Resource):
     def post(self):
         args = upload_parser.parse_args()
         uploaded_file = args['file']  # This is FileStorage instance
-        print(uploaded_file.read())
+        converted_dict = xmltodict.parse(uploaded_file.read())
+        print(converted_dict)
         return True
-
