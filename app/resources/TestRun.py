@@ -9,7 +9,13 @@ import json
 api = Namespace("test_run", description="Test run related operations")
 
 upload_parser = api.parser()
-upload_parser.add_argument('file', location='files', type=FileStorage, required=True)
+upload_parser.add_argument(
+    'file',
+    location='files',
+    type=FileStorage,
+    required=True
+)
+
 
 @api.route("/")
 class TestRun(Resource):
@@ -34,16 +40,18 @@ class TestRun(Resource):
     def post(self):
         args = upload_parser.parse_args()
         uploaded_file = args['file']  # This is FileStorage instance
-        converted_dict = xmltodict.parse(uploaded_file.read(), force_list=('testsuites', 'testcase'))
+        converted_dict = xmltodict.parse(
+            uploaded_file.read(),
+            force_list=('testsuites', 'testcase')
+        )
         print('Uploaded dict:')
         pprint(converted_dict)
         print('Uploaded JSON:')
         print(json.dumps(converted_dict))
-        
+
         test_run = self._jUnitToTestRun(converted_dict)
         test_run_schema = TestRunSchema()
         result = test_run_schema.dump(test_run)
         print('Schema result:')
         pprint(result)
         return True
-

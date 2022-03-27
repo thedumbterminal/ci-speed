@@ -5,3 +5,6 @@ xmltodict
 flask-marshmallow
 flask-sqlalchemy
 marshmallow-sqlalchemy
+
+#dev includes
+flake8

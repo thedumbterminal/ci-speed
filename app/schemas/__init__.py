@@ -1,3 +1,3 @@
-from .TestCase import TestCaseSchema
-from .TestRun import TestRunSchema
-from .TestSuite import TestSuiteSchema
+from .TestCase import TestCaseSchema  # noqa: F401
+from .TestRun import TestRunSchema  # noqa: F401
+from .TestSuite import TestSuiteSchema  # noqa: F401
