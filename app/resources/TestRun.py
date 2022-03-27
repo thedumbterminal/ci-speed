@@ -1,6 +1,10 @@
-from flask_restx import Resource, Namespace, fields
+from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
+from models import TestRunModel, TestSuiteModel, TestCaseModel
+from schemas import TestRunSchema
+from pprint import pprint
+import json
 
 api = Namespace("test_run", description="Test run related operations")
 
@@ -9,6 +13,18 @@ upload_parser.add_argument('file', location='files', type=FileStorage, required=
 
 @api.route("/")
 class TestRun(Resource):
+    def _jUnitToTestRun(self, junit_dict):
+        test_suites = []
+        for suite in junit_dict['testsuites']:
+            suite_details = suite['testsuite']
+            test_cases = []
+            for case in suite_details['testcase']:
+                test_case = TestCaseModel(case['@name'])
+                test_cases.append(test_case)
+            test_suite = TestSuiteModel(suite_details['@name'], test_cases)
+            test_suites.append(test_suite)
+        return TestRunModel(test_suites)
+
     @api.doc("get_test_run")
     def get(self):
         return {'hello': 'world'}
@@ -18,6 +34,16 @@ class TestRun(Resource):
     def post(self):
         args = upload_parser.parse_args()
         uploaded_file = args['file']  # This is FileStorage instance
-        converted_dict = xmltodict.parse(uploaded_file.read())
-        print(converted_dict)
+        converted_dict = xmltodict.parse(uploaded_file.read(), force_list=('testsuites', 'testcase'))
+        print('Uploaded dict:')
+        pprint(converted_dict)
+        print('Uploaded JSON:')
+        print(json.dumps(converted_dict))
+        
+        test_run = self._jUnitToTestRun(converted_dict)
+        test_run_schema = TestRunSchema()
+        result = test_run_schema.dump(test_run)
+        print('Schema result:')
+        pprint(result)
         return True
+

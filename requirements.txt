@@ -2,3 +2,6 @@ flask-restx
 gunicorn
 honcho
 xmltodict
+flask-marshmallow
+flask-sqlalchemy
+marshmallow-sqlalchemy
