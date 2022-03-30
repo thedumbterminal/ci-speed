@@ -1,10 +1,13 @@
 from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
-from models import TestRunModel, TestSuiteModel, TestCaseModel
+from models import (TestRun as TestRunModel,
+                    TestSuite as TestSuiteModel,
+                    TestCase as TestCaseModel)
 from schemas import TestRunSchema
 from pprint import pprint
 import json
+from db import db
 
 api = Namespace("test_run", description="Test run related operations")
 
@@ -50,8 +53,10 @@ class TestRun(Resource):
         print(json.dumps(converted_dict))
 
         test_run = self._jUnitToTestRun(converted_dict)
-        test_run_schema = TestRunSchema()
-        result = test_run_schema.dump(test_run)
+        db.session.add(test_run)
+        db.session.commit()
+
         print('Schema result:')
-        pprint(result)
+        test_run_schema = TestRunSchema()
+        pprint(test_run_schema.dump(test_run))
         return True
