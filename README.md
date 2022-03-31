@@ -43,7 +43,7 @@ honcho start
 Upload test run:
 
 ```
-curl -F 'file=@samples/junit_perl.xml' http://localhost:5000/test_run/
+curl -F 'file=@samples/junit_perl.xml' http://localhost:5000/test_runs/
 ```
 
 ## Deploy
