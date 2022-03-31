@@ -5,6 +5,7 @@ xmltodict
 flask-marshmallow
 flask-sqlalchemy
 marshmallow-sqlalchemy
+psycopg2-binary
 
 #dev includes
 flake8

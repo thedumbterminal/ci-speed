@@ -1,15 +1,13 @@
 from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
-from models import (TestRun as TestRunModel,
-                    TestSuite as TestSuiteModel,
-                    TestCase as TestCaseModel)
+from models import TestRun, TestSuite, TestCase
 from schemas import TestRunSchema
 from pprint import pprint
 import json
 from db import db
 
-api = Namespace("test_run", description="Test run related operations")
+api = Namespace("test_runs", description="Test run related operations")
 
 upload_parser = api.parser()
 upload_parser.add_argument(
@@ -21,22 +19,25 @@ upload_parser.add_argument(
 
 
 @api.route("/")
-class TestRun(Resource):
+class TestRuns(Resource):
     def _jUnitToTestRun(self, junit_dict):
         test_suites = []
         for suite in junit_dict['testsuites']:
             suite_details = suite['testsuite']
             test_cases = []
             for case in suite_details['testcase']:
-                test_case = TestCaseModel(case['@name'])
+                test_case = TestCase(case['@name'])
                 test_cases.append(test_case)
-            test_suite = TestSuiteModel(suite_details['@name'], test_cases)
+            test_suite = TestSuite(suite_details['@name'], test_cases)
             test_suites.append(test_suite)
-        return TestRunModel(test_suites)
+        return TestRun(test_suites)
 
     @api.doc("get_test_run")
     def get(self):
-        return {'hello': 'world'}
+        test_runs = TestRun.query.all()
+        pprint(test_runs)
+        test_run_schema = TestRunSchema()
+        return test_run_schema.dump(test_runs, many=True)
 
     @api.doc("post_test_run")
     @api.expect(upload_parser)

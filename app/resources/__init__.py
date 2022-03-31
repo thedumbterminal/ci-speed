@@ -1,8 +1,8 @@
 from flask_restx import Api
 
-from .TestCase import api as test_case_api
-from .TestRun import api as test_run_api
-from .TestSuite import api as test_suite_api
+from .TestCases import api as test_case_api
+from .TestRuns import api as test_run_api
+from .TestSuites import api as test_suite_api
 
 api = Api(
     title="CI-Speed API",

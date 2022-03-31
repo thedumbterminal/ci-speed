@@ -5,11 +5,21 @@ Measure CI time
 
 * Heroku CLI https://devcenter.heroku.com/articles/heroku-cli
 * pyenv https://github.com/pyenv/pyenv#simple-python-version-management-pyenv
+* Docker https://www.docker.com/get-started/
 
 ## Install
 
+### Server
+
 ```
 scripts/install.sh
+```
+
+### Database
+
+```
+docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -v ${PWD}/data:/var/lib/postgresql/data -d postgres
+docker ps -a
 ```
 
 ## Run
@@ -41,6 +51,10 @@ curl -F 'file=@samples/junit_perl.xml' http://localhost:5000/test_run/
 Deploys automatically to heroku on main branch merge, app available at:
 
 https://ci-speed.herokuapp.com
+
+## Environment Variables
+
+* DATABASE_URL - Set the PostgreSQL DSN to use other than the default.
 
 ## Tech
 * Python
