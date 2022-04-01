@@ -9,6 +9,7 @@ class TestRunSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         model = TestRun
+        load_instance = True
         include_fk = True
 
 
@@ -17,10 +18,12 @@ class TestSuiteSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         model = TestSuite
+        load_instance = True
         include_fk = True
 
 
 class TestCaseSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = TestCase
+        load_instance = True
         include_fk = True
