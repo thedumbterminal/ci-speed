@@ -7,8 +7,9 @@ ma = Marshmallow(app)
 
 api.init_app(app)
 
+print('Building DB tables...')
+db.create_all()
+
 if __name__ == '__main__':
-    print('Building DB tables...')
-    db.create_all()
     print('Starting in debug mode...')
     app.run(debug=True)
