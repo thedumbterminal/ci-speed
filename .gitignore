@@ -6,3 +6,4 @@ __pycache__
 /samples/clojure-lein/clojure-lein.iml
 /samples/clojure-lein/.idea/
 /data/
+*.pyc

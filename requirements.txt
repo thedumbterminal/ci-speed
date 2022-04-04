@@ -1,9 +1,10 @@
 flask-restx
+flask-marshmallow
+flask-sqlalchemy
+flask-cors
 gunicorn
 honcho
 xmltodict
-flask-marshmallow
-flask-sqlalchemy
 marshmallow-sqlalchemy
 psycopg2-binary
 
