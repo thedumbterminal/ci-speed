@@ -19,7 +19,7 @@ upload_parser.add_argument(
 
 
 @api.route("/")
-class TestRuns(Resource):
+class TestRunList(Resource):
     def _jUnitToTestRun(self, junit_dict):
         test_suites = []
         for suite in junit_dict['testsuites']:
@@ -32,16 +32,17 @@ class TestRuns(Resource):
             test_suites.append(test_suite)
         return TestRun(test_suites)
 
-    @api.doc("get_test_run")
+    @api.doc("list_test_runs")
     def get(self):
+        '''List all test runs'''
         test_runs = TestRun.query.all()
-        pprint(test_runs)
         test_run_schema = TestRunSchema()
         return test_run_schema.dump(test_runs, many=True)
 
-    @api.doc("post_test_run")
+    @api.doc("upload_test_run")
     @api.expect(upload_parser)
     def post(self):
+        '''Upload a junit XML file to create a test run'''
         args = upload_parser.parse_args()
         uploaded_file = args['file']  # This is FileStorage instance
         converted_dict = xmltodict.parse(

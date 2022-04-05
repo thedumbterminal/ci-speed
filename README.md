@@ -59,25 +59,14 @@ https://ci-speed.herokuapp.com
 ## Tech
 * Python
   * Flask
+  * Marshmellow
+  * SQLAlchemy
 * Postgres
-* Heroku / GCP Cloud functions?
-* Single page app
+* Heroku
 
 ## Todo
 
-### Web UI
-* Signup
-* Login
-* Viewing test runs
-* Viewing test results
-* Most failing tests
-* Longest tests
-* Flakey tests
-
-
-### API
-* Result upload
-* Viewing test runs
+* Auth
 * Viewing test results
 * Most failing tests
 * Longest tests
