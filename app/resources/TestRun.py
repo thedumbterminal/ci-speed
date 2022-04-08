@@ -1,11 +1,6 @@
 from flask_restx import Resource, Namespace
-from werkzeug.datastructures import FileStorage
-import xmltodict
-from models import TestRun as TestRunModel, TestSuite, TestCase
+from models import TestRun as TestRunModel
 from schemas import TestRunSchema
-from pprint import pprint
-import json
-from db import db
 
 api = Namespace("test_runs", description="Test run related operations")
 
