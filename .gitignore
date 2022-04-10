@@ -7,3 +7,9 @@ __pycache__
 /samples/clojure-lein/.idea/
 /data/
 *.pyc
+/samples/java-ant/.idea/
+/samples/java-ant/java-ant.iml
+/samples/java-ant/downloads/
+/samples/java-ant/lib/
+/samples/java-ant/out/
+/samples/java-ant/build/
