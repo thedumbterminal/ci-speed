@@ -52,6 +52,14 @@ Deploys automatically to heroku on main branch merge, app available at:
 
 https://ci-speed.herokuapp.com
 
+## Database migrations
+
+To update your local DB to the latest version run:
+
+```
+PYTHONPATH=app FLASK_APP=main flask db upgrade
+```
+
 ## Environment Variables
 
 * DATABASE_URL - Set the PostgreSQL DSN to use other than the default.
@@ -59,8 +67,9 @@ https://ci-speed.herokuapp.com
 ## Tech
 * Python
   * Flask https://flask-restx.readthedocs.io/en/latest/
-  * Marshmellow
+  * Marshmallow https://flask-marshmallow.readthedocs.io/en/latest/
   * SQLAlchemy
+  * Alembic https://flask-migrate.readthedocs.io/en/latest/
 * Postgres
 * Heroku
 

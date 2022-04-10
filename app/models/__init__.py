@@ -24,8 +24,10 @@ class TestSuite(db.Model):
 class TestCase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
+    time = db.Column(db.Numeric())
     test_suite_id = db.Column(db.Integer, db.ForeignKey("test_suite.id"))
     test_suite = db.relationship('TestSuite', backref="test_cases")
 
-    def __init__(self, name):
+    def __init__(self, name, time):
         self.name = name
+        self.time = time

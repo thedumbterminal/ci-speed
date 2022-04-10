@@ -27,7 +27,7 @@ class TestRunList(Resource):
             suite_details = suite['testsuite']
             test_cases = []
             for case in suite_details['testcase']:
-                test_case = TestCase(case['@name'])
+                test_case = TestCase(case['@name'], case['@time'])
                 test_cases.append(test_case)
             test_suite = TestSuite(suite_details['@name'], test_cases)
             test_suites.append(test_suite)
