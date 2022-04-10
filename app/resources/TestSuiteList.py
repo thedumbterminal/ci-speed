@@ -23,4 +23,3 @@ class TestSuiteList(Resource):
         test_suites = TestSuite.query.filter_by(test_run_id = args['test_run']).all()
         test_suite_schema = TestSuiteSchema()
         return test_suite_schema.dump(test_suites, many=True)
-

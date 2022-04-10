@@ -1,6 +1,7 @@
 from flask_restx import Api
 
-from .TestCases import api as test_case_api
+from .TestCase import api as test_case_api
+from .TestCaseList import api as test_case_list_api
 from .TestRunList import api as test_run_list_api
 from .TestRun import api as test_run_api
 from .TestSuite import api as test_suite_api
@@ -13,6 +14,7 @@ api = Api(
 )
 
 api.add_namespace(test_case_api)
+api.add_namespace(test_case_list_api)
 api.add_namespace(test_run_list_api)
 api.add_namespace(test_run_api)
 api.add_namespace(test_suite_api)

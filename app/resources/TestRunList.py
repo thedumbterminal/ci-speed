@@ -14,6 +14,7 @@ upload_parser.add_argument(
     'file',
     location='files',
     type=FileStorage,
+    help='XML file',
     required=True
 )
 
