@@ -60,6 +60,12 @@ To update your local DB to the latest version run:
 PYTHONPATH=app FLASK_APP=main flask db upgrade
 ```
 
+To update the production DB to the latest version run:
+
+```
+heroku run 'PYTHONPATH=app FLASK_APP=main flask db upgrade'
+```
+
 ## Environment Variables
 
 * DATABASE_URL - Set the PostgreSQL DSN to use other than the default.
