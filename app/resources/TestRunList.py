@@ -29,7 +29,7 @@ class TestRunList(Resource):
             for case in suite_details['testcase']:
                 test_case = TestCase(case['@name'], case['@time'])
                 test_cases.append(test_case)
-            test_suite = TestSuite(suite_details['@name'], test_cases)
+            test_suite = TestSuite(suite_details['@name'], suite_details['@time'], test_cases)
             test_suites.append(test_suite)
         return TestRun(test_suites)
 

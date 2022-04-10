@@ -16,6 +16,7 @@ class TestRunSchema(ma.SQLAlchemyAutoSchema):
 
 class TestSuiteSchema(ma.SQLAlchemyAutoSchema):
     test_cases = ma.auto_field()
+    time = fields.Float() # Allow numeric fields to be serialised correctly
 
     class Meta:
         model = TestSuite
