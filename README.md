@@ -89,6 +89,8 @@ heroku run 'PYTHONPATH=app FLASK_APP=main flask db upgrade'
 * Number of tests
 * Marking test runs as public
 * users -> projects -> test runs -> test suites -> test cases
+* newest / oldest tests
+* diff results from last run
 
 ### CI Integrations
 * Github actions
