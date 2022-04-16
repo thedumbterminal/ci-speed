@@ -85,8 +85,10 @@ heroku run 'PYTHONPATH=app FLASK_APP=main flask db upgrade'
 * Viewing test results
 * Most failing tests
 * Longest tests
-* Flakey tests
-
+* Flaky tests
+* Number of tests
+* Marking test runs as public
+* users -> projects -> test runs -> test suites -> test cases
 
 ### CI Integrations
 * Github actions
