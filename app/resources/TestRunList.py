@@ -6,6 +6,8 @@ from schemas import TestRunSchema
 from pprint import pprint
 import json
 from db import db
+import os
+
 
 api = Namespace("test_runs", description="Test run related operations")
 
@@ -21,24 +23,29 @@ upload_parser.add_argument(
 
 @api.route("/")
 class TestRunList(Resource):
-    def _jUnitToTestSuite(self, suite_details):
+    def _junit_to_test_suite(self, suite_details):
         test_cases = []
         for case in suite_details['testcase']:
             test_case = TestCase(case['@name'], case['@time'])
             test_cases.append(test_case)
         return TestSuite(suite_details['@name'], suite_details['@time'], test_cases)
 
-    def _jUnitToTestRun(self, junit_dict):
+    def _junit_to_test_run(self, junit_dict):
         test_suites = []
         # having testsuites is optional
         if 'testsuites' in junit_dict:
             for suite in junit_dict['testsuites']:
-                test_suite = self._jUnitToTestSuite(suite['testsuite'])
+                test_suite = self._junit_to_test_suite(suite['testsuite'])
                 test_suites.append(test_suite)
         else:
-            test_suite = self._jUnitToTestSuite(junit_dict['testsuite'])
+            test_suite = self._junit_to_test_suite(junit_dict['testsuite'])
             test_suites.append(test_suite)
         return TestRun(test_suites)
+
+    def _test_run_url(self, test_run):
+        default_ui_base = 'http://localhost:3000'
+        ui_url_base = os.environ.get('DATABASE_URL', default_ui_base)
+        return f'{ui_url_base}/test_runs/{test_run.id}'
 
     @api.doc("list_test_runs")
     def get(self):
@@ -62,11 +69,13 @@ class TestRunList(Resource):
         print('Uploaded JSON:')
         print(json.dumps(converted_dict))
 
-        test_run = self._jUnitToTestRun(converted_dict)
+        test_run = self._junit_to_test_run(converted_dict)
         db.session.add(test_run)
         db.session.commit()
 
         print('Schema result:')
         test_run_schema = TestRunSchema()
         pprint(test_run_schema.dump(test_run))
-        return True
+        return {
+            'test_run_url': self._test_run_url(test_run)
+        }
