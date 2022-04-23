@@ -48,7 +48,13 @@ curl -F 'file=@samples/junit_perl.xml' http://localhost:5000/test_runs/
 
 ## Deploy
 
-Deploys automatically to heroku on main branch merge, app available at:
+Once code has been merged to the `main` branch, you can deploy from your local machine, using:
+
+```
+git push heroku main:main
+```
+
+Once deployed the API will visible at the following URL:
 
 https://ci-speed.herokuapp.com
 
