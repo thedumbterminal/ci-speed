@@ -21,15 +21,22 @@ upload_parser.add_argument(
 
 @api.route("/")
 class TestRunList(Resource):
+    def _jUnitToTestSuite(self, suite_details):
+        test_cases = []
+        for case in suite_details['testcase']:
+            test_case = TestCase(case['@name'], case['@time'])
+            test_cases.append(test_case)
+        return TestSuite(suite_details['@name'], suite_details['@time'], test_cases)
+
     def _jUnitToTestRun(self, junit_dict):
         test_suites = []
-        for suite in junit_dict['testsuites']:
-            suite_details = suite['testsuite']
-            test_cases = []
-            for case in suite_details['testcase']:
-                test_case = TestCase(case['@name'], case['@time'])
-                test_cases.append(test_case)
-            test_suite = TestSuite(suite_details['@name'], suite_details['@time'], test_cases)
+        # having testsuites is optional
+        if 'testsuites' in junit_dict:
+            for suite in junit_dict['testsuites']:
+                test_suite = self._jUnitToTestSuite(suite['testsuite'])
+                test_suites.append(test_suite)
+        else:
+            test_suite = self._jUnitToTestSuite(junit_dict['testsuite'])
             test_suites.append(test_suite)
         return TestRun(test_suites)
 
