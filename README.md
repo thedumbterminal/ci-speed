@@ -60,6 +60,12 @@ https://ci-speed.herokuapp.com
 
 ## Database migrations
 
+To create a new migration:
+
+```
+PYTHONPATH=app FLASK_APP=main flask db migrate -m "Some comment here"
+```
+
 To update your local DB to the latest version run:
 
 ```

@@ -1,8 +1,17 @@
 from flask_marshmallow import Marshmallow
-from models import TestRun, TestSuite, TestCase
+from models import Project, TestRun, TestSuite, TestCase
 from flask_marshmallow.fields import fields
 
 ma = Marshmallow()
+
+
+class ProjectSchema(ma.SQLAlchemyAutoSchema):
+    test_runs = ma.auto_field()
+
+    class Meta:
+        model = Project
+        load_instance = True
+        include_fk = True
 
 
 class TestRunSchema(ma.SQLAlchemyAutoSchema):

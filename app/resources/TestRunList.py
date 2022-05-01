@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
-from models import TestRun, TestSuite, TestCase
+from models import Project, TestRun, TestSuite, TestCase
 from schemas import TestRunSchema
 from pprint import pprint
 import json
@@ -19,6 +19,11 @@ upload_parser.add_argument(
     help='XML file',
     required=True
 )
+upload_parser.add_argument(
+    'project_name',
+    required=True,
+    help='Name of the project'
+)
 
 
 @api.route("/")
@@ -30,7 +35,7 @@ class TestRunList(Resource):
             test_cases.append(test_case)
         return TestSuite(suite_details['@name'], suite_details['@time'], test_cases)
 
-    def _junit_to_test_run(self, junit_dict):
+    def _junit_to_test_run(self, project_id, junit_dict):
         test_suites = []
         # having testsuites is optional
         if 'testsuites' in junit_dict:
@@ -40,7 +45,7 @@ class TestRunList(Resource):
         else:
             test_suite = self._junit_to_test_suite(junit_dict['testsuite'])
             test_suites.append(test_suite)
-        return TestRun(test_suites)
+        return TestRun(project_id, test_suites)
 
     def _test_run_url(self, test_run):
         default_ui_base = 'http://localhost:3000'
@@ -69,7 +74,11 @@ class TestRunList(Resource):
         print('Uploaded JSON:')
         print(json.dumps(converted_dict))
 
-        test_run = self._junit_to_test_run(converted_dict)
+        project = Project.query.filter_by(name = args['project_name']).first()
+        if not project:
+            raise ValueError('Project not found')
+        print('Found project', project)
+        test_run = self._junit_to_test_run(project.id, converted_dict)
         db.session.add(test_run)
         db.session.commit()
 
