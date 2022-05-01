@@ -45,7 +45,7 @@ class TestRunList(Resource):
     def _test_run_url(self, test_run):
         default_ui_base = 'http://localhost:3000'
         ui_url_base = os.environ.get('UI_URL_BASE', default_ui_base)
-        return f'{ui_url_base}/test_runs/{test_run.id}'
+        return f'{ui_url_base}/#/test_run/?id={test_run.id}'
 
     @api.doc("list_test_runs")
     def get(self):
