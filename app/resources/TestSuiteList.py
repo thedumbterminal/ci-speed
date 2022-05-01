@@ -6,7 +6,7 @@ api = Namespace("test_suites", description="Test suite related operations")
 
 search_parser = api.parser()
 search_parser.add_argument(
-    'test_run',
+    'test_run_id',
     type=int,
     location='args',
     help='Test run ID',
@@ -20,6 +20,6 @@ class TestSuiteList(Resource):
     def get(self):
         '''List all test suites'''
         args = search_parser.parse_args()
-        test_suites = TestSuite.query.filter_by(test_run_id = args['test_run']).all()
+        test_suites = TestSuite.query.filter_by(test_run_id = args['test_run_id']).all()
         test_suite_schema = TestSuiteSchema()
         return test_suite_schema.dump(test_suites, many=True)

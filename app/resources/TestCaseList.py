@@ -6,7 +6,7 @@ api = Namespace("test_cases", description="Test case related operations")
 
 search_parser = api.parser()
 search_parser.add_argument(
-    'test_suite',
+    'test_suite_id',
     type=int,
     location='args',
     help='Test suite ID',

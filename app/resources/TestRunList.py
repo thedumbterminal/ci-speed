@@ -25,6 +25,14 @@ upload_parser.add_argument(
     help='Name of the project'
 )
 
+search_parser = api.parser()
+search_parser.add_argument(
+    'project_id',
+    type=int,
+    location='args',
+    help='Project ID',
+    required=True
+)
 
 @api.route("/")
 class TestRunList(Resource):
@@ -53,9 +61,11 @@ class TestRunList(Resource):
         return f'{ui_url_base}/#/test_run/?id={test_run.id}'
 
     @api.doc("list_test_runs")
+    @api.expect(search_parser)
     def get(self):
         '''List all test runs'''
-        test_runs = TestRun.query.all()
+        args = search_parser.parse_args()
+        test_runs = TestRun.query.filter_by(project_id = args['project_id']).all()
         test_run_schema = TestRunSchema()
         return test_run_schema.dump(test_runs, many=True)
 
