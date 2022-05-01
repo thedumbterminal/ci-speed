@@ -24,7 +24,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.add_column('test_run', sa.Column('project_id', sa.Integer(), nullable=False))
-    op.create_foreign_key(None, 'test_run', 'project', ['project_id'], ['id'])
+    op.create_foreign_key('test_run_project_id_fkey', 'test_run', 'project', ['project_id'], ['id'], ondelete='CASCADE', onupdate='CASCADE')
     # ### end Alembic commands ###
 
 

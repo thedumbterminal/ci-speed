@@ -3,7 +3,7 @@ from db import db
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String())
+    name = db.Column(db.String(), nullable=False)
 
     def __init__(self, name, test_runs=[]):
         self.name = name
@@ -15,7 +15,12 @@ class TestRun(db.Model):
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=db.func.now())
     project_id = db.Column(db.Integer, db.ForeignKey("project.id"), nullable=False)
-    project = db.relationship('Project', backref="test_runs")
+    project = db.relationship(
+        'Project',
+        backref="test_runs",
+        cascade="all, delete",
+        passive_deletes=True
+    )
 
     def __init__(self, project_id, test_suites=[]):
         self.project_id = project_id
@@ -27,7 +32,12 @@ class TestSuite(db.Model):
     name = db.Column(db.String())
     time = db.Column(db.Numeric())
     test_run_id = db.Column(db.Integer, db.ForeignKey("test_run.id"))
-    test_run = db.relationship('TestRun', backref="test_suites")
+    test_run = db.relationship(
+        'TestRun',
+        backref="test_suites",
+        cascade="all, delete",
+        passive_deletes=True
+    )
 
     def __init__(self, name, time, test_cases=[]):
         self.name = name
@@ -40,7 +50,12 @@ class TestCase(db.Model):
     name = db.Column(db.String())
     time = db.Column(db.Numeric())
     test_suite_id = db.Column(db.Integer, db.ForeignKey("test_suite.id"))
-    test_suite = db.relationship('TestSuite', backref="test_cases")
+    test_suite = db.relationship(
+        'TestSuite',
+        backref="test_cases",
+        cascade="all, delete",
+        passive_deletes=True
+    )
 
     def __init__(self, name, time):
         self.name = name

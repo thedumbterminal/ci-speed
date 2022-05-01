@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=True),
     sa.Column('test_run_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['test_run_id'], ['test_run.id'], ),
+    sa.ForeignKeyConstraint(['test_run_id'], ['test_run.id'], ondelete='CASCADE', onupdate='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('test_case',
@@ -35,7 +35,7 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=True),
     sa.Column('time', sa.Numeric(), nullable=True),
     sa.Column('test_suite_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['test_suite_id'], ['test_suite.id'], ),
+    sa.ForeignKeyConstraint(['test_suite_id'], ['test_suite.id'], ondelete='CASCADE', onupdate='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
