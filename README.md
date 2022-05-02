@@ -82,6 +82,7 @@ heroku run 'PYTHONPATH=app FLASK_APP=main flask db upgrade'
 
 * DATABASE_URL - Set the PostgreSQL DSN to use other than the default.
 * UI_URL_BASE - Set the prefix when creating URLs to the UI app.
+* DEBUG - Set to `1` to enable debug mode.
 
 ## Tech
 * Python
