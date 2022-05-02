@@ -25,7 +25,7 @@ docker ps -a
 ## Run
 
 ```
-python ./app/main.py
+DEBUG=1 python ./app/main.py
 ```
 
 Dev server available at:

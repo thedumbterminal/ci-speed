@@ -12,7 +12,8 @@ create_parser = api.parser()
 create_parser.add_argument(
     'name',
     required=True,
-    help='Name of the project'
+    help='Name of the project',
+    location='form'
 )
 
 @api.route("/")
