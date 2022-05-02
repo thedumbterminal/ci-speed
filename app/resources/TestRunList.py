@@ -22,7 +22,8 @@ upload_parser.add_argument(
 upload_parser.add_argument(
     'project_name',
     required=True,
-    help='Name of the project'
+    help='Name of the project',
+    location='form'
 )
 
 search_parser = api.parser()
