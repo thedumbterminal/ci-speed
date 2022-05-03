@@ -25,7 +25,7 @@ docker ps -a
 ## Run
 
 ```
-DEBUG=1 python ./app/main.py
+FLASK_DEBUG=1 PYTHONPATH=app flask run
 ```
 
 Dev server available at:
@@ -80,9 +80,10 @@ heroku run 'PYTHONPATH=app FLASK_APP=main flask db upgrade'
 
 ## Environment Variables
 
+See also the built in flask environment variables.
+
 * DATABASE_URL - Set the PostgreSQL DSN to use other than the default.
 * UI_URL_BASE - Set the prefix when creating URLs to the UI app.
-* DEBUG - Set to `1` to enable debug mode.
 
 ## Tech
 * Python
