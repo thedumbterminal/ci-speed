@@ -1,5 +1,14 @@
 from db import db
+from flask_dance.consumer.storage.sqla import OAuthConsumerMixin
 
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    # ... other columns as needed
+
+class OAuth(OAuthConsumerMixin, db.Model):
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
+    user = db.relationship(User)
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
