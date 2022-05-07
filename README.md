@@ -1,4 +1,7 @@
 # ci-speed
+
+[![Python application](https://github.com/thedumbterminal/ci-speed/actions/workflows/python-app.yml/badge.svg)](https://github.com/thedumbterminal/ci-speed/actions/workflows/python-app.yml)
+
 Measure CI time
 
 ## Requirements
