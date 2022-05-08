@@ -2,13 +2,15 @@ from resources import api
 from flask_marshmallow import Marshmallow
 from f_app import app
 from oauth_blueprint import blueprint
+from models import security, user_datastore
 
 ma = Marshmallow(app)
 
 api.init_app(app)
 
-
 app.register_blueprint(blueprint, url_prefix="/oauth")
+
+security.init_app(app, user_datastore)
 
 
 @app.cli.command()
