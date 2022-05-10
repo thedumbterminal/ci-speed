@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_cors import CORS
-from os import environ
+import os
+
 
 app = Flask(__name__)
-
-if environ.get('DEBUG', False) == '1':
-    print('Starting in debug mode...')
-    app.debug = True
-
 CORS(app)
+
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "reallysecret")
+app.config["GITHUB_OAUTH_CLIENT_ID"] = os.environ.get("GITHUB_OAUTH_CLIENT_ID")
+app.config["GITHUB_OAUTH_CLIENT_SECRET"] = os.environ.get("GITHUB_OAUTH_CLIENT_SECRET")

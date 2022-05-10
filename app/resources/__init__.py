@@ -8,6 +8,8 @@ from .TestSuite import api as test_suite_api
 from .TestSuiteList import api as test_suite_list_api
 from .TestCase import api as test_case_api
 from .TestCaseList import api as test_case_list_api
+from .Login import api as login_api
+from .User import api as user_api
 
 api = Api(
     title="CI-Speed API",
@@ -23,3 +25,5 @@ api.add_namespace(test_suite_api)
 api.add_namespace(test_suite_list_api)
 api.add_namespace(test_case_api)
 api.add_namespace(test_case_list_api)
+api.add_namespace(login_api)
+api.add_namespace(user_api)

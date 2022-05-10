@@ -8,6 +8,8 @@ xmltodict
 marshmallow-sqlalchemy
 psycopg2-binary
 Flask-Migrate
+Flask-Dance
+Flask-Security
 
 #dev includes
 flake8

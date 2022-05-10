@@ -1,4 +1,7 @@
 # ci-speed
+
+[![Python application](https://github.com/thedumbterminal/ci-speed/actions/workflows/python-app.yml/badge.svg)](https://github.com/thedumbterminal/ci-speed/actions/workflows/python-app.yml)
+
 Measure CI time
 
 ## Requirements
@@ -25,12 +28,25 @@ docker ps -a
 ## Run
 
 ```
-DEBUG=1 python ./app/main.py
+FLASK_DEBUG=1 PYTHONPATH=app FLASK_ENV=development flask run
 ```
 
 Dev server available at:
 
 http://127.0.0.1:5000
+
+
+Or with github auth:
+
+```
+ GITHUB_OAUTH_CLIENT_ID=xxx GITHUB_OAUTH_CLIENT_SECRET=xxx OAUTHLIB_INSECURE_TRANSPORT=true FLASK_DEBUG=1 PYTHONPATH=app FLASK_ENV=development flask run
+```
+
+## Listing routes
+
+```
+PYTHONPATH=app flask routes
+```
 
 ### Production mode
 
@@ -80,9 +96,14 @@ heroku run 'PYTHONPATH=app FLASK_APP=main flask db upgrade'
 
 ## Environment Variables
 
+See also the built in flask environment variables.
+
 * DATABASE_URL - Set the PostgreSQL DSN to use other than the default.
 * UI_URL_BASE - Set the prefix when creating URLs to the UI app.
-* DEBUG - Set to `1` to enable debug mode.
+* FLASK_SECRET_KEY - Use a random value for flask auth storage.
+* GITHUB_OAUTH_CLIENT_ID - Set to github oauth app client ID.
+* GITHUB_OAUTH_CLIENT_SECRET - Set to github oauth app client secret.
+* OAUTHLIB_INSECURE_TRANSPORT - Set to `true` when testing auth locally.
 
 ## Tech
 * Python
