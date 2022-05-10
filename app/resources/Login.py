@@ -3,15 +3,14 @@ from flask_dance.contrib.github import github
 from flask import redirect, url_for
 
 
-api = Namespace("auth", description="Auth related operations")
+api = Namespace("login", description="Login related operations")
 
 def _log_response(resp):
     print(dict(resp.headers))
     print(resp.status_code, resp.json())
 
-
-@api.route("/login")
-class Auth(Resource):
+@api.route("/")
+class Login(Resource):
     @api.doc("Login to your account via github")
     def get(self):
         if not github.authorized:
