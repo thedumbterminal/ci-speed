@@ -10,7 +10,7 @@ def _log_response(resp):
     print(resp.status_code, resp.json())
 
 @api.route("/")
-class Login(Resource):
+class User(Resource):
     @auth_required('session')
     @api.doc("get the info of the current user")
     def get(self):
