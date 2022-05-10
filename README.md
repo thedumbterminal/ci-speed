@@ -100,7 +100,7 @@ See also the built in flask environment variables.
 
 * DATABASE_URL - Set the PostgreSQL DSN to use other than the default.
 * UI_URL_BASE - Set the prefix when creating URLs to the UI app.
-* FLASK_SECRET_KEY - Use a random value for flask auth storage.
+* FLASK_SECRET_KEY - Use a random value for flask auth storage. `echo "import secrets\nprint(secrets.token_urlsafe())" | python`
 * GITHUB_OAUTH_CLIENT_ID - Set to github oauth app client ID.
 * GITHUB_OAUTH_CLIENT_SECRET - Set to github oauth app client secret.
 * OAUTHLIB_INSECURE_TRANSPORT - Set to `true` when testing auth locally.
