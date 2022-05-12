@@ -42,16 +42,24 @@ Or with github auth:
  GITHUB_OAUTH_CLIENT_ID=xxx GITHUB_OAUTH_CLIENT_SECRET=xxx OAUTHLIB_INSECURE_TRANSPORT=true FLASK_DEBUG=1 PYTHONPATH=app FLASK_ENV=development flask run
 ```
 
-## Listing routes
+### Production mode
+
+```
+honcho start
+```
+
+## Utilities
+
+### Listing routes
 
 ```
 PYTHONPATH=app flask routes
 ```
 
-### Production mode
+### Clearing the database
 
 ```
-honcho start
+PYTHONPATH=app flask cleardb
 ```
 
 ## Example actions

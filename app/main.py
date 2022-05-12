@@ -24,6 +24,5 @@ def routes():
 
 @app.cli.command()
 def cleardb():
-    'Clear all db tables'
+    'Drop all db tables'
     db.drop_all()
-    db.create_all()
