@@ -13,15 +13,15 @@ from .User import api as user_api
 from .Token import api as token_api
 
 authorizations = {
-    'OAuth2': {
-        'type': 'oauth2',
-        'flow': 'accessCode',
-        'authorizationUrl': 'https://github.com/login/oauth/authorize',
-        'tokenUrl': '/oauth/github/authorized',
-        'scopes': {
-            'user:email': 'Read user email addresses'
-        }
-    },
+    # 'OAuth2': {
+        # 'type': 'oauth2',
+        # 'flow': 'accessCode',
+        # 'authorizationUrl': 'https://github.com/login/oauth/authorize',
+        # 'tokenUrl': '/oauth/github/authorized',
+        # 'scopes': {
+            # 'user:email': 'Read user email addresses'
+        # }
+    # },
     'apikey': {
         'type': 'apiKey',
         'in': 'header',
