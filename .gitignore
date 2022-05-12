@@ -15,3 +15,4 @@ __pycache__
 /samples/java-ant/build/
 /build-plugins/maven-ci-speed-sample/.idea/
 /build-plugins/ci-speed-maven-plugin/target/
+/build-plugins/ci-speed-maven-plugin/.idea/
