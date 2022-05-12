@@ -48,20 +48,6 @@ Or with github auth:
 honcho start
 ```
 
-## Utilities
-
-### Listing routes
-
-```
-PYTHONPATH=app flask routes
-```
-
-### Clearing the database
-
-```
-PYTHONPATH=app flask cleardb
-```
-
 ## Example actions
 
 Upload test run:
@@ -82,7 +68,21 @@ Once deployed the API will visible at the following URL:
 
 https://ci-speed.herokuapp.com
 
-## Database migrations
+## Utilities
+
+### Listing routes
+
+```
+PYTHONPATH=app flask routes
+```
+
+### Clearing the database
+
+```
+PYTHONPATH=app flask cleardb
+```
+
+### Database migrations
 
 To create a new migration:
 

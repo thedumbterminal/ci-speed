@@ -13,6 +13,7 @@ def _log_response(resp):
 class Login(Resource):
     @api.doc("Login to your account via github")
     def get(self):
+        '''Login using OAUTH'''
         if not github.authorized:
             print('not authorized')
             return redirect(url_for("github.login"))
