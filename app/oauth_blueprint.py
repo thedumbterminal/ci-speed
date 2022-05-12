@@ -4,6 +4,7 @@ from flask_security import current_user, login_user
 from models import User, OAuth
 from db import db
 from sqlalchemy.orm.exc import NoResultFound
+import uuid
 
 blueprint = make_github_blueprint(scope='user:email')
 
@@ -53,7 +54,7 @@ def github_logged_in(blueprint, token):
 
     else:
         # Create a new local user account for this user
-        user = User(email=primary_email, active=True)
+        user = User(email=primary_email, active=True, fs_uniquifier=uuid.uuid4().hex)
         # Associate the new local user account with the OAuth token
         oauth.user = user
         # Save and commit our database models

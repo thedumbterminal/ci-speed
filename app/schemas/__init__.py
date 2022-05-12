@@ -10,6 +10,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         model = User
         load_instance = True
         include_fk = True
+        exclude = ('fs_uniquifier', 'password', 'confirmed_at')
 
 
 class ProjectSchema(ma.SQLAlchemyAutoSchema):

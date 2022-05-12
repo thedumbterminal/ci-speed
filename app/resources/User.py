@@ -11,7 +11,7 @@ def _log_response(resp):
 
 @api.route("/")
 class User(Resource):
-    @auth_required('session')
+    @auth_required('token', 'session')
     @api.doc("get the info of the current user")
     def get(self):
         user_schema = UserSchema()

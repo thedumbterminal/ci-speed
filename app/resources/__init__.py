@@ -10,6 +10,7 @@ from .TestCase import api as test_case_api
 from .TestCaseList import api as test_case_list_api
 from .Login import api as login_api
 from .User import api as user_api
+from .Token import api as token_api
 
 api = Api(
     title="CI-Speed API",
@@ -27,3 +28,4 @@ api.add_namespace(test_case_api)
 api.add_namespace(test_case_list_api)
 api.add_namespace(login_api)
 api.add_namespace(user_api)
+api.add_namespace(token_api)

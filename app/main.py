@@ -3,6 +3,7 @@ from flask_marshmallow import Marshmallow
 from f_app import app
 from oauth_blueprint import blueprint
 from models import security, user_datastore
+from db import db
 
 ma = Marshmallow(app)
 
@@ -20,3 +21,9 @@ def routes():
         methods = ','.join(sorted(rule.methods))
         route = '{:50s} {:25s} {}'.format(rule.endpoint, methods, str(rule))
         print(route)
+
+@app.cli.command()
+def cleardb():
+    'Clear all db tables'
+    db.drop_all()
+    db.create_all()
