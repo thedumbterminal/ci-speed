@@ -13,9 +13,9 @@ public class ThingTest {
         assertEquals(true, (new Thing()).doThing());
     }
 
-    @Test
-    @DisplayName("Supposed to not do something")
-    public void testDoNothing(){
-        assertEquals(false, (new Thing()).doThing());
-    }
+    //@Test
+    //@DisplayName("Supposed to not do something")
+    //public void testDoNothing(){
+    //    assertEquals(false, (new Thing()).doThing());
+    //}
 }
