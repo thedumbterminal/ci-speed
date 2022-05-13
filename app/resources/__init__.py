@@ -29,21 +29,6 @@ authorizations = {
     }
 }
 
-# security:
-  # - github-oauth2:
-      # - read:user
-# components:
-  # securitySchemes:
-    # github-oauth2:
-      # type: oauth2
-      # description: GitHub OAuth2
-      # flows:
-        # authorizationCode:
-          # authorizationUrl: https://github.com/login/oauth/authorize
-          # tokenUrl: /github/login/oauth/access_token
-          # scopes:
-            # user: Read user info
-
 api = Api(
     title="CI-Speed API",
     version="1.0.0",
