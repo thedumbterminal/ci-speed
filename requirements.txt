@@ -1,4 +1,4 @@
-flask-restx
+flask-restx==0.5.1
 flask-marshmallow
 flask-sqlalchemy
 flask-cors
