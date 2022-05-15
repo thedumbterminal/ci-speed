@@ -22,7 +22,10 @@ ui_url_path = os.environ.get("UI_URL_PATH", "")
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def proxy(path):
-    new = f'{ui_url_base}{ui_url_path}{path}'
+    print('Original path: ', path)
+    if path == '':
+        path = ui_url_path
+    new = f'{ui_url_base}{path}'
     print('Proxy to:', new)
     return get(new).content
 
