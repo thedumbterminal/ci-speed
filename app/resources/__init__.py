@@ -33,7 +33,9 @@ api = Api(
     title="CI-Speed API",
     version="1.0.0",
     description="Manage CI-Speed resources",
-    authorizations=authorizations
+    authorizations=authorizations,
+    doc="/doc",
+    prefix="/api"
 )
 
 api.add_namespace(project_list_api)
