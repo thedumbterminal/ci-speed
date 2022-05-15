@@ -107,7 +107,8 @@ heroku run 'PYTHONPATH=app FLASK_APP=main flask db upgrade'
 See also the built in flask environment variables.
 
 * DATABASE_URL - Set the PostgreSQL DSN to use other than the default.
-* UI_URL_BASE - Set the prefix when creating URLs to the UI app.
+* UI_URL_BASE - Set the base schema and domain when creating URLs to the UI app.
+* UI_URL_PATH - Set the path when creating URLs to the UI app.
 * FLASK_SECRET_KEY - Use a random value for flask auth storage. `echo "import secrets\nprint(secrets.token_urlsafe())" | python`
 * GITHUB_OAUTH_CLIENT_ID - Set to github oauth app client ID.
 * GITHUB_OAUTH_CLIENT_SECRET - Set to github oauth app client secret.
