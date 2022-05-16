@@ -7,6 +7,7 @@ from pprint import pprint
 import json
 from db import db
 import os
+from flask_security import auth_required, current_user
 
 
 api = Namespace("test_runs", description="Test run related operations")
@@ -63,6 +64,8 @@ class TestRunList(Resource):
 
     @api.doc("list_test_runs")
     @api.expect(search_parser)
+    @auth_required('token', 'session')
+    @api.doc(security=['apikey'])
     def get(self):
         '''List all test runs'''
         args = search_parser.parse_args()
@@ -72,6 +75,8 @@ class TestRunList(Resource):
 
     @api.doc("upload_test_run")
     @api.expect(upload_parser)
+    @auth_required('token', 'session')
+    @api.doc(security=['apikey'])
     def post(self):
         '''Upload a junit XML file to create a test run'''
         args = upload_parser.parse_args()

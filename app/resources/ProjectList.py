@@ -4,6 +4,7 @@ from schemas import ProjectSchema
 from pprint import pprint
 from db import db
 import os
+from flask_security import auth_required, current_user
 
 
 api = Namespace("projects", description="Project related operations")
@@ -25,6 +26,8 @@ class ProjectList(Resource):
         return f'{ui_url_base}/#/project/?id={project.id}'
 
     @api.doc("list_projects")
+    @auth_required('token', 'session')
+    @api.doc(security=['apikey'])
     def get(self):
         '''List all projects'''
         projects = Project.query.all()
@@ -33,6 +36,8 @@ class ProjectList(Resource):
 
     @api.doc("create_project")
     @api.expect(create_parser)
+    @auth_required('token', 'session')
+    @api.doc(security=['apikey'])
     def post(self):
         '''Create a new project for storing test runs against'''
         args = create_parser.parse_args()

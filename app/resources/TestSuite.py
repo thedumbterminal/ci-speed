@@ -1,13 +1,16 @@
 from flask_restx import Resource, Namespace
 from models import TestSuite as TestSuiteModel
 from schemas import TestSuiteSchema
+from flask_security import auth_required, current_user
 
 api = Namespace("test_suites", description="Test suite related operations")
 
 @api.route("/<int:id>")
 @api.param('id', 'The test suite identifier')
 class TestSuite(Resource):
+    @auth_required('token', 'session')
     @api.doc("get_test_suite")
+    @api.doc(security=['apikey'])
     def get(self, id):
         '''Retrieve a test suite'''
         test_suite = TestSuiteModel.query.get(id)

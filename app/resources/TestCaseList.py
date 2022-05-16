@@ -1,6 +1,8 @@
 from flask_restx import Resource, Namespace
 from models import TestCase
 from schemas import TestCaseSchema
+from flask_security import auth_required, current_user
+
 
 api = Namespace("test_cases", description="Test case related operations")
 
@@ -17,6 +19,8 @@ search_parser.add_argument(
 class TestCaseList(Resource):
     @api.doc("list_test_cases")
     @api.expect(search_parser)
+    @auth_required('token', 'session')
+    @api.doc(security=['apikey'])
     def get(self):
         '''List all test cases'''
         args = search_parser.parse_args()

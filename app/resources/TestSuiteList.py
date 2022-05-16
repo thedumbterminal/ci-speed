@@ -1,6 +1,7 @@
 from flask_restx import Resource, Namespace
 from models import TestSuite
 from schemas import TestSuiteSchema
+from flask_security import auth_required, current_user
 
 api = Namespace("test_suites", description="Test suite related operations")
 
@@ -15,8 +16,10 @@ search_parser.add_argument(
 
 @api.route("/")
 class TestSuiteList(Resource):
+    @auth_required('token', 'session')
     @api.doc("list_test_suites")
     @api.expect(search_parser)
+    @api.doc(security=['apikey'])
     def get(self):
         '''List all test suites'''
         args = search_parser.parse_args()

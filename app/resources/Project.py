@@ -1,6 +1,8 @@
 from flask_restx import Resource, Namespace
 from models import Project as ProjectModel
 from schemas import ProjectSchema
+from flask_security import auth_required, current_user
+
 
 api = Namespace("projects", description="Project related operations")
 
@@ -8,6 +10,8 @@ api = Namespace("projects", description="Project related operations")
 @api.param('id', 'The project identifier')
 class Project(Resource):
     @api.doc("get_project")
+    @auth_required('token', 'session')
+    @api.doc(security=['apikey'])
     def get(self, id):
         '''Retrieve a project'''
         project = ProjectModel.query.get(id)
