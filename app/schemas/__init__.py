@@ -1,5 +1,5 @@
 from flask_marshmallow import Marshmallow
-from models import Project, TestRun, TestSuite, TestCase, User
+from models import User, Project, Build, TestRun, TestSuite, TestCase
 from flask_marshmallow.fields import fields
 
 ma = Marshmallow()
@@ -14,10 +14,19 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 
 
 class ProjectSchema(ma.SQLAlchemyAutoSchema):
-    test_runs = ma.auto_field()
+    builds = ma.auto_field()
 
     class Meta:
         model = Project
+        load_instance = True
+        include_fk = True
+
+
+class BuildSchema(ma.SQLAlchemyAutoSchema):
+    test_runs = ma.auto_field()
+
+    class Meta:
+        model = Build
         load_instance = True
         include_fk = True
 

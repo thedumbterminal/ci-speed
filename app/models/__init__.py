@@ -39,8 +39,25 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
 
-    def __init__(self, name, test_runs=[]):
+    def __init__(self, name, builds=[]):
         self.name = name
+        self.builds = builds
+
+
+class Build(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime(timezone=True),
+                           server_default=db.func.now())
+    project_id = db.Column(db.Integer, db.ForeignKey("project.id"), nullable=False)
+    project = db.relationship(
+        'Project',
+        backref="builds",
+        cascade="all, delete",
+        passive_deletes=True
+    )
+
+    def __init__(self, project_id, test_runs=[]):
+        self.project_id = project_id
         self.test_runs = test_runs
 
 
@@ -48,16 +65,16 @@ class TestRun(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=db.func.now())
-    project_id = db.Column(db.Integer, db.ForeignKey("project.id"), nullable=False)
-    project = db.relationship(
-        'Project',
+    build_id = db.Column(db.Integer, db.ForeignKey("build.id"), nullable=False)
+    build = db.relationship(
+        'Build',
         backref="test_runs",
         cascade="all, delete",
         passive_deletes=True
     )
 
-    def __init__(self, project_id, test_suites=[]):
-        self.project_id = project_id
+    def __init__(self, build_id, test_suites=[]):
+        self.build_id = build_id
         self.test_suites = test_suites
 
 
