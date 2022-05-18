@@ -35,10 +35,10 @@ upload_parser.add_argument(
 
 search_parser = api.parser()
 search_parser.add_argument(
-    'project_id',
+    'build_id',
     type=int,
     location='args',
-    help='Project ID',
+    help='Build ID',
     required=True
 )
 
@@ -75,7 +75,7 @@ class TestRunList(Resource):
     def get(self):
         '''List all test runs'''
         args = search_parser.parse_args()
-        test_runs = TestRun.query.filter_by(project_id = args['project_id']).all()
+        test_runs = TestRun.query.filter_by(build_id = args['build_id']).all()
         test_run_schema = TestRunSchema()
         return test_run_schema.dump(test_runs, many=True)
 
