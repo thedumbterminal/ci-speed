@@ -2,6 +2,8 @@ from flask_restx import Api
 
 from .ProjectList import api as project_list_api
 from .Project import api as project_api
+from .BuildList import api as build_list_api
+from .Build import api as build_api
 from .TestRunList import api as test_run_list_api
 from .TestRun import api as test_run_api
 from .TestSuite import api as test_suite_api
@@ -40,6 +42,8 @@ api = Api(
 
 api.add_namespace(project_list_api)
 api.add_namespace(project_api)
+api.add_namespace(build_list_api)
+api.add_namespace(build_api)
 api.add_namespace(test_run_list_api)
 api.add_namespace(test_run_api)
 api.add_namespace(test_suite_api)

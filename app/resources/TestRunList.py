@@ -26,6 +26,12 @@ upload_parser.add_argument(
     help='Name of the project',
     location='form'
 )
+upload_parser.add_argument(
+    'build_ref',
+    required=False,
+    help='Reference of the build',
+    location='form'
+)
 
 search_parser = api.parser()
 search_parser.add_argument(

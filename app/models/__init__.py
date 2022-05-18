@@ -48,6 +48,7 @@ class Build(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=db.func.now())
+    ref = db.Column(db.String(), nullable=False)
     project_id = db.Column(db.Integer, db.ForeignKey("project.id"), nullable=False)
     project = db.relationship(
         'Project',
@@ -56,8 +57,9 @@ class Build(db.Model):
         passive_deletes=True
     )
 
-    def __init__(self, project_id, test_runs=[]):
+    def __init__(self, project_id, ref='', test_runs=[]):
         self.project_id = project_id
+        self.ref = ref
         self.test_runs = test_runs
 
 
