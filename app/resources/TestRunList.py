@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
-from models import Project, TestRun, TestSuite, TestCase
+from models import Project, Build, TestRun, TestSuite, TestCase
 from schemas import TestRunSchema
 from pprint import pprint
 import json
@@ -28,7 +28,7 @@ upload_parser.add_argument(
 )
 upload_parser.add_argument(
     'build_ref',
-    required=False,
+    required=True,
     help='Reference of the build',
     location='form'
 )
@@ -51,7 +51,7 @@ class TestRunList(Resource):
             test_cases.append(test_case)
         return TestSuite(suite_details['@name'], suite_details['@time'], test_cases)
 
-    def _junit_to_test_run(self, project_id, junit_dict):
+    def _junit_to_test_run(self, build_id, junit_dict):
         test_suites = []
         # having testsuites is optional
         if 'testsuites' in junit_dict:
@@ -61,10 +61,10 @@ class TestRunList(Resource):
         else:
             test_suite = self._junit_to_test_suite(junit_dict['testsuite'])
             test_suites.append(test_suite)
-        return TestRun(project_id, test_suites)
+        return TestRun(build_id, test_suites)
 
     def _test_run_url(self, test_run):
-        ui_url_base = os.environ.get('UI_URL_BASE', 'http://localhost:3000')
+        ui_url_base = os.environ.get('UI_URL_BASE', 'http://localhost:5000')
         ui_url_path = os.environ.get('UI_URL_PATH', '/')
         return f'{ui_url_base}{ui_url_path}#/test_run/?id={test_run.id}'
 
@@ -100,7 +100,12 @@ class TestRunList(Resource):
         if not project:
             raise ValueError('Project not found')
         print('Found project', project)
-        test_run = self._junit_to_test_run(project.id, converted_dict)
+        build = Build.query.filter_by(ref = args['build_ref']).first()
+        if not build:
+            build = Build(project.id, args['build_ref'])
+            db.session.add(build)
+        print('Found build', build)
+        test_run = self._junit_to_test_run(build.id, converted_dict)
         db.session.add(test_run)
         db.session.commit()
 
