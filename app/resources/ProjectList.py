@@ -24,7 +24,7 @@ class ProjectList(Resource):
     @api.doc(security=['apikey'])
     def get(self):
         '''List all projects'''
-        projects = Project.query.all()
+        projects = Project.query.filter_by(user_id = current_user.id).all()
         project_schema = ProjectSchema()
         return project_schema.dump(projects, many=True)
 
@@ -36,7 +36,7 @@ class ProjectList(Resource):
         '''Create a new project for storing builds against'''
         args = create_parser.parse_args()
 
-        project = Project(args['name'])
+        project = Project(current_user.id, args['name'])
         db.session.add(project)
         db.session.commit()
 

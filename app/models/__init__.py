@@ -25,7 +25,9 @@ class User(UserMixin, db.Model):
     confirmed_at = db.Column(db.DateTime())
     fs_uniquifier = db.Column(db.String(255), unique=True, nullable=False)
     roles = db.relationship(
-        Role, secondary=roles_users, backref=db.backref("users", lazy="dynamic")
+        Role,
+        secondary=roles_users,
+        backref=db.backref("users", lazy="dynamic")
     )
 
 
@@ -38,8 +40,16 @@ class OAuth(OAuthConsumerMixin, db.Model):
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user = db.relationship(
+        User,
+        backref="projects",
+        cascade="all, delete",
+        passive_deletes=True
+    )
 
-    def __init__(self, name, builds=[]):
+    def __init__(self, user_id, name, builds=[]):
+        self.user_id = user_id
         self.name = name
         self.builds = builds
 
@@ -51,7 +61,7 @@ class Build(db.Model):
     ref = db.Column(db.String(), nullable=False)
     project_id = db.Column(db.Integer, db.ForeignKey("project.id"), nullable=False)
     project = db.relationship(
-        'Project',
+        Project,
         backref="builds",
         cascade="all, delete",
         passive_deletes=True
@@ -69,7 +79,7 @@ class TestRun(db.Model):
                            server_default=db.func.now())
     build_id = db.Column(db.Integer, db.ForeignKey("build.id"), nullable=False)
     build = db.relationship(
-        'Build',
+        Build,
         backref="test_runs",
         cascade="all, delete",
         passive_deletes=True
@@ -86,7 +96,7 @@ class TestSuite(db.Model):
     time = db.Column(db.Numeric())
     test_run_id = db.Column(db.Integer, db.ForeignKey("test_run.id"))
     test_run = db.relationship(
-        'TestRun',
+        TestRun,
         backref="test_suites",
         cascade="all, delete",
         passive_deletes=True
@@ -104,7 +114,7 @@ class TestCase(db.Model):
     time = db.Column(db.Numeric())
     test_suite_id = db.Column(db.Integer, db.ForeignKey("test_suite.id"))
     test_suite = db.relationship(
-        'TestSuite',
+        TestSuite,
         backref="test_cases",
         cascade="all, delete",
         passive_deletes=True

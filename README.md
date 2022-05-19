@@ -80,6 +80,8 @@ PYTHONPATH=app flask routes
 
 ```
 PYTHONPATH=app flask cleardb
+PYTHONPATH=app FLASK_APP=main flask db stamp 'base'
+PYTHONPATH=app FLASK_APP=main flask db upgrade
 ```
 
 ### Database migrations
