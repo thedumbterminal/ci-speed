@@ -95,7 +95,7 @@ class TestRunList(Resource):
         print('Uploaded JSON:')
         print(json.dumps(converted_dict))
 
-        project = Project.query.filter_by(name = args['project_name']).first()
+        project = Project.query.filter_by(user_id = current_user.id, name = args['project_name']).first()
         if not project:
             raise ValueError('Project not found')
         print('Found project', project)
@@ -103,6 +103,7 @@ class TestRunList(Resource):
         if not build:
             build = Build(project.id, args['build_ref'])
             db.session.add(build)
+            db.session.commit()
         print('Found build', build)
         test_run = self._junit_to_test_run(build.id, converted_dict)
         db.session.add(test_run)
