@@ -2,7 +2,11 @@
 
 [![Python application](https://github.com/thedumbterminal/ci-speed/actions/workflows/python-app.yml/badge.svg)](https://github.com/thedumbterminal/ci-speed/actions/workflows/python-app.yml)
 
-Measure CI time
+Historcally analyse CI builds for test duration, failures and more.
+
+For the UI please see:
+
+https://github.com/thedumbterminal/ci-speed-ui
 
 ## Requirements
 
