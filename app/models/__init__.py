@@ -47,6 +47,7 @@ class Project(db.Model):
         cascade="all, delete",
         passive_deletes=True
     )
+    db.UniqueConstraint(user_id, name, name='uniq_user_id_project')
 
     def __init__(self, user_id, name, builds=[]):
         self.user_id = user_id
