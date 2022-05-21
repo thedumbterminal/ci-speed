@@ -29,15 +29,24 @@ def proxy(path):
     print('Proxy to:', new)
     return get(new).content
 
+
 @app.route('/static/js/<path:path>')
 def static_js_proxy(path):
     new = f'{ui_url_base}{ui_url_path}static/js/{path}'
     print('Proxy to:', new)
     return get(new).content
 
+
 @app.route('/static/media/<path:path>')
 def static_media_proxy(path):
     new = f'{ui_url_base}{ui_url_path}static/media/{path}'
+    print('Proxy to:', new)
+    return get(new).content
+
+
+@app.route('/static/css/<path:path>')
+def static_css_proxy(path):
+    new = f'{ui_url_base}{ui_url_path}static/css/{path}'
     print('Proxy to:', new)
     return get(new).content
 
