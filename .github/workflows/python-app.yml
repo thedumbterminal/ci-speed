@@ -26,6 +26,3 @@ jobs:
     - name: CI
       run: |
         invoke ci
-    - name: Test with pytest
-      run: |
-        #pytest

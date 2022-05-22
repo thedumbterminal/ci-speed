@@ -13,6 +13,12 @@ def format(c):
     c.run("black .")
 
 
-@task(lint)
+@task
+def test(c):
+    print("Running test...")
+    c.run("pytest .")
+
+
+@task(lint, test)
 def ci(c):
     print("Running CI...")

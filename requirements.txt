@@ -16,3 +16,4 @@ email-validator
 flake8
 invoke
 black
+pytest
