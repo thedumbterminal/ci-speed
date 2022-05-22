@@ -17,3 +17,4 @@ __pycache__
 /build-plugins/ci-speed-maven-plugin/target/
 /build-plugins/ci-speed-maven-plugin/.idea/
 /samples/java-maven/.idea/
+/.pytest_cache/

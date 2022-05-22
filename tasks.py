@@ -16,7 +16,7 @@ def format(c):
 @task
 def test(c):
     print("Running test...")
-    c.run("pytest .")
+    c.run("PYTHONPATH=app pytest .")
 
 
 @task(lint, test)
