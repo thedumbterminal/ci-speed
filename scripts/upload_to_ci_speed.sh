@@ -10,7 +10,7 @@ BUILD_REF=$2
 
 echo "Project: ${PROJECT_NAME} Build: ${BUILD_REF}"
 
-curl -X 'POST' \
+curl --fail-with-body -X 'POST' \
   'https://ci-speed.herokuapp.com/api/test_runs/' \
   -H 'accept: application/json' \
   -H 'Authentication-Token: ${CI_SPEED_AUTH_TOKEN}' \
