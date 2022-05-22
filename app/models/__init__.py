@@ -1,5 +1,4 @@
 from db import db
-from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin, SQLAlchemyUserDatastore, Security
 from flask_dance.consumer.storage.sqla import OAuthConsumerMixin
 

@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
 from models import Build as BuildModel
 from schemas import BuildSchema
-from flask_security import auth_required, current_user
+from flask_security import auth_required
 
 
 api = Namespace("builds", description="Build related operations")

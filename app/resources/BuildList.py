@@ -3,7 +3,7 @@ from models import Project, Build
 from schemas import BuildSchema
 from pprint import pprint
 from db import db
-from flask_security import auth_required, current_user
+from flask_security import auth_required
 
 
 api = Namespace("builds", description="Build related operations")

@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
 from models import TestRun as TestRunModel
 from schemas import TestRunSchema
-from flask_security import auth_required, current_user
+from flask_security import auth_required
 
 
 api = Namespace("test_runs", description="Test run related operations")

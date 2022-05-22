@@ -1,12 +1,14 @@
 from flask_dance.contrib.github import make_github_blueprint, github
 from flask_dance.consumer import oauth_authorized, oauth_error
-from flask_security import current_user, login_user
+from flask_security import login_user
 from models import User, OAuth
 from db import db
 from sqlalchemy.orm.exc import NoResultFound
 import uuid
 
+
 blueprint = make_github_blueprint(scope="user:email")
+
 
 # create/login local user on successful OAuth login
 @oauth_authorized.connect_via(blueprint)
@@ -25,9 +27,10 @@ def github_logged_in(blueprint, token):
 
     print("Login OK")
 
-    github_login = info["login"]
     github_id = str(info["id"])
-    github_name = info["name"]
+    # TODO use these later
+    # github_login = info["login"]
+    # github_name = info["name"]
 
     emails_resp = github.get("/user/emails")
     if not emails_resp.ok:

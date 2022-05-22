@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
 from models import Project as ProjectModel
 from schemas import ProjectSchema
-from flask_security import auth_required, current_user
+from flask_security import auth_required
 
 
 api = Namespace("projects", description="Project related operations")

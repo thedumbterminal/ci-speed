@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
 from models import TestCase as TestCaseModel
 from schemas import TestCaseSchema
-from flask_security import auth_required, current_user
+from flask_security import auth_required
 
 
 api = Namespace("test_cases", description="Test case related operations")
