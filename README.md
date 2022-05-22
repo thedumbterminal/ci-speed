@@ -132,16 +132,14 @@ See also the built in flask environment variables.
 
 ## Todo
 
-* Auth
-* Viewing test results
 * Most failing tests
 * Longest tests
 * Flaky tests
 * Number of tests
 * Marking test runs as public
-* users -> projects -> test runs -> test suites -> test cases
-* newest / oldest tests
-* diff results from last run
+* Newest / oldest tests
+* Diff results from last run
+* Organisation support so multiple users can share projects
 
 ### CI Integrations
 * Github actions
