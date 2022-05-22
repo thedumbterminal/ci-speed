@@ -10,7 +10,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         model = User
         load_instance = True
         include_fk = True
-        exclude = ('fs_uniquifier', 'password', 'confirmed_at')
+        exclude = ("fs_uniquifier", "password", "confirmed_at")
 
 
 class ProjectSchema(ma.SQLAlchemyAutoSchema):
@@ -42,7 +42,7 @@ class TestRunSchema(ma.SQLAlchemyAutoSchema):
 
 class TestSuiteSchema(ma.SQLAlchemyAutoSchema):
     test_cases = ma.auto_field()
-    time = fields.Float() # Allow numeric fields to be serialised correctly
+    time = fields.Float()  # Allow numeric fields to be serialised correctly
 
     class Meta:
         model = TestSuite
@@ -51,7 +51,7 @@ class TestSuiteSchema(ma.SQLAlchemyAutoSchema):
 
 
 class TestCaseSchema(ma.SQLAlchemyAutoSchema):
-    time = fields.Float() # Allow numeric fields to be serialised correctly
+    time = fields.Float()  # Allow numeric fields to be serialised correctly
 
     class Meta:
         model = TestCase

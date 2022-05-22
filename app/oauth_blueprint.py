@@ -6,7 +6,7 @@ from db import db
 from sqlalchemy.orm.exc import NoResultFound
 import uuid
 
-blueprint = make_github_blueprint(scope='user:email')
+blueprint = make_github_blueprint(scope="user:email")
 
 # create/login local user on successful OAuth login
 @oauth_authorized.connect_via(blueprint)
@@ -23,22 +23,22 @@ def github_logged_in(blueprint, token):
         print("Failed to fetch user info.")
         return False
 
-    print('Login OK')
+    print("Login OK")
 
-    github_login = info['login']
-    github_id = str(info['id'])
-    github_name = info['name']
+    github_login = info["login"]
+    github_id = str(info["id"])
+    github_name = info["name"]
 
-    emails_resp = github.get('/user/emails')
+    emails_resp = github.get("/user/emails")
     if not emails_resp.ok:
         print("Failed to fetch user emails.")
         return False
     print(emails_resp)
     emails = emails_resp.json()
     print(emails)
-    primary_emails = list(filter(lambda x: x['primary'], emails))
+    primary_emails = list(filter(lambda x: x["primary"], emails))
     print(primary_emails)
-    primary_email = primary_emails[0]['email']
+    primary_email = primary_emails[0]["email"]
     print(primary_email)
 
     # Find this OAuth token in the database, or create it
@@ -64,9 +64,9 @@ def github_logged_in(blueprint, token):
         login_user(user)
         print("Successfully signed in to new account")
 
-    
     # Disable Flask-Dance's default behavior for saving the OAuth token
     return False
+
 
 # notify on OAuth provider error
 @oauth_error.connect_via(blueprint)

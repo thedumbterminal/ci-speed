@@ -16,19 +16,15 @@ from .Token import api as token_api
 
 authorizations = {
     # 'OAuth2': {
-        # 'type': 'oauth2',
-        # 'flow': 'accessCode',
-        # 'authorizationUrl': 'https://github.com/login/oauth/authorize',
-        # 'tokenUrl': '/oauth/github/authorized',
-        # 'scopes': {
-            # 'user:email': 'Read user email addresses'
-        # }
+    # 'type': 'oauth2',
+    # 'flow': 'accessCode',
+    # 'authorizationUrl': 'https://github.com/login/oauth/authorize',
+    # 'tokenUrl': '/oauth/github/authorized',
+    # 'scopes': {
+    # 'user:email': 'Read user email addresses'
+    # }
     # },
-    'apikey': {
-        'type': 'apiKey',
-        'in': 'header',
-        'name': 'Authentication-Token'
-    }
+    "apikey": {"type": "apiKey", "in": "header", "name": "Authentication-Token"}
 }
 
 api = Api(
@@ -37,7 +33,7 @@ api = Api(
     description="Manage CI-Speed resources",
     authorizations=authorizations,
     doc="/doc",
-    prefix="/api"
+    prefix="/api",
 )
 
 api.add_namespace(project_list_api)
