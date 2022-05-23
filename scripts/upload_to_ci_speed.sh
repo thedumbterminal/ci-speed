@@ -13,7 +13,7 @@ HOST=https://ci-speed.herokuapp.com
 
 echo "Project: ${PROJECT_NAME} Build: ${BUILD_REF}"
 
-curl --fail-with-body -X "POST" \
+curl --fail -X "POST" \
   "${HOST}/api/test_runs/" \
   -H "accept: application/json" \
   -H "Authentication-Token: ${CI_SPEED_AUTH_TOKEN}" \
