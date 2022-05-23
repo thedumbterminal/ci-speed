@@ -32,7 +32,7 @@ docker ps -a
 ## Run
 
 ```
-FLASK_DEBUG=1 PYTHONPATH=app FLASK_ENV=development flask run
+invoke start
 ```
 
 Dev server available at:
@@ -43,7 +43,7 @@ http://127.0.0.1:5000
 Or with github auth:
 
 ```
- GITHUB_OAUTH_CLIENT_ID=xxx GITHUB_OAUTH_CLIENT_SECRET=xxx OAUTHLIB_INSECURE_TRANSPORT=true FLASK_DEBUG=1 PYTHONPATH=app FLASK_ENV=development flask run
+GITHUB_OAUTH_CLIENT_ID=xxx GITHUB_OAUTH_CLIENT_SECRET=xxx invoke start
 ```
 
 ### Production mode
