@@ -1,0 +1,12 @@
+<Configuration>
+    <Appenders>
+        <Console name="Console">
+            <PatternLayout pattern="%d %-5level [%logger] %msg%n%xThrowable" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>

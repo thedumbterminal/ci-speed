@@ -48,8 +48,9 @@
                 <artifactId>ci-speed-maven-plugin</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <configuration>
+                    <projectName>tim-test</projectName>
                     <buildId>test1</buildId>
-                    <apiKey>test2</apiKey>
+                    <apiKey>${env.CI_SPEED_API_KEY}.</apiKey>
                     <testReportDir>target/surefire-reports</testReportDir>
                     <filterPattern>TEST.*\.xml</filterPattern>
                 </configuration>
