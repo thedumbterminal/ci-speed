@@ -108,7 +108,7 @@ class TestCase(db.Model):
 
 class TestFailure(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    reason = db.Column(db.String())
+    reason = db.Column(db.String(), nullable=False)
     test_case_id = db.Column(db.Integer, db.ForeignKey("test_case.id"))
     test_case = db.relationship(
         TestCase, backref="test_failures", cascade="all, delete", passive_deletes=True
