@@ -106,6 +106,17 @@ class TestCase(db.Model):
         self.time = time
 
 
+class TestFailure(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reason = db.Column(db.String())
+    test_case_id = db.Column(db.Integer, db.ForeignKey("test_case.id"))
+    test_case = db.relationship(
+        TestCase, backref="test_failures", cascade="all, delete", passive_deletes=True
+    )
+
+    def __init__(self, name, time):
+        self.reason = reason
+
 # Setup Flask-Security
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(datastore=user_datastore)
