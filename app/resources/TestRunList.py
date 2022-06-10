@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
-from models import Project, Build, TestRun, TestSuite, TestCase
+from models import Project, Build, TestRun, TestSuite, TestCase, TestFailure
 from schemas import TestRunSchema
 from pprint import pprint
 import json
@@ -31,10 +31,18 @@ search_parser.add_argument(
 
 @api.route("/")
 class TestRunList(Resource):
+    def _junit_to_test_case(self, case_details):
+        test_failures = []
+        # having test failure is optional
+        if "failure" in case_details:
+            test_failure = TestFailure(case_details["failure"])
+            test_failures.append(test_failure)
+        return TestCase(case_details["@name"], case_details["@time"], test_failures)
+
     def _junit_to_test_suite(self, suite_details):
         test_cases = []
         for case in suite_details["testcase"]:
-            test_case = TestCase(case["@name"], case["@time"])
+            test_case = self._junit_to_test_case(case)
             test_cases.append(test_case)
         return TestSuite(suite_details["@name"], suite_details["@time"], test_cases)
 

@@ -20,6 +20,12 @@ def test(c):
 
 
 @task
+def db_upgrade(c):
+    print("Running DB upgrade...")
+    c.run("PYTHONPATH=app FLASK_APP=main flask db upgrade")
+
+
+@task
 def start(c):
     print("Running start...")
     c.run(
