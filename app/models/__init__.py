@@ -101,9 +101,10 @@ class TestCase(db.Model):
         TestSuite, backref="test_cases", cascade="all, delete", passive_deletes=True
     )
 
-    def __init__(self, name, time):
+    def __init__(self, name, time, test_failures=[]):
         self.name = name
         self.time = time
+        self.test_failures = test_failures
 
 
 class TestFailure(db.Model):
@@ -114,8 +115,9 @@ class TestFailure(db.Model):
         TestCase, backref="test_failures", cascade="all, delete", passive_deletes=True
     )
 
-    def __init__(self, name, time):
+    def __init__(self, reason):
         self.reason = reason
+
 
 # Setup Flask-Security
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)

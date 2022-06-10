@@ -99,7 +99,7 @@ PYTHONPATH=app FLASK_APP=main flask db migrate -m "Some comment here"
 To update your local DB to the latest version run:
 
 ```
-PYTHONPATH=app FLASK_APP=main flask db upgrade
+invoke db-upgrade
 ```
 
 To update the production DB to the latest version run:

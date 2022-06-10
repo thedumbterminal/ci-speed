@@ -10,7 +10,7 @@ api = Namespace("test_cases", description="Test case related operations")
 @api.route("/<int:id>")
 @api.param("id", "The test case identifier")
 class TestCase(Resource):
-    @api.doc("get_case_suite")
+    @api.doc("get_test_case")
     @auth_required("token", "session")
     @api.doc(security=["apikey"])
     def get(self, id):
