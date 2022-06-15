@@ -49,7 +49,7 @@ class ProjectNumTests(Resource):
 
 @api.route("/<int:project_id>/test_duration")
 @api.param("project_id", "The project identifier")
-class ProjectNumTests(Resource):
+class ProjectTestDuration(Resource):
     def _get_test_duration(self, project_id):
         results = []
 
