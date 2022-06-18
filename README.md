@@ -135,7 +135,6 @@ See also the built in flask environment variables.
 * Most failing tests
 * Longest tests
 * Flaky tests
-* Number of tests
 * Marking test runs as public
 * Newest / oldest tests
 * Diff results from last run
