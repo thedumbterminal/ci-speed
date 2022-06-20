@@ -92,10 +92,10 @@ class ProjectTestSuccess(Resource):
                 for test_suite in test_run.test_suites:
                     for test_case in test_suite.test_cases:
                         if len(test_case.test_failures):
-                            fail++
+                            fail = fail + 1
                         else:
-                            success++
-            result["y"] = 100
+                            success = success + 1
+            result["y"] = (success / (fail + success)) * 100
             results.append(result)
         print(results)
         return results
