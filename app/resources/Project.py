@@ -83,7 +83,6 @@ class ProjectTestSuccess(Resource):
         build_schema = BuildSchema()
         builds = Build.query.filter_by(project_id=project_id).all()
         for build in builds:
-            print(build)
             serialised_build = build_schema.dump(build)
             result = {"x": serialised_build["created_at"], "y": 0}
             success = 0
@@ -97,7 +96,6 @@ class ProjectTestSuccess(Resource):
                             success = success + 1
             result["y"] = (success / (fail + success)) * 100
             results.append(result)
-        print(results)
         return results
 
     @api.doc("get_project test success history")
