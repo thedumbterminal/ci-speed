@@ -19,3 +19,4 @@ __pycache__
 /samples/java-maven/.idea/
 /.pytest_cache/
 /test_results.xml
+/.coverage

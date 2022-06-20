@@ -16,7 +16,13 @@ def format(c):
 @task
 def test(c):
     print("Running test...")
-    c.run("PYTHONPATH=app pytest . --junitxml=test_results.xml")
+    c.run(
+        "PYTHONPATH=app pytest ."
+        " --junitxml=test_results.xml"
+        " --cov"
+        " --cov-branch"
+        " --cov-report term-missing"
+    )
 
 
 @task
