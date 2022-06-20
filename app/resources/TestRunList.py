@@ -35,7 +35,11 @@ class TestRunList(Resource):
         test_failures = []
         # having test failure is optional
         if "failure" in case_details:
-            test_failure = TestFailure(case_details["failure"])
+            # some implementations state a failure message and a failure text
+            if "#text" in case_details["failure"]:
+                test_failure = TestFailure(case_details["failure"]["#text"])
+            else:
+                test_failure = TestFailure(case_details["failure"])
             test_failures.append(test_failure)
         return TestCase(case_details["@name"], case_details["@time"], test_failures)
 

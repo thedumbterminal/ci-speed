@@ -57,7 +57,6 @@ class ProjectTestDuration(Resource):
         test_suite_schema = TestSuiteSchema()
         builds = Build.query.filter_by(project_id=project_id).all()
         for build in builds:
-            print(build)
             serialised_build = build_schema.dump(build)
             result = {"x": serialised_build["created_at"], "y": 0}
             for test_run in build.test_runs:
@@ -65,7 +64,6 @@ class ProjectTestDuration(Resource):
                     serialised_test_suite = test_suite_schema.dump(test_suite)
                     result["y"] += serialised_test_suite["time"]
             results.append(result)
-        print(results)
         return results
 
     @api.doc("get_project test duration history")
@@ -74,3 +72,35 @@ class ProjectTestDuration(Resource):
     def get(self, project_id):
         """Retrieve a project's test duration history"""
         return self._get_test_duration(project_id)
+
+
+@api.route("/<int:project_id>/test_success")
+@api.param("project_id", "The project identifier")
+class ProjectTestSuccess(Resource):
+    def _get_test_success(self, project_id):
+        results = []
+
+        build_schema = BuildSchema()
+        builds = Build.query.filter_by(project_id=project_id).all()
+        for build in builds:
+            serialised_build = build_schema.dump(build)
+            result = {"x": serialised_build["created_at"], "y": 0}
+            success = 0
+            fail = 0
+            for test_run in build.test_runs:
+                for test_suite in test_run.test_suites:
+                    for test_case in test_suite.test_cases:
+                        if len(test_case.test_failures):
+                            fail = fail + 1
+                        else:
+                            success = success + 1
+            result["y"] = (success / (fail + success)) * 100
+            results.append(result)
+        return results
+
+    @api.doc("get_project test success history")
+    @auth_required("token", "session")
+    @api.doc(security=["apikey"])
+    def get(self, project_id):
+        """Retrieve a project's test success history"""
+        return self._get_test_success(project_id)
