@@ -1,5 +1,5 @@
 from .TestRunList import TestRunList as ClassUnderTest
-from models import TestCase as ModelTestCase
+from models import TestCase as ModelTestCase, TestSuite as ModelTestSuite
 import pytest
 
 
@@ -30,11 +30,14 @@ def test_junit_to_test_case_failure_with_message(resource):
     assert isinstance(test_case, ModelTestCase)
 
 
-@pytest.mark.skip(reason="Not finished")
 def test_junit_to_test_suite(resource):
-    junit = {}
+    junit = {
+        "@name": "a name",
+        "@time": 123,
+        "testcase": []
+    }
     test_suite = resource._junit_to_test_suite(junit)
-    assert test_suite
+    assert isinstance(test_suite, ModelTestSuite)
 
 
 @pytest.mark.skip(reason="Not finished")

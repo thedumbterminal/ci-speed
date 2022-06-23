@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="1" tests="8" time="1.574" timestamp="2022-06-23T20:44:32.292632" hostname="duggie.thedumbterminal.cxm"><testcase classname="app.db_test" name="test_db" time="0.003" /><testcase classname="app.f_app_test" name="test_app" time="0.002" /><testcase classname="app.resources.TestRunList_test" name="test_junit_to_test_case_success" time="0.002" /><testcase classname="app.resources.TestRunList_test" name="test_junit_to_test_case_failure" time="0.001" /><testcase classname="app.resources.TestRunList_test" name="test_junit_to_test_case_failure_with_message" time="0.001" /><testcase classname="app.resources.TestRunList_test" name="test_junit_to_test_suite" time="0.002"><failure message="assert False&#10; +  where False = isinstance(&lt;TestSuite (transient 4412398352)&gt;, ModelTestCase)">resource = &lt;app.resources.TestRunList.TestRunList object at 0x106ffdbd0&gt;
+
+    def test_junit_to_test_suite(resource):
+        junit = {
+            "@name": "a name",
+            "@time": 123,
+            "testcase": []
+        }
+        test_suite = resource._junit_to_test_suite(junit)
+&gt;       assert isinstance(test_suite, ModelTestCase)
+E       assert False
+E        +  where False = isinstance(&lt;TestSuite (transient 4412398352)&gt;, ModelTestCase)
+
+app/resources/TestRunList_test.py:40: AssertionError</failure></testcase><testcase classname="app.resources.TestRunList_test" name="test_junit_to_test_run" time="0.001"><skipped type="pytest.skip" message="Not finished">/Users/mark/git/ci-speed/app/resources/TestRunList_test.py:43: Not finished</skipped></testcase><testcase classname="app.resources.__init___test" name="test_resources" time="0.001" /></testsuite></testsuites>

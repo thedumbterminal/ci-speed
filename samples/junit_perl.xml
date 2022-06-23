@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <testsuites>
-  <testsuite errors="0"
-             tests="4"
-             time="10.0734689235687"
+  <testsuite tests="4"
              name="src_Example_t"
-             failures="0">
-    <testcase name="(init)" time="0.0679359436035156" />
-    <testcase time="0.00070500373840332" name="1 - use Example;"></testcase>
-    <testcase name="2" time="0.000215053558349609"></testcase>
-    <testcase name="3" time="10.0011880397797"></testcase>
-    <testcase time="0.000419855117797852" name="4"></testcase>
-    <testcase name="(teardown)" time="0.00300502777099609" />
+             errors="1"
+             time="10.0766069889069"
+             failures="1">
+    <testcase time="0.0666670799255371" name="(init)" />
+    <testcase time="0.000536918640136719" name="1 - use Example;"></testcase>
+    <testcase time="0.000227212905883789" name="2 - quick()"></testcase>
+    <testcase name="3 - slow()" time="10.0049347877502"></testcase>
+    <testcase name="4 - flaky()" time="0.000248193740844727">
+      <failure type="TestFailed"
+               message="not ok 4 - flaky()"><![CDATA[not ok 4 - flaky()]]></failure>
+    </testcase>
+    <testcase time="0.00399279594421387" name="(teardown)" />
     <system-out><![CDATA[1..4
 ok 1 - use Example;
-ok 2
-ok 3
-ok 4
+ok 2 - quick()
+ok 3 - slow()
+not ok 4 - flaky()
 ]]></system-out>
-    <system-err></system-err>
+    <system-err><![CDATA[Dubious, test returned 1 (wstat 256, 0x100)
+]]></system-err>
+    <error message="Dubious, test returned 1 (wstat 256, 0x100)" />
   </testsuite>
 </testsuites>
