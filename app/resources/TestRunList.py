@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
-from models import Project, Build, TestRun, TestSuite, TestCase, TestFailure
+from models import Project, Build, TestRun, TestSuite, TestCase, TestFailure, SkippedTest
 from schemas import TestRunSchema
 from pprint import pprint
 import json
@@ -33,6 +33,7 @@ search_parser.add_argument(
 class TestRunList(Resource):
     def _junit_to_test_case(self, case_details):
         test_failures = []
+        skipped_tests = []
         # having test failure is optional
         if "failure" in case_details:
             # some implementations state a failure message and a failure text
@@ -41,7 +42,15 @@ class TestRunList(Resource):
             else:
                 test_failure = TestFailure(case_details["failure"])
             test_failures.append(test_failure)
-        return TestCase(case_details["@name"], case_details["@time"], test_failures)
+        # having a skipped test is optional
+        if "skipped" in case_details:
+            # some implementations state a skipped message and a failure text
+            if "#text" in case_details["skipped"]:
+                skipped_test = SkippedTest(case_details["skipped"]["#text"])
+            else:
+                skipped_test = SkippedTest(case_details["skipped"])
+            skipped_tests.append(skipped_tests)
+        return TestCase(case_details["@name"], case_details["@time"], test_failures, skipped_tests)
 
     def _junit_to_test_suite(self, suite_details):
         test_cases = []
@@ -109,7 +118,4 @@ class TestRunList(Resource):
         db.session.add(test_run)
         db.session.commit()
 
-        print("Schema result:")
-        test_run_schema = TestRunSchema()
-        pprint(test_run_schema.dump(test_run))
         return {"test_run_url": self._test_run_url(test_run)}

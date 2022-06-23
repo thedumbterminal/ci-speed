@@ -12,6 +12,8 @@ from .TestCase import api as test_case_api
 from .TestCaseList import api as test_case_list_api
 from .TestFailure import api as test_failure_api
 from .TestFailureList import api as test_failure_list_api
+from .SkippedTest import api as skipped_test_api
+from .SkippedTestList import api as skipped_test_list_api
 from .Login import api as login_api
 from .User import api as user_api
 from .Token import api as token_api
@@ -50,6 +52,8 @@ api.add_namespace(test_case_api)
 api.add_namespace(test_case_list_api)
 api.add_namespace(test_failure_api)
 api.add_namespace(test_failure_list_api)
+api.add_namespace(skipped_test_api)
+api.add_namespace(skipped_test_list_api)
 api.add_namespace(login_api)
 api.add_namespace(user_api)
 api.add_namespace(token_api)
