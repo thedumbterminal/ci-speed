@@ -57,7 +57,7 @@ class TestRunList(Resource):
                 skipped_test = SkippedTest(case_details["skipped"]["#text"])
             else:
                 skipped_test = SkippedTest(case_details["skipped"])
-            skipped_tests.append(skipped_tests)
+            skipped_tests.append(skipped_test)
         return TestCase(
             case_details["@name"], case_details["@time"], test_failures, skipped_tests
         )

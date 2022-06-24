@@ -1,4 +1,3 @@
-import pytest
 from models import (
     TestCase as ModelTestCase,
     TestFailure as ModelTestFailure,

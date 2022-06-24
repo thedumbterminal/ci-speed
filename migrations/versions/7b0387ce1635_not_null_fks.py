@@ -25,7 +25,7 @@ def upgrade():
         "test_failure", "test_case_id", existing_type=sa.INTEGER(), nullable=False
     )
     op.alter_column(
-        "skipped_tests", "test_case_id", existing_type=sa.INTEGER(), nullable=False
+        "skipped_test", "test_case_id", existing_type=sa.INTEGER(), nullable=False
     )
     op.alter_column(
         "test_suite", "test_run_id", existing_type=sa.INTEGER(), nullable=False
@@ -39,7 +39,7 @@ def downgrade():
         "test_suite", "test_run_id", existing_type=sa.INTEGER(), nullable=True
     )
     op.alter_column(
-        "skipped_tets", "test_case_id", existing_type=sa.INTEGER(), nullable=True
+        "skipped_test", "test_case_id", existing_type=sa.INTEGER(), nullable=True
     )
     op.alter_column(
         "test_failure", "test_case_id", existing_type=sa.INTEGER(), nullable=True
