@@ -1,5 +1,14 @@
 from flask_marshmallow import Marshmallow
-from models import User, Project, Build, TestRun, TestSuite, TestCase, TestFailure, SkippedTest
+from models import (
+    User,
+    Project,
+    Build,
+    TestRun,
+    TestSuite,
+    TestCase,
+    TestFailure,
+    SkippedTest,
+)
 from flask_marshmallow.fields import fields
 
 ma = Marshmallow()

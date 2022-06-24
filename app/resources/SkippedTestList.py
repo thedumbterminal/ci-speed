@@ -21,8 +21,6 @@ class SkippedTestsList(Resource):
     def get(self):
         """List all skipped tests"""
         args = search_parser.parse_args()
-        models = Model.query.filter_by(
-            test_suite_id=args["test_case_id"]
-        ).all()
+        models = Model.query.filter_by(test_suite_id=args["test_case_id"]).all()
         schema = Schema()
         return schema.dump(models, many=True)

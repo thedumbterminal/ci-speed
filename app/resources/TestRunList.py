@@ -1,7 +1,15 @@
 from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
-from models import Project, Build, TestRun, TestSuite, TestCase, TestFailure, SkippedTest
+from models import (
+    Project,
+    Build,
+    TestRun,
+    TestSuite,
+    TestCase,
+    TestFailure,
+    SkippedTest,
+)
 from schemas import TestRunSchema
 from pprint import pprint
 import json
@@ -50,7 +58,9 @@ class TestRunList(Resource):
             else:
                 skipped_test = SkippedTest(case_details["skipped"])
             skipped_tests.append(skipped_tests)
-        return TestCase(case_details["@name"], case_details["@time"], test_failures, skipped_tests)
+        return TestCase(
+            case_details["@name"], case_details["@time"], test_failures, skipped_tests
+        )
 
     def _junit_to_test_suite(self, suite_details):
         test_cases = []

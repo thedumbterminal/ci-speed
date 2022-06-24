@@ -1,4 +1,5 @@
 from invoke import task
+from os import getcwd
 
 
 @task
@@ -16,7 +17,12 @@ def format(c):
 @task
 def test(c):
     print("Running test...")
-    c.run("PYTHONPATH=app pytest . --junitxml=test_results.xml --cov")
+    pwd = getcwd()
+    c.run(
+        f"DATABASE_URL=sqlite://{pwd}/test.db"
+        " PYTHONPATH=app"
+        " pytest . --junitxml=test_results.xml --cov"
+    )
 
 
 @task
