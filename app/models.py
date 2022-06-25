@@ -81,7 +81,7 @@ class TestSuite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     time = db.Column(db.Numeric())
-    test_run_id = db.Column(db.Integer, db.ForeignKey("test_run.id"))
+    test_run_id = db.Column(db.Integer, db.ForeignKey("test_run.id"), nullable=False)
     test_run = db.relationship(
         TestRun, backref="test_suites", cascade="all, delete", passive_deletes=True
     )
@@ -96,23 +96,38 @@ class TestCase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     time = db.Column(db.Numeric())
-    test_suite_id = db.Column(db.Integer, db.ForeignKey("test_suite.id"))
+    test_suite_id = db.Column(
+        db.Integer, db.ForeignKey("test_suite.id"), nullable=False
+    )
     test_suite = db.relationship(
         TestSuite, backref="test_cases", cascade="all, delete", passive_deletes=True
     )
 
-    def __init__(self, name, time, test_failures=[]):
+    def __init__(self, name, time, test_failures=[], skipped_tests=[]):
         self.name = name
         self.time = time
         self.test_failures = test_failures
+        self.skipped_tests = skipped_tests
 
 
 class TestFailure(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     reason = db.Column(db.String(), nullable=False)
-    test_case_id = db.Column(db.Integer, db.ForeignKey("test_case.id"))
+    test_case_id = db.Column(db.Integer, db.ForeignKey("test_case.id"), nullable=False)
     test_case = db.relationship(
         TestCase, backref="test_failures", cascade="all, delete", passive_deletes=True
+    )
+
+    def __init__(self, reason):
+        self.reason = reason
+
+
+class SkippedTest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    reason = db.Column(db.String(), nullable=False)
+    test_case_id = db.Column(db.Integer, db.ForeignKey("test_case.id"), nullable=False)
+    test_case = db.relationship(
+        TestCase, backref="skipped_tests", cascade="all, delete", passive_deletes=True
     )
 
     def __init__(self, reason):

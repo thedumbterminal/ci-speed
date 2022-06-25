@@ -31,11 +31,7 @@ def test_junit_to_test_case_failure_with_message(resource):
 
 
 def test_junit_to_test_suite(resource):
-    junit = {
-        "@name": "a name",
-        "@time": 123,
-        "testcase": []
-    }
+    junit = {"@name": "a name", "@time": 123, "testcase": []}
     test_suite = resource._junit_to_test_suite(junit)
     assert isinstance(test_suite, ModelTestSuite)
 

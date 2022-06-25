@@ -1,5 +1,14 @@
 from flask_marshmallow import Marshmallow
-from models import User, Project, Build, TestRun, TestSuite, TestCase, TestFailure
+from models import (
+    User,
+    Project,
+    Build,
+    TestRun,
+    TestSuite,
+    TestCase,
+    TestFailure,
+    SkippedTest,
+)
 from flask_marshmallow.fields import fields
 
 ma = Marshmallow()
@@ -52,6 +61,7 @@ class TestSuiteSchema(ma.SQLAlchemyAutoSchema):
 
 class TestCaseSchema(ma.SQLAlchemyAutoSchema):
     test_failures = ma.auto_field()
+    skipped_tests = ma.auto_field()
     time = fields.Float()  # Allow numeric fields to be serialised correctly
 
     class Meta:
@@ -63,5 +73,12 @@ class TestCaseSchema(ma.SQLAlchemyAutoSchema):
 class TestFailureSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = TestFailure
+        load_instance = True
+        include_fk = True
+
+
+class SkippedTestSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = SkippedTest
         load_instance = True
         include_fk = True
