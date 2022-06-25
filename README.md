@@ -139,6 +139,7 @@ See also the built in flask environment variables.
 * Newest / oldest tests
 * Diff results from last run
 * Organisation support so multiple users can share projects
+* Easy creation of projects from GitHub
 
 ### CI Integrations
 * Github actions
