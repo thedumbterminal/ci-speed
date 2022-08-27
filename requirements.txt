@@ -8,7 +8,7 @@ xmltodict
 marshmallow-sqlalchemy
 psycopg2-binary
 Flask-Migrate
-Flask-Dance
+Flask-Dance==6.1.1
 Flask-Security-Too
 email-validator
 
@@ -16,6 +16,6 @@ email-validator
 flake8
 invoke
 black
-pytest
-pytest-cov
-pytest-mock
+pytest==7.1.2
+pytest-cov==3.0.0
+pytest-mock==3.8.2
