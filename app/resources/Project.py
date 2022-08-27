@@ -55,7 +55,10 @@ class ProjectNumBuilds(Resource):
 
     def _get_num_builds(self, project_id):
         builds = db.session.execute(
-            "SELECT DATE(created_at) AS date_created, COUNT(*) AS num from build WHERE project_id = :project_id GROUP BY DATE(created_at);",
+            (
+                "SELECT DATE(created_at) AS date_created, COUNT(*) AS num FROM build "
+                "WHERE project_id = :project_id GROUP BY DATE(created_at);"
+            ),
             {"project_id": project_id},
         )
         return list(map(self._format_num_build, builds))
