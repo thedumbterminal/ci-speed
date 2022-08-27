@@ -3,6 +3,7 @@ from models import Project as ProjectModel, Build
 from schemas import ProjectSchema
 from flask_security import auth_required
 from schemas import BuildSchema, TestSuiteSchema
+from db import db
 
 
 api = Namespace("projects", description="Project related operations")
@@ -30,7 +31,6 @@ class ProjectNumTests(Resource):
         build_schema = BuildSchema()
         builds = Build.query.filter_by(project_id=project_id).all()
         for build in builds:
-            print(build)
             serialised_build = build_schema.dump(build)
             result = {"x": serialised_build["created_at"], "y": 0}
             for test_run in build.test_runs:
@@ -45,6 +45,27 @@ class ProjectNumTests(Resource):
     def get(self, project_id):
         """Retrieve a project's test number history"""
         return self._get_num_tests(project_id)
+
+
+@api.route("/<int:project_id>/num_builds")
+@api.param("project_id", "The project identifier")
+class ProjectNumBuilds(Resource):
+    def _format_num_build(self, build):
+        return {"x": build["date_created"].isoformat(), "y": build["num"]}
+
+    def _get_num_builds(self, project_id):
+        builds = db.session.execute(
+            "SELECT DATE(created_at) AS date_created, COUNT(*) AS num from build WHERE project_id = :project_id GROUP BY DATE(created_at);",
+            {"project_id": project_id},
+        )
+        return list(map(self._format_num_build, builds))
+
+    @api.doc("get_project build number history")
+    @auth_required("token", "session")
+    @api.doc(security=["apikey"])
+    def get(self, project_id):
+        """Retrieve a project's build number history"""
+        return self._get_num_builds(project_id)
 
 
 @api.route("/<int:project_id>/test_duration")
