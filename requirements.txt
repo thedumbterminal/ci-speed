@@ -18,3 +18,4 @@ invoke
 black
 pytest
 pytest-cov
+pytest-mock

@@ -47,14 +47,17 @@ class ProjectNumTests(Resource):
         return self._get_num_tests(project_id)
 
 
-@api.route("/<int:project_id>/num_builds")
+@api.route("/<int:project_id>/nuaam_builds")
 @api.param("project_id", "The project identifier")
 class ProjectNumBuilds(Resource):
+    def _query(self, sql, values):
+        return db.session.execute(sql, values)
+
     def _format_num_build(self, build):
         return {"x": build["date_created"].isoformat(), "y": build["num"]}
 
     def _get_num_builds(self, project_id):
-        builds = db.session.execute(
+        builds = self._query(
             (
                 "SELECT DATE(created_at) AS date_created, COUNT(*) AS num FROM build "
                 "WHERE project_id = :project_id GROUP BY DATE(created_at);"
