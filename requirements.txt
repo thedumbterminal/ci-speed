@@ -1,21 +1,21 @@
 flask-restx==0.5.1
-flask-marshmallow
-flask-sqlalchemy
-flask-cors
-gunicorn
-honcho
-xmltodict
-marshmallow-sqlalchemy
-psycopg2-binary
-Flask-Migrate
+flask-marshmallow==0.14.0
+flask-sqlalchemy==2.5.1
+flask-cors==3.0.10
+gunicorn==20.1.0
+honcho==1.1.0
+xmltodict==0.13.0
+marshmallow-sqlalchemy==0.28.0
+psycopg2-binary==2.9.3
+Flask-Migrate==3.1.0
 Flask-Dance==6.1.1
-Flask-Security-Too
-email-validator
+Flask-Security-Too==4.1.4
+email-validator==1.2.1
 
 #dev includes
-flake8
-invoke
-black
+flake8==4.0.1
+invoke==1.7.1
+black==22.3.0
 pytest==7.1.2
 pytest-cov==3.0.0
 pytest-mock==3.8.2
