@@ -1,4 +1,4 @@
-from .Project import ProjectTestSuccess, ProjectTestsSkipped
+from .Project import ProjectTestSuccess, ProjectTestsSkipped, ProjectNumBuilds
 from models import (
     Build,
     TestRun as ModelTestRun,
@@ -6,7 +6,7 @@ from models import (
     TestCase as ModelTestCase,
     SkippedTest,
 )
-from datetime import datetime
+from datetime import datetime, date
 import pytest
 
 
@@ -44,3 +44,14 @@ def test_get_skipped_test_for_build_with_skipped_test_cases(build_with_skipped_t
     route = ProjectTestsSkipped()
     result = route._get_skipped_test_for_build(build_with_skipped_test)
     assert result == {"x": "2011-11-04T00:00:00", "y": 100}
+
+
+def test_get_num_builds(mocker):
+    mocker.patch.object(
+        ProjectNumBuilds,
+        "_query",
+        return_value=[{"date_created": date.fromisoformat("2022-01-02"), "num": 123}],
+    )
+    route = ProjectNumBuilds()
+    result = route._get_num_builds(1)
+    assert result == [{"x": "2022-01-02", "y": 123}]
