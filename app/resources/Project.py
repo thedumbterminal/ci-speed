@@ -47,7 +47,7 @@ class ProjectNumTests(Resource):
         return self._get_num_tests(project_id)
 
 
-@api.route("/<int:project_id>/nuaam_builds")
+@api.route("/<int:project_id>/num_builds")
 @api.param("project_id", "The project identifier")
 class ProjectNumBuilds(Resource):
     def _query(self, sql, values):
