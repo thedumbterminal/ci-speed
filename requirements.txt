@@ -15,7 +15,7 @@ Flask-Security-Too == 4.1.4
 email-validator == 1.2.1
 
 #dev includes
-flake8 == 4.0.1
+flake8 == 5.0.4
 invoke == 1.7.1
 black == 22.3.0
 pytest == 7.1.2
