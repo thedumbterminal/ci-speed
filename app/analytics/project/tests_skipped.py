@@ -18,6 +18,7 @@ def _get_skipped_test_for_build(build):
         result["y"] = (skipped / total) * 100
     return result
 
+
 def get_skipped_test(project_id):
     results = []
 

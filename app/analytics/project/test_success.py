@@ -19,6 +19,7 @@ def _get_test_success_for_build(build):
         result["y"] = (success / (fail + success)) * 100
     return result
 
+
 def get_test_success(project_id):
     results = []
 

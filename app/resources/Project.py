@@ -28,7 +28,6 @@ class Project(Resource):
 @api.route("/<int:project_id>/num_tests")
 @api.param("project_id", "The project identifier")
 class ProjectNumTests(Resource):
-
     @api.doc("get_project test number history")
     @auth_required("token", "session")
     @api.doc(security=["apikey"])
@@ -40,7 +39,6 @@ class ProjectNumTests(Resource):
 @api.route("/<int:project_id>/num_builds")
 @api.param("project_id", "The project identifier")
 class ProjectNumBuilds(Resource):
-
     @api.doc("get_project build number history")
     @auth_required("token", "session")
     @api.doc(security=["apikey"])
@@ -52,7 +50,6 @@ class ProjectNumBuilds(Resource):
 @api.route("/<int:project_id>/test_duration")
 @api.param("project_id", "The project identifier")
 class ProjectTestDuration(Resource):
-
     @api.doc("get_project test duration history")
     @auth_required("token", "session")
     @api.doc(security=["apikey"])
@@ -64,7 +61,6 @@ class ProjectTestDuration(Resource):
 @api.route("/<int:project_id>/test_success")
 @api.param("project_id", "The project identifier")
 class ProjectTestSuccess(Resource):
-
     @api.doc("get_project test success history")
     @auth_required("token", "session")
     @api.doc(security=["apikey"])
@@ -76,7 +72,6 @@ class ProjectTestSuccess(Resource):
 @api.route("/<int:project_id>/tests_skipped")
 @api.param("project_id", "The project identifier")
 class ProjectTestsSkipped(Resource):
-
     @api.doc("get_project skipped test history")
     @auth_required("token", "session")
     @api.doc(security=["apikey"])

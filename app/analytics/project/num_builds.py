@@ -1,10 +1,13 @@
 from db import db
 
+
 def _query(sql, values):
     return db.session.execute(sql, values)
 
+
 def _format_num_build(build):
     return {"x": build["date_created"].isoformat(), "y": build["num"]}
+
 
 def get_num_builds(project_id):
     builds = _query(
