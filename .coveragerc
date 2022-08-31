@@ -3,6 +3,6 @@ omit = *_test.py
 branch = True
 
 [report]
-fail_under = 74
+fail_under = 75
 precision = 2
 show_missing = True
