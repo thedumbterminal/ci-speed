@@ -13,9 +13,9 @@ def _log_response(resp):
 
 @api.route("/")
 class Login(Resource):
-    @api.doc("Login to your account via github")
+    @api.doc(id="login")
     def get(self):
-        """Login using OAUTH"""
+        """Login to your account via github"""
         if not github.authorized:
             print("not authorized")
             return redirect(url_for("github.login"))

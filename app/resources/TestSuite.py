@@ -10,8 +10,7 @@ api = Namespace("test_suites", description="Test suite related operations")
 @api.param("id", "The test suite identifier")
 class TestSuite(Resource):
     @auth_required("token", "session")
-    @api.doc("get_test_suite")
-    @api.doc(security=["apikey"])
+    @api.doc(id="get_test_suite", security=["apikey"])
     def get(self, id):
         """Retrieve a test suite"""
         test_suite = TestSuiteModel.query.get(id)

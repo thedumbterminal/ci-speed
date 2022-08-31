@@ -25,10 +25,9 @@ search_parser.add_argument(
 
 @api.route("/")
 class BuildList(Resource):
-    @api.doc("list_builds")
     @api.expect(search_parser)
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="list_builds", security=["apikey"])
     def get(self):
         """List all builds"""
         args = search_parser.parse_args()
@@ -36,10 +35,9 @@ class BuildList(Resource):
         build_schema = BuildSchema()
         return build_schema.dump(builds, many=True)
 
-    @api.doc("create_build")
     @api.expect(create_parser)
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="create_build", security=["apikey"])
     def post(self):
         """Create a new build for storing test runs against"""
         args = create_parser.parse_args()

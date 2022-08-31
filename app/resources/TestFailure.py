@@ -10,9 +10,8 @@ api = Namespace("test_failures", description="Test failure related operations")
 @api.route("/<int:id>")
 @api.param("id", "The test failure identifier")
 class TestFailure(Resource):
-    @api.doc("get_test_failure")
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="get_test_failure", security=["apikey"])
     def get(self, id):
         """Retrieve a test failure"""
         test_failure = TestFailureModel.query.get(id)

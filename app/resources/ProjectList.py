@@ -16,19 +16,17 @@ create_parser.add_argument(
 
 @api.route("/")
 class ProjectList(Resource):
-    @api.doc("list_projects")
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="list_projects", security=["apikey"])
     def get(self):
         """List all projects"""
         projects = Project.query.filter_by(user_id=current_user.id).all()
         project_schema = ProjectSchema()
         return project_schema.dump(projects, many=True)
 
-    @api.doc("create_project")
     @api.expect(create_parser)
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="create_project", security=["apikey"])
     def post(self):
         """Create a new project for storing builds against"""
         args = create_parser.parse_args()

@@ -10,9 +10,8 @@ api = Namespace("builds", description="Build related operations")
 @api.route("/<int:id>")
 @api.param("id", "The build identifier")
 class Build(Resource):
-    @api.doc("get_build")
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="get_build", security=["apikey"])
     def get(self, id):
         """Retrieve a build"""
         build = BuildModel.query.get(id)
