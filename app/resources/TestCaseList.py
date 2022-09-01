@@ -14,10 +14,9 @@ search_parser.add_argument(
 
 @api.route("/")
 class TestCaseList(Resource):
-    @api.doc("list_test_cases")
     @api.expect(search_parser)
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="list_test_cases", security=["apikey"])
     def get(self):
         """List all test cases"""
         args = search_parser.parse_args()

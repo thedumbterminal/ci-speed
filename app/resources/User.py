@@ -14,10 +14,9 @@ def _log_response(resp):
 @api.route("/")
 class User(Resource):
     @auth_required("token", "session")
-    @api.doc("Get the info of the current user")
     # @api.doc(security=['apikey', {'oauth2': ['read']}])
-    @api.doc(security=["apikey"])
+    @api.doc(id="get_user", security=["apikey"])
     def get(self):
-        """Retrieve the current user"""
+        """Retrieve the current user's info"""
         user_schema = UserSchema()
         return user_schema.dump(current_user)

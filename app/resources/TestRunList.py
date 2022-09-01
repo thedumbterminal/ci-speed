@@ -85,10 +85,9 @@ class TestRunList(Resource):
         server_url_base = os.environ.get("SERVER_URL_BASE", "http://localhost:5000")
         return f"{server_url_base}/#/test_run/?id={test_run.id}"
 
-    @api.doc("list_test_runs")
     @api.expect(search_parser)
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="list_test_runs", security=["apikey"])
     def get(self):
         """List all test runs"""
         args = search_parser.parse_args()
@@ -96,10 +95,9 @@ class TestRunList(Resource):
         test_run_schema = TestRunSchema()
         return test_run_schema.dump(test_runs, many=True)
 
-    @api.doc("upload_test_run")
     @api.expect(upload_parser)
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="upload_test_run", security=["apikey"])
     def post(self):
         """Upload a junit XML file to create a test run"""
         args = upload_parser.parse_args()

@@ -14,10 +14,9 @@ search_parser.add_argument(
 
 @api.route("/")
 class TestFailureList(Resource):
-    @api.doc("list_test_failures")
     @api.expect(search_parser)
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="list_test_failures", security=["apikey"])
     def get(self):
         """List all test failures"""
         args = search_parser.parse_args()

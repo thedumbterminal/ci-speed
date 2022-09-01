@@ -13,9 +13,8 @@ def _log_response(resp):
 @api.route("/")
 class Token(Resource):
     @auth_required("session")
-    @api.doc("Generate/regenerate an auth token of the current user")
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="set_auth_token", security=["apikey"])
     def post(self):
-        """Generate/regenerate an auth token"""
+        """Generate/regenerate an auth token of the current user"""
         return {"token": current_user.get_auth_token()}

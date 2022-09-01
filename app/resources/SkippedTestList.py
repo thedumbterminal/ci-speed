@@ -14,10 +14,9 @@ search_parser.add_argument(
 
 @api.route("/")
 class SkippedTestsList(Resource):
-    @api.doc("list_skipped_tests")
     @api.expect(search_parser)
     @auth_required("token", "session")
-    @api.doc(security=["apikey"])
+    @api.doc(id="list_skipped_tests", security=["apikey"])
     def get(self):
         """List all skipped tests"""
         args = search_parser.parse_args()
