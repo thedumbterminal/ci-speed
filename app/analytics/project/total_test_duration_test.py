@@ -1,4 +1,4 @@
-from app.analytics.summary import get_total_test_duration
+from app.analytics.project.total_test_duration import get_total_test_duration
 import pytest
 from decimal import Decimal
 
@@ -11,7 +11,7 @@ def mock_function(mocker):
         {"total_time": Decimal(123.456)}
     ]
     return mocker.patch(
-        "app.analytics.summary._query",
+        "app.analytics.project.total_test_duration._query",
         return_value=mocked_cursor_result,
     )
 

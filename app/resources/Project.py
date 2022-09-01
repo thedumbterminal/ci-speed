@@ -7,7 +7,7 @@ from analytics.project.num_builds import get_num_builds
 from analytics.project.test_duration import get_test_duration
 from analytics.project.test_success import get_test_success
 from analytics.project.tests_skipped import get_skipped_test
-
+from analytics.project.total_test_duration import get_total_test_duration
 
 api = Namespace("projects", description="Project related operations")
 
@@ -72,3 +72,13 @@ class ProjectTestsSkipped(Resource):
     def get(self, project_id):
         """Retrieve a project's skipped test history"""
         return get_skipped_test(project_id)
+
+
+@api.route("/<int:project_id>/total_test_duration")
+@api.param("project_id", "The project identifier")
+class TotalTestDuration(Resource):
+    @auth_required("token", "session")
+    @api.doc(id="get summary_total_test_duration", security=["apikey"])
+    def get(self, project_id):
+        """Retrieve the total test duration for all projects"""
+        return get_total_test_duration(project_id)
