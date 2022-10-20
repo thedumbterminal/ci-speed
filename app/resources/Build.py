@@ -7,13 +7,13 @@ from flask_security import auth_required
 api = Namespace("builds", description="Build related operations")
 
 
-@api.route("/<int:id>")
-@api.param("id", "The build identifier")
+@api.route("/<int:build_id>")
+@api.param("build_id", "The build identifier")
 class Build(Resource):
     @auth_required("token", "session")
     @api.doc(id="get_build", security=["apikey"])
-    def get(self, id):
+    def get(self, build_id):
         """Retrieve a build"""
-        build = BuildModel.query.get(id)
+        build = BuildModel.query.get(build_id)
         build_schema = BuildSchema()
         return build_schema.dump(build)
