@@ -20,10 +20,5 @@ def _get_skipped_test_for_build(build):
 
 
 def get_skipped_test(project_id):
-    results = []
-
     builds = Build.query.filter_by(project_id=project_id).all()
-    for build in builds:
-        result = _get_skipped_test_for_build(build)
-        results.append(result)
-    return results
+    return list(map(_get_skipped_test_for_build, builds))

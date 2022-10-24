@@ -21,10 +21,5 @@ def _get_test_success_for_build(build):
 
 
 def get_test_success(project_id):
-    results = []
-
     builds = Build.query.filter_by(project_id=project_id).all()
-    for build in builds:
-        result = _get_test_success_for_build(build)
-        results.append(result)
-    return results
+    return list(map(_get_test_success_for_build, builds))
