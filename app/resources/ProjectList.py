@@ -1,9 +1,10 @@
 from flask_restx import Resource, Namespace
 from models import Project
 from schemas import ProjectSchema
-from pprint import pprint
 from db import db
 from flask_security import auth_required, current_user
+from lib.repo import repo_list
+from sqlalchemy.orm.exc import NoResultFound
 
 
 api = Namespace("projects", description="Project related operations")
@@ -31,11 +32,20 @@ class ProjectList(Resource):
         """Create a new project for storing builds against"""
         args = create_parser.parse_args()
 
-        project = Project(current_user.id, args["name"])
-        db.session.add(project)
-        db.session.commit()
+        repos = repo_list()
 
-        print("Schema result:")
-        project_schema = ProjectSchema()
-        pprint(project_schema.dump(project))
+        # Check if the project provided is one of the user's repos
+        if args["name"] not in repos:
+            print("Invalid project name")
+            return False
+
+        # Dont create the project if it already exists
+        query = Project.query.filter_by(user_id=current_user.id, name=args["name"])
+        try:
+            project = query.one()
+        except NoResultFound:
+            project = Project(current_user.id, args["name"])
+            db.session.add(project)
+            db.session.commit()
+
         return True
