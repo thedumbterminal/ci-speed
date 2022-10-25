@@ -1,5 +1,6 @@
 from flask_restx import Api
 
+from .AvailableProjectList import api as available_project_list_api
 from .ProjectList import api as project_list_api
 from .Project import api as project_api
 from .BuildList import api as build_list_api
@@ -40,6 +41,7 @@ api = Api(
     prefix="/api",
 )
 
+api.add_namespace(available_project_list_api)
 api.add_namespace(project_list_api)
 api.add_namespace(project_api)
 api.add_namespace(build_list_api)

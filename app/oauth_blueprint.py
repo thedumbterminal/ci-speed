@@ -1,31 +1,40 @@
 from flask_dance.contrib.github import make_github_blueprint, github
 from flask_dance.consumer import oauth_authorized, oauth_error
-from flask_security import login_user
+from flask_security import login_user, current_user
 from models import User, OAuth
 from db import db
 from sqlalchemy.orm.exc import NoResultFound
 import uuid
+from flask_dance.consumer.storage.sqla import SQLAlchemyStorage
 
 
-blueprint = make_github_blueprint(scope="user:email")
+blueprint = make_github_blueprint(
+    scope="read:user,user:email",
+    storage=SQLAlchemyStorage(OAuth, db.session, user=current_user),
+)
 
 
 # create/login local user on successful OAuth login
 @oauth_authorized.connect_via(blueprint)
 def github_logged_in(blueprint, token):
+    if not github.authorized:
+        print("Not authorised with GitHub.")
+        return False
+
     if not token:
         print("Failed to log in.")
         return False
 
-    resp = github.get("/user")
-    print(resp)
-    info = resp.json()
-    print(info)
-    if not resp.ok:
+    info_resp = github.get("/user")
+    print(info_resp)
+    if not info_resp.ok:
         print("Failed to fetch user info.")
         return False
 
     print("Login OK")
+
+    info = info_resp.json()
+    print(info)
 
     github_id = str(info["id"])
     # TODO use these later
@@ -33,10 +42,11 @@ def github_logged_in(blueprint, token):
     # github_name = info["name"]
 
     emails_resp = github.get("/user/emails")
+    print(emails_resp)
     if not emails_resp.ok:
         print("Failed to fetch user emails.")
         return False
-    print(emails_resp)
+
     emails = emails_resp.json()
     print(emails)
     primary_emails = list(filter(lambda x: x["primary"], emails))
@@ -53,6 +63,10 @@ def github_logged_in(blueprint, token):
 
     if oauth.user:
         login_user(oauth.user)
+        # set new token in case we change scopes
+        oauth.token = token
+        db.session.add(oauth)
+        db.session.commit()
         print("Successfully signed into existing account")
 
     else:
