@@ -62,11 +62,12 @@ def github_logged_in(blueprint, token):
         oauth = OAuth(provider=blueprint.name, provider_user_id=github_id, token=token)
 
     if oauth.user:
-        login_user(oauth.user)
         # set new token in case we change scopes
         oauth.token = token
         db.session.add(oauth)
         db.session.commit()
+
+        login_user(oauth.user)
         print("Successfully signed into existing account")
 
     else:
