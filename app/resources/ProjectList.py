@@ -36,8 +36,7 @@ class ProjectList(Resource):
 
         # Check if the project provided is one of the user's repos
         if args["name"] not in repos:
-            print("Invalid project name")
-            return False
+            raise "Invalid project name"
 
         # Dont create the project if it already exists
         query = Project.query.filter_by(user_id=current_user.id, name=args["name"])
