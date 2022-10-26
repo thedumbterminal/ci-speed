@@ -14,6 +14,6 @@ class SkippedTest(Resource):
     @api.doc(id="get_skipped_test", security=["apikey"])
     def get(self, skipped_id):
         """Retrieve a skipped test"""
-        model = Model.query.get(id)
+        model = Model.query.get(skipped_id)
         schema = Schema()
         return schema.dump(model)
