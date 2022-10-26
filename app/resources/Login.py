@@ -17,7 +17,7 @@ class Login(Resource):
     def get(self):
         """Login to your account via github"""
         if not github.authorized:
-            print("not authorized")
+            print("Not authorised with GitHub")
             return redirect(url_for("github.login"))
         resp = github.get("/user")
         _log_response(resp)
