@@ -24,10 +24,10 @@ jobs:
       run: |
         scripts/install.sh
     - name: CI
-      continue-on-error: true
       run: |
         invoke ci
     - name: Upload to CI-Speed
+      if: success() || failure()
       env: # Or as an environment variable
         CI_SPEED_AUTH_TOKEN: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
       run: |
