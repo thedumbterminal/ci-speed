@@ -30,4 +30,4 @@ def build_with_skipped_test():
 
 def test_get_duration_for_build_with_no_test_cases(empty_build):
     result = _get_test_duration_for_build(empty_build)
-    assert result == {"x": "2011-11-04T00:00:00", "y": 0}
+    assert result == {"x": "2011-11-04T07:00:00", "y": 0}
