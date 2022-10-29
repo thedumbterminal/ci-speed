@@ -24,6 +24,7 @@ jobs:
       run: |
         scripts/install.sh
     - name: CI
+      continue-on-error: true
       run: |
         invoke ci
     - name: Upload to CI-Speed
