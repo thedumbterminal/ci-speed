@@ -12,9 +12,11 @@ create_parser = api.parser()
 create_parser.add_argument(
     "project_name", required=True, help="name of the project", location="form"
 )
-
 create_parser.add_argument(
     "ref", required=True, help="Reference for the build", location="form"
+)
+create_parser.add_argument(
+    "commit_sha", required=False, help="Commit SHA of the build", location="form"
 )
 
 search_parser = api.parser()
@@ -45,7 +47,7 @@ class BuildList(Resource):
         if not project:
             raise ValueError("Project not found")
         print("Found project", project)
-        build = Build(project.id, args["ref"])
+        build = Build(project.id, args["ref"], args["commit_sha"])
         db.session.add(build)
         db.session.commit()
 

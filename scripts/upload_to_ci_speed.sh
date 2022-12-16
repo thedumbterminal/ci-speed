@@ -5,8 +5,8 @@
 set -e
 
 PROJECT_NAME=$1
-
 BUILD_REF=$2
+COMMIT=$3
 
 HOST=https://ci-speed.herokuapp.com
 #HOST=http://localhost:5000
@@ -20,4 +20,5 @@ curl --fail -X "POST" \
   -H "Content-Type: multipart/form-data" \
   -F "file=@test_results.xml;type=text/xml" \
   -F "project_name=${PROJECT_NAME}" \
-  -F "build_ref=${BUILD_REF}"
+  -F "build_ref=${BUILD_REF}" \
+  -F "commit_sha=${COMMIT}"

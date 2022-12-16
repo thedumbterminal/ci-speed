@@ -54,13 +54,15 @@ class Build(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
     ref = db.Column(db.String(), nullable=False)
     project_id = db.Column(db.Integer, db.ForeignKey("project.id"), nullable=False)
+    commit_sha = db.Column(db.String(), nullable=True)
     project = db.relationship(
         Project, backref="builds", cascade="all, delete", passive_deletes=True
     )
 
-    def __init__(self, project_id, ref="", test_runs=[]):
+    def __init__(self, project_id, ref, commit_sha="", test_runs=[]):
         self.project_id = project_id
         self.ref = ref
+        self.commit_sha = commit_sha
         self.test_runs = test_runs
 
 
