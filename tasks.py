@@ -14,15 +14,18 @@ def format(c):
     c.run("black .")
 
 
-@task
-def test(c):
+@task(help={'verbose': 'Turn on verbose output'})
+def test(c, verbose=False):
     print("Running test...")
     pwd = getcwd()
-    c.run(
+    cmd = (
         f"DATABASE_URL=sqlite://{pwd}/test.db"
         " PYTHONPATH=app"
         " pytest . --junitxml=test_results.xml --cov"
     )
+    if verbose:
+        cmd += ' -vv'
+    c.run(cmd)
 
 
 @task
