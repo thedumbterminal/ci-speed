@@ -30,6 +30,9 @@ upload_parser.add_argument(
 upload_parser.add_argument(
     "build_ref", required=True, help="Reference of the build", location="form"
 )
+upload_parser.add_argument(
+    "commit_sha", required=False, help="Commit SHA of the build", location="form"
+)
 
 search_parser = api.parser()
 search_parser.add_argument(
@@ -118,7 +121,7 @@ class TestRunList(Resource):
         print("Found project", project)
         build = Build.query.filter_by(ref=args["build_ref"]).first()
         if not build:
-            build = Build(project.id, args["build_ref"])
+            build = Build(project.id, args["build_ref"], args["commit_sha"])
             db.session.add(build)
             db.session.commit()
         print("Found build", build)
