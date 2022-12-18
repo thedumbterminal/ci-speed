@@ -1,5 +1,5 @@
 from flask_restx import Resource, Namespace
-from models import Project as ProjectModel
+from db.models import Project as ProjectModel
 from schemas import ProjectSchema
 from flask_security import auth_required
 from analytics.project.num_tests import get_num_tests

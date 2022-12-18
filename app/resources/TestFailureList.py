@@ -1,5 +1,5 @@
 from flask_restx import Resource, Namespace
-from models import TestFailure
+from db.models import TestFailure
 from schemas import TestFailureSchema
 from flask_security import auth_required
 

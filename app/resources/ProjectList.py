@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
-from models import Project
+from db.models import Project
 from schemas import ProjectSchema
-from db import db
+from db.connection import db
 from flask_security import auth_required, current_user
 from lib.repo import repo_list
 from sqlalchemy.orm.exc import NoResultFound

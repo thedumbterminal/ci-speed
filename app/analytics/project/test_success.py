@@ -1,5 +1,5 @@
 from schemas import BuildSchema
-from models import Build
+from db.models import Build
 
 
 def _get_test_success_for_build(build):

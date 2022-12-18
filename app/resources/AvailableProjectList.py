@@ -1,6 +1,6 @@
 from flask_restx import Resource, Namespace
 from lib.repo import repo_list
-from models import Project
+from db.models import Project
 from flask_security import auth_required, current_user
 
 api = Namespace(

@@ -1,5 +1,5 @@
 from .tests_skipped import _get_skipped_test_for_build
-from models import (
+from db.models import (
     Build,
     TestRun as ModelTestRun,
     TestSuite as ModelTestSuite,

@@ -1,5 +1,5 @@
 from .num_tests import _get_num_tests_for_build
-from models import (
+from db.models import (
     Build,
     TestRun as ModelTestRun,
     TestSuite as ModelTestSuite,

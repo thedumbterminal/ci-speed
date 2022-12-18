@@ -1,5 +1,5 @@
 from flask_restx import Resource, Namespace
-from models import TestSuite
+from db.models import TestSuite
 from schemas import TestSuiteSchema
 from flask_security import auth_required
 
