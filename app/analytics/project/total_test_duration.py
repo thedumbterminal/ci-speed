@@ -1,4 +1,4 @@
-from db import db
+from db.connection import db
 
 
 def _query(sql, values):

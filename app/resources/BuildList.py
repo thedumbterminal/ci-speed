@@ -1,8 +1,8 @@
 from flask_restx import Resource, Namespace
-from models import Project, Build
+from db.models import Project, Build
 from schemas import BuildSchema
 from pprint import pprint
-from db import db
+from db.connection import db
 from flask_security import auth_required
 
 

@@ -1,5 +1,5 @@
 from schemas import BuildSchema, TestSuiteSchema as SuiteSchema
-from models import Build
+from db.models import Build
 
 
 def _get_test_duration_for_build(build):

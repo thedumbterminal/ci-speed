@@ -2,8 +2,8 @@ from resources import api
 from flask_marshmallow import Marshmallow
 from f_app import app
 from oauth_blueprint import blueprint
-from models import security, user_datastore
-from db import db
+from db.models import security, user_datastore
+from db.connection import db
 from requests import get
 import os
 from flask import make_response

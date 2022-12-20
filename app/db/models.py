@@ -1,7 +1,7 @@
-from db import db
+from db.connection import db
 from flask_security import UserMixin, RoleMixin, SQLAlchemyUserDatastore, Security
 from flask_dance.consumer.storage.sqla import OAuthConsumerMixin
-
+from sqlalchemy.ext.hybrid import hybrid_property
 
 roles_users = db.Table(
     "roles_users",
@@ -64,6 +64,11 @@ class Build(db.Model):
         self.ref = ref
         self.commit_sha = commit_sha
         self.test_runs = test_runs
+
+    @hybrid_property
+    def commit_url(self):
+        project_name = self.project.name
+        return f'https://github.com/{project_name}/commit/{self.commit_sha}'
 
 
 class TestRun(db.Model):

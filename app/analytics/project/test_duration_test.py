@@ -1,5 +1,5 @@
 from .test_duration import _get_test_duration_for_build
-from models import Build
+from db.models import Build
 from datetime import datetime
 import pytest
 

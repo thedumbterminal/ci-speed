@@ -1,5 +1,5 @@
 from .test_success import _get_test_success_for_build
-from models import (
+from db.models import (
     Build,
     TestRun as ModelTestRun,
     TestSuite as ModelTestSuite,

@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
-from models import (
+from db.models import (
     Project,
     Build,
     TestRun,
@@ -13,7 +13,7 @@ from models import (
 from schemas import TestRunSchema
 from pprint import pprint
 import json
-from db import db
+from db.connection import db
 import os
 from flask_security import auth_required, current_user
 

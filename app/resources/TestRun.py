@@ -1,5 +1,5 @@
 from flask_restx import Resource, Namespace
-from models import TestRun as TestRunModel
+from db.models import TestRun as TestRunModel
 from schemas import TestRunSchema
 from flask_security import auth_required
 

@@ -1,5 +1,5 @@
 from flask_restx import Resource, Namespace
-from models import SkippedTest as Model
+from db.models import SkippedTest as Model
 from schemas import SkippedTestSchema as Schema
 from flask_security import auth_required
 

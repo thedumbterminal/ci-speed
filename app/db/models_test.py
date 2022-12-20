@@ -1,4 +1,4 @@
-from models import (
+from db.models import (
     TestCase as ModelTestCase,
     TestFailure as ModelTestFailure,
     SkippedTest,

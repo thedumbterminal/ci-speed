@@ -1,5 +1,5 @@
 from flask_marshmallow import Marshmallow
-from models import (
+from db.models import (
     User,
     Project,
     Build,
@@ -33,6 +33,7 @@ class ProjectSchema(ma.SQLAlchemyAutoSchema):
 
 class BuildSchema(ma.SQLAlchemyAutoSchema):
     test_runs = ma.auto_field()
+    commit_url = fields.String()
 
     class Meta:
         model = Build

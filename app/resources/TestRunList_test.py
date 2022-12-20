@@ -1,5 +1,5 @@
 from .TestRunList import TestRunList as ClassUnderTest
-from models import TestCase as ModelTestCase, TestSuite as ModelTestSuite
+from db.models import TestCase as ModelTestCase, TestSuite as ModelTestSuite
 import pytest
 
 
