@@ -65,7 +65,7 @@ curl -F 'file=@samples/junit_perl.xml' http://localhost:5000/test_runs/
 Once code has been merged to the `main` branch, you can deploy from your local machine, using:
 
 ```
-git push heroku main:main
+invoke deploy
 ```
 
 Once deployed the API will visible at the following URL:

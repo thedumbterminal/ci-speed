@@ -45,6 +45,13 @@ def start(c):
         " flask run"
     )
 
+@task
+def deploy(c):
+    print('Running deploy...')
+    c.run('git checkout main')
+    c.run('git pull origin')
+    c.run('git push heroku main:main')
+
 
 @task(lint, test)
 def ci(c):
