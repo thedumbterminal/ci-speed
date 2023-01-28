@@ -45,6 +45,7 @@ def start(c):
         " flask run"
     )
 
+
 @task
 def deploy(c):
     print('Running deploy...')

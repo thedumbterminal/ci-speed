@@ -10,15 +10,20 @@ COMMIT=$3
 
 HOST=https://ci-speed.herokuapp.com
 #HOST=http://localhost:5000
+RESULTS=test_results.xml
 
 echo "Project: ${PROJECT_NAME} Build: ${BUILD_REF}"
 
-curl --fail -X "POST" \
-  "${HOST}/api/test_runs/" \
-  -H "accept: application/json" \
-  -H "Authentication-Token: ${CI_SPEED_AUTH_TOKEN}" \
-  -H "Content-Type: multipart/form-data" \
-  -F "file=@test_results.xml;type=text/xml" \
-  -F "project_name=${PROJECT_NAME}" \
-  -F "build_ref=${BUILD_REF}" \
-  -F "commit_sha=${COMMIT}"
+if [ -f "$RESULTS" ]; then
+  curl --fail -X "POST" \
+    "${HOST}/api/test_runs/" \
+    -H "accept: application/json" \
+    -H "Authentication-Token: ${CI_SPEED_AUTH_TOKEN}" \
+    -H "Content-Type: multipart/form-data" \
+    -F "file=@${RESULTS};type=text/xml" \
+    -F "project_name=${PROJECT_NAME}" \
+    -F "build_ref=${BUILD_REF}" \
+    -F "commit_sha=${COMMIT}"
+else
+  echo "No results file found"
+fi
