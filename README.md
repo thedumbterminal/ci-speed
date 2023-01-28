@@ -19,6 +19,7 @@ https://github.com/thedumbterminal/ci-speed-ui
 ### Server
 
 ```
+scripts/setup_pyenv.sh
 scripts/install.sh
 ```
 
