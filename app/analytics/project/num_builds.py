@@ -1,8 +1,9 @@
 from db.connection import db
+from sqlalchemy.sql import text
 
 
 def _query(sql, values):
-    return db.session.execute(sql, values)
+    return db.session.execute(text(sql), values)
 
 
 def _format_num_build(build):
