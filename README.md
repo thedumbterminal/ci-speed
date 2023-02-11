@@ -8,6 +8,16 @@ For the UI please see:
 
 https://github.com/thedumbterminal/ci-speed-ui
 
+## Demo
+
+Video introduction:
+
+https://youtu.be/trr3Rv3VhQk
+
+Live site:
+
+https://ci-speed.herokuapp.com
+
 ## Requirements
 
 * Heroku CLI https://devcenter.heroku.com/articles/heroku-cli
