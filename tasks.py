@@ -14,7 +14,7 @@ def format(c):
     c.run("black .")
 
 
-@task(help={'verbose': 'Turn on verbose output'})
+@task(help={"verbose": "Turn on verbose output"})
 def test(c, verbose=False):
     print("Running test...")
     pwd = getcwd()
@@ -24,7 +24,7 @@ def test(c, verbose=False):
         " pytest . --junitxml=test_results.xml --cov"
     )
     if verbose:
-        cmd += ' -vv'
+        cmd += " -vv"
     c.run(cmd)
 
 
@@ -48,10 +48,10 @@ def start(c):
 
 @task
 def deploy(c):
-    print('Running deploy...')
-    c.run('git checkout main')
-    c.run('git pull origin')
-    c.run('git push heroku main:main')
+    print("Running deploy...")
+    c.run("git checkout main")
+    c.run("git pull origin")
+    c.run("git push heroku main:main")
 
 
 @task(lint, test)

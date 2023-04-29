@@ -23,6 +23,6 @@ class Login(Resource):
                 assert resp.ok
                 return "You are @{login} on GitHub".format(login=resp.json()["login"])
         except ValueError as e:
-            print('Error from authorized()', e)
+            print("Error from authorized()", e)
         print("Not authorised with GitHub")
         return redirect(url_for("github.login"))
