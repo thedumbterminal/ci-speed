@@ -5,6 +5,7 @@ from os import getcwd
 @task
 def lint(c):
     print("Running linting...")
+    c.run("black --check .")
     c.run("flake8 --statistics .")
 
 
