@@ -11,7 +11,7 @@ def mock_function(mocker):
         {"total_time": Decimal(123.456)}
     ]
     return mocker.patch(
-        "app.analytics.project.total_test_duration._query",
+        "app.analytics.project.total_test_duration.db.session.execute",
         return_value=mocked_cursor_result,
     )
 

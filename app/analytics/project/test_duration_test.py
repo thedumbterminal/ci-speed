@@ -6,7 +6,7 @@ import pytest
 
 @pytest.fixture
 def empty_build():
-    build = Build(1, 'test_duration')
+    build = Build(1, "test_duration")
     build.created_at = datetime.fromisoformat("2011-11-04")
     return build
 

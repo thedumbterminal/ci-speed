@@ -1,6 +1,5 @@
 from flask_restx import Resource, Namespace
 from lib.repo import repo_list
-from db.models import Project
 from flask_security import auth_required, current_user
 
 api = Namespace(
@@ -15,7 +14,7 @@ class AvailableProjectList(Resource):
     def get(self):
         """List all available projects"""
 
-        current_projects = Project.query.filter_by(user_id=current_user.id).all()
+        current_projects = current_user.projects
         current_project_names = list(map(lambda x: x.name, current_projects))
 
         repos = repo_list()

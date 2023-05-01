@@ -9,7 +9,7 @@ from flask_dance.consumer.storage.sqla import SQLAlchemyStorage
 
 
 blueprint = make_github_blueprint(
-    scope="read:user,user:email",
+    scope="read:user,repo,user:email",
     storage=SQLAlchemyStorage(OAuth, db.session, user=current_user),
 )
 

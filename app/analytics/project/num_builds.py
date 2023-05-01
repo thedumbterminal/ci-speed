@@ -3,7 +3,8 @@ from sqlalchemy.sql import text
 
 
 def _query(sql, values):
-    return db.session.execute(text(sql), values)
+    result = db.session.execute(text(sql), values)
+    return result.mappings().all()
 
 
 def _format_num_build(build):
