@@ -34,9 +34,12 @@ def upgrade():
     )
 
     sql = sa.text(
-        "insert into users_projects (project_id, user_id) select project.id as project_id, user_id from project"
+        (
+            "insert into users_projects (project_id, user_id)"
+            "select project.id as project_id, user_id from project"
+        )
     )
-    result = op.execute(sql)
+    op.execute(sql)
 
     with op.batch_alter_table("project", schema=None) as batch_op:
         batch_op.drop_constraint("uniq_user_id_project", type_="unique")
