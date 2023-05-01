@@ -21,9 +21,8 @@ class ProjectList(Resource):
     @api.doc(id="list_projects", security=["apikey"])
     def get(self):
         """List all projects"""
-        projects = Project.query.filter_by(user_id=current_user.id).all()
         project_schema = ProjectSchema()
-        return project_schema.dump(projects, many=True)
+        return project_schema.dump(current_user.projects, many=True)
 
     @api.expect(create_parser)
     @auth_required("token", "session")
@@ -39,12 +38,13 @@ class ProjectList(Resource):
             raise "Invalid project name"
 
         # Dont create the project if it already exists
-        query = Project.query.filter_by(user_id=current_user.id, name=args["name"])
+        query = Project.query.filter_by(name=args["name"])
         try:
             project = query.one()
         except NoResultFound:
-            project = Project(current_user.id, args["name"])
-            db.session.add(project)
-            db.session.commit()
+            project = Project(args["name"])
+        current_user.projects.append(project)
+        db.session.add(current_user)
+        db.session.commit()
 
         return True

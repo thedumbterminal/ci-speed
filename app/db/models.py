@@ -9,10 +9,11 @@ roles_users = db.Table(
     db.Column("role_id", db.Integer(), db.ForeignKey("role.id")),
 )
 
+
 users_projects = db.Table(
     "users_projects",
-    db.Column("user_id", db.Integer(), db.ForeignKey("user.id")),
-    db.Column("project_id", db.Integer(), db.ForeignKey("project.id")),
+    db.Column("user_id", db.Integer(), db.ForeignKey("user.id"), nullable=False),
+    db.Column("project_id", db.Integer(), db.ForeignKey("project.id"), nullable=False),
     db.UniqueConstraint("user_id", "project_id", name="uniq_user_project"),
 )
 
@@ -28,8 +29,7 @@ class Project(db.Model):
     name = db.Column(db.String(), nullable=False)
     db.UniqueConstraint(name, name="uniq_name")
 
-    def __init__(self, user_id, name, builds=[]):
-        self.user_id = user_id
+    def __init__(self, name, builds=[]):
         self.name = name
         self.builds = builds
 
@@ -45,7 +45,9 @@ class User(UserMixin, db.Model):
         Role, secondary=roles_users, backref=db.backref("users", lazy="dynamic")
     )
     projects = db.relationship(
-        Project, secondary=users_projects, backref=db.backref("users", lazy="dynamic")
+        Project,
+        secondary=users_projects,
+        backref=db.backref("projects", lazy="dynamic"),
     )
 
 
