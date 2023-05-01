@@ -9,11 +9,29 @@ roles_users = db.Table(
     db.Column("role_id", db.Integer(), db.ForeignKey("role.id")),
 )
 
+users_projects = db.Table(
+    "users_projects",
+    db.Column("user_id", db.Integer(), db.ForeignKey("user.id")),
+    db.Column("project_id", db.Integer(), db.ForeignKey("project.id")),
+    db.UniqueConstraint("user_id", "project_id", name="uniq_user_project"),
+)
+
 
 class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), unique=True)
     description = db.Column(db.String(255))
+
+
+class Project(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(), nullable=False)
+    db.UniqueConstraint(name, name="uniq_name")
+
+    def __init__(self, user_id, name, builds=[]):
+        self.user_id = user_id
+        self.name = name
+        self.builds = builds
 
 
 class User(UserMixin, db.Model):
@@ -26,27 +44,15 @@ class User(UserMixin, db.Model):
     roles = db.relationship(
         Role, secondary=roles_users, backref=db.backref("users", lazy="dynamic")
     )
+    projects = db.relationship(
+        Project, secondary=users_projects, backref=db.backref("users", lazy="dynamic")
+    )
 
 
 class OAuth(OAuthConsumerMixin, db.Model):
     provider_user_id = db.Column(db.String(256), unique=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
     user = db.relationship(User)
-
-
-class Project(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    user = db.relationship(
-        User, backref="projects", cascade="all, delete", passive_deletes=True
-    )
-    db.UniqueConstraint(user_id, name, name="uniq_user_id_project")
-
-    def __init__(self, user_id, name, builds=[]):
-        self.user_id = user_id
-        self.name = name
-        self.builds = builds
 
 
 class Build(db.Model):

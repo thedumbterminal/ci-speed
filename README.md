@@ -40,6 +40,12 @@ docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=my
 docker ps -a
 ```
 
+To access use:
+
+```
+psql -h 127.0.0.1 -U myusername myusername
+```
+
 ## Run
 
 ```
