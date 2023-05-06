@@ -6,7 +6,7 @@ import pytest
 @pytest.fixture
 def mock_function(mocker):
     return mocker.patch(
-        "app.analytics.project.num_builds._query",
+        "app.analytics.project.num_builds.query",
         return_value=[{"date_created": date.fromisoformat("2022-01-02"), "num": 123}],
     )
 
