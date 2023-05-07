@@ -8,6 +8,7 @@ from analytics.project.test_duration import get_test_duration
 from analytics.project.test_success import get_test_success
 from analytics.project.tests_skipped import get_skipped_test
 from analytics.project.total_test_duration import get_total_test_duration
+from analytics.project.test_pass_percentage import get_test_pass_percentage
 
 api = Namespace("projects", description="Project related operations")
 
@@ -80,5 +81,15 @@ class TotalTestDuration(Resource):
     @auth_required("token", "session")
     @api.doc(id="get summary_total_test_duration", security=["apikey"])
     def get(self, project_id):
-        """Retrieve the total test duration for all projects"""
+        """Retrieve the total test duration for a project"""
         return get_total_test_duration(project_id)
+
+
+@api.route("/<int:project_id>/test_pass_percentage")
+@api.param("project_id", "The project identifier")
+class TestPassPercentage(Resource):
+    @auth_required("token", "session")
+    @api.doc(id="get test pass percentage", security=["apikey"])
+    def get(self, project_id):
+        """Retrieve the test pass percentage for a project"""
+        return get_test_pass_percentage(project_id)

@@ -1,10 +1,4 @@
-from db.connection import db
-from sqlalchemy.sql import text
-
-
-def _query(sql, values):
-    result = db.session.execute(text(sql), values)
-    return result.mappings().all()
+from db.query import query
 
 
 def _format_num_build(build):
@@ -12,7 +6,7 @@ def _format_num_build(build):
 
 
 def get_num_builds(project_id):
-    builds = _query(
+    builds = query(
         (
             "SELECT DATE(created_at) AS date_created, COUNT(*) AS num FROM build "
             "WHERE project_id = :project_id GROUP BY DATE(created_at);"

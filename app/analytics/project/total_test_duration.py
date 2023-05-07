@@ -1,10 +1,4 @@
-from db.connection import db
-from sqlalchemy.sql import text
-
-
-def _query(sql, values):
-    result = db.session.execute(text(sql), values)
-    return result.mappings().all()
+from db.query import query
 
 
 def get_total_test_duration(project_id):
@@ -16,5 +10,5 @@ def get_total_test_duration(project_id):
         "WHERE build.project_id = :project_id;"
     )
 
-    results_as_dict = _query(sql, {"project_id": project_id})
+    results_as_dict = query(sql, {"project_id": project_id})
     return float(results_as_dict[0]["total_time"])
