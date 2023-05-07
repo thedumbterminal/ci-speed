@@ -1,7 +1,6 @@
 from flask_restx import Resource, Namespace
-from db.models import Project as ProjectModel
 from schemas import ProjectSchema
-from flask_security import auth_required
+from flask_security import auth_required, current_user
 from analytics.project.num_tests import get_num_tests
 from analytics.project.num_builds import get_num_builds
 from analytics.project.test_duration import get_test_duration
@@ -9,6 +8,7 @@ from analytics.project.test_success import get_test_success
 from analytics.project.tests_skipped import get_skipped_test
 from analytics.project.total_test_duration import get_total_test_duration
 from analytics.project.test_pass_percentage import get_test_pass_percentage
+from models.project import find_by_id
 
 api = Namespace("projects", description="Project related operations")
 
@@ -20,7 +20,7 @@ class Project(Resource):
     @api.doc(id="get_project", security=["apikey"])
     def get(self, project_id):
         """Retrieve a project"""
-        project = ProjectModel.query.get(project_id)
+        project = find_by_id(current_user, project_id)
         project_schema = ProjectSchema()
         return project_schema.dump(project)
 

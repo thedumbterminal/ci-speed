@@ -2,7 +2,6 @@ from flask_restx import Resource, Namespace
 from werkzeug.datastructures import FileStorage
 import xmltodict
 from db.models import (
-    Project,
     Build,
     TestRun,
     TestSuite,
@@ -16,6 +15,7 @@ import json
 from db.connection import db
 import os
 from flask_security import auth_required, current_user
+from models.project import find_by_name
 
 
 api = Namespace("test_runs", description="Test run related operations")
@@ -113,10 +113,9 @@ class TestRunList(Resource):
         print("Uploaded JSON:")
         print(json.dumps(converted_dict))
 
-        matched_projects = list(filter(lambda x : x.name == args["project_name"], current_user.projects))
-        if not matched_projects:
+        project = find_by_name(current_user, args["project_name"])
+        if not project:
             raise ValueError("Project not found")
-        project = matched_projects[0]
         print("Found project", project)
         build = Build.query.filter_by(ref=args["build_ref"]).first()
         if not build:

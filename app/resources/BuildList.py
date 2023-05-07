@@ -1,9 +1,10 @@
 from flask_restx import Resource, Namespace
-from db.models import Project, Build
+from db.models import Build
 from schemas import BuildSchema
 from pprint import pprint
 from db.connection import db
-from flask_security import auth_required
+from flask_security import auth_required, current_user
+from models.project import find_by_name
 
 
 api = Namespace("builds", description="Build related operations")
@@ -43,7 +44,7 @@ class BuildList(Resource):
     def post(self):
         """Create a new build for storing test runs against"""
         args = create_parser.parse_args()
-        project = Project.query.filter_by(name=args["project_name"]).first()
+        project = find_by_name(current_user, args["project_name"])
         if not project:
             raise ValueError("Project not found")
         print("Found project", project)
