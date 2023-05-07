@@ -113,9 +113,7 @@ class TestRunList(Resource):
         print("Uploaded JSON:")
         print(json.dumps(converted_dict))
 
-        project = Project.query.filter_by(
-            user_id=current_user.id, name=args["project_name"]
-        ).first()
+        project = list(filter(lambda x : x.name == args["project_name"], current_user.projects)).first()
         if not project:
             raise ValueError("Project not found")
         print("Found project", project)
