@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.UUID;
 
 
-@Mojo(name = "ci-speed", defaultPhase = LifecyclePhase.COMPILE)
+@Mojo(name = "ci-speed", defaultPhase = LifecyclePhase.TEST)
 public class CiSpeedMojo extends AbstractMojo {
 
     private final String CI_SPEED_BASE_URL = "https://ci-speed.herokuapp.com/api";
@@ -42,10 +42,10 @@ public class CiSpeedMojo extends AbstractMojo {
     String buildId;
 
     @Parameter(property = "testReportDir")
-    File testReportDir;
+    File testReportDir = new File("target/surefire-reports");
 
     @Parameter(property = "filterPattern")
-    String filterPattern;
+    String filterPattern = ".+\\.xml";
 
     public CiSpeedMojo(){
 
@@ -111,19 +111,21 @@ public class CiSpeedMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
        getLog().info("Plugin running...");
         File[] files = reportFiles(testReportDir);
-        getLog().info("Files found..");
-
-        try {
-            if(buildId == null || "".equals(buildId)){
-                buildId = UUID.randomUUID().toString();
+        if(files == null){
+            getLog().info("No files found");
+        } else {
+            getLog().info(files.length + " Files found..");
+            try {
+                if (buildId == null || "".equals(buildId)) {
+                    buildId = UUID.randomUUID().toString();
+                }
+                createBuild(apiKey, projectName, buildId);
+                for (File f : files) {
+                    uploadFile(apiKey, projectName, buildId, f);
+                }
+            } catch (IOException ioe) {
+                throw new MojoFailureException("Unable to upload files", ioe);
             }
-            createBuild(apiKey, projectName, buildId);
-            for (File f : files) {
-                uploadFile(apiKey, projectName, buildId, f);
-            }
-        }
-        catch(IOException ioe){
-            throw new MojoFailureException("Unable to upload files", ioe);
         }
     }
 }
