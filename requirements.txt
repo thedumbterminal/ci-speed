@@ -3,7 +3,7 @@ flask-marshmallow == 0.15.0
 flask-sqlalchemy == 3.0.3
 flask-cors == 4.0.0
 flask == 2.2.3
-gunicorn == 21.1.0
+gunicorn == 21.2.0
 honcho == 1.1.0
 xmltodict == 0.13.0
 marshmallow-sqlalchemy == 0.29.0
