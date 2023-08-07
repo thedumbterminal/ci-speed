@@ -79,8 +79,7 @@ class Build(db.Model):
 
     @hybrid_property
     def commit_url(self):
-        project_name = self.project.name
-        return f"https://github.com/{project_name}/commit/{self.commit_sha}"
+        return f"{self.project.vcs_url}/commit/{self.commit_sha}"
 
 
 class TestRun(db.Model):
