@@ -33,6 +33,10 @@ class Project(db.Model):
         self.name = name
         self.builds = builds
 
+    @hybrid_property
+    def vcs_url(self):
+        return f"https://github.com/{self.name}"
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -75,8 +79,7 @@ class Build(db.Model):
 
     @hybrid_property
     def commit_url(self):
-        project_name = self.project.name
-        return f"https://github.com/{project_name}/commit/{self.commit_sha}"
+        return f"{self.project.vcs_url}/commit/{self.commit_sha}"
 
 
 class TestRun(db.Model):

@@ -24,6 +24,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 
 class ProjectSchema(ma.SQLAlchemyAutoSchema):
     builds = ma.auto_field()
+    vcs_url = fields.String()
 
     class Meta:
         model = Project
