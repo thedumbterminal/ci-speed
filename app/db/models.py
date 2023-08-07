@@ -33,6 +33,10 @@ class Project(db.Model):
         self.name = name
         self.builds = builds
 
+    @hybrid_property
+    def vcs_url(self):
+        return f"https://github.com/{self.name}"
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
