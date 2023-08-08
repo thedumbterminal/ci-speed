@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/components/BarChart.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/BarChart"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 94, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/components/ErrorBoundary.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/components/ErrorBoundary.tsx" classname="/Users/mark/git/ci-speed-ui/src/components/ErrorBoundary" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/components/Grid.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/components/Grid.tsx" classname="/Users/mark/git/ci-speed-ui/src/components/Grid" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/components/Layout.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/components/Layout.tsx" classname="/Users/mark/git/ci-speed-ui/src/components/Layout" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/components/Login.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/components/Login.tsx" classname="/Users/mark/git/ci-speed-ui/src/components/Login" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="2" errors="2" name="/Users/mark/git/ci-speed-ui/src/components/NewProject.tsx">
+<testcase time="0" name="org.eslint.no-useless-escape" classname="/Users/mark/git/ci-speed-ui/src/components/NewProject"><failure message="Unnecessary escape character: \/."><![CDATA[line 22, col 29, Warning - Unnecessary escape character: \/. (no-useless-escape)]]></failure></testcase>
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/NewProject"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 42, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/components/NumBuildsChart.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/NumBuildsChart"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 22, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/components/NumTestsChart.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/NumTestsChart"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 21, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/components/ProjectSelect.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/ProjectSelect"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 27, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/components/TestDurationChart.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/TestDurationChart"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 21, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/components/TestPassPercentageSummary.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/TestPassPercentageSummary"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 26, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/components/TestSuccessChart.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/TestSuccessChart"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 21, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/components/TestsSkippedChart.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/TestsSkippedChart"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 21, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/components/TopNav.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/components/TopNav.tsx" classname="/Users/mark/git/ci-speed-ui/src/components/TopNav" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/components/TotalTestDurationSummary.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/components/TotalTestDurationSummary"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 29, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/index.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/index.tsx" classname="/Users/mark/git/ci-speed-ui/src/index" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/lib/api.ts">
+<testcase time="0" name="org.eslint.@typescript-eslint/no-unused-vars" classname="/Users/mark/git/ci-speed-ui/src/lib/api"><failure message="&apos;AxiosResponse&apos; is defined but never used."><![CDATA[line 1, col 17, Warning - &apos;AxiosResponse&apos; is defined but never used. (@typescript-eslint/no-unused-vars)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/lib/date.test.ts">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/lib/date.test.ts" classname="/Users/mark/git/ci-speed-ui/src/lib/date.test" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/lib/date.ts">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/lib/date.ts" classname="/Users/mark/git/ci-speed-ui/src/lib/date" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="2" errors="2" name="/Users/mark/git/ci-speed-ui/src/lib/project.ts">
+<testcase time="0" name="org.eslint.@typescript-eslint/no-unused-vars" classname="/Users/mark/git/ci-speed-ui/src/lib/project"><failure message="&apos;_&apos; is assigned a value but never used."><![CDATA[line 4, col 14, Warning - &apos;_&apos; is assigned a value but never used. (@typescript-eslint/no-unused-vars)]]></failure></testcase>
+<testcase time="0" name="org.eslint.react-hooks/rules-of-hooks" classname="/Users/mark/git/ci-speed-ui/src/lib/project"><failure message="React Hook &quot;useLocalStorageState&quot; is called in function &quot;getProjectId&quot; that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word &quot;use&quot;."><![CDATA[line 4, col 19, Error - React Hook &quot;useLocalStorageState&quot; is called in function &quot;getProjectId&quot; that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word &quot;use&quot;. (react-hooks/rules-of-hooks)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="2" errors="2" name="/Users/mark/git/ci-speed-ui/src/pages/Account.tsx">
+<testcase time="0" name="org.eslint.@typescript-eslint/no-unused-vars" classname="/Users/mark/git/ci-speed-ui/src/pages/Account"><failure message="&apos;error&apos; is assigned a value but never used."><![CDATA[line 34, col 17, Warning - &apos;error&apos; is assigned a value but never used. (@typescript-eslint/no-unused-vars)]]></failure></testcase>
+<testcase time="0" name="org.eslint.@typescript-eslint/no-unused-vars" classname="/Users/mark/git/ci-speed-ui/src/pages/Account"><failure message="&apos;isLoading&apos; is assigned a value but never used."><![CDATA[line 34, col 24, Warning - &apos;isLoading&apos; is assigned a value but never used. (@typescript-eslint/no-unused-vars)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/AddProject.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/AddProject.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/AddProject" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/Analyse.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/Analyse.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/Analyse" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="2" errors="2" name="/Users/mark/git/ci-speed-ui/src/pages/ApiKey.tsx">
+<testcase time="0" name="org.eslint.@typescript-eslint/no-unused-vars" classname="/Users/mark/git/ci-speed-ui/src/pages/ApiKey"><failure message="&apos;error&apos; is assigned a value but never used."><![CDATA[line 22, col 17, Warning - &apos;error&apos; is assigned a value but never used. (@typescript-eslint/no-unused-vars)]]></failure></testcase>
+<testcase time="0" name="org.eslint.@typescript-eslint/no-unused-vars" classname="/Users/mark/git/ci-speed-ui/src/pages/ApiKey"><failure message="&apos;isLoading&apos; is assigned a value but never used."><![CDATA[line 22, col 24, Warning - &apos;isLoading&apos; is assigned a value but never used. (@typescript-eslint/no-unused-vars)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/App.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/App.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/App" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/Build.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/Build.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/Build" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/ChooseProject.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/ChooseProject.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/ChooseProject" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="1" name="/Users/mark/git/ci-speed-ui/src/pages/Home.tsx">
+<testcase time="0" name="org.eslint.import/no-anonymous-default-export" classname="/Users/mark/git/ci-speed-ui/src/pages/Home"><failure message="Assign arrow function to a variable before exporting as module default"><![CDATA[line 4, col 1, Warning - Assign arrow function to a variable before exporting as module default (import/no-anonymous-default-export)]]></failure></testcase>
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/Project.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/Project.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/Project" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/SkippedTest.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/SkippedTest.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/SkippedTest" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/Summary.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/Summary.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/Summary" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/TestFailure.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/TestFailure.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/TestFailure" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/TestRun.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/TestRun.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/TestRun" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/pages/TestSuite.tsx">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/pages/TestSuite.tsx" classname="/Users/mark/git/ci-speed-ui/src/pages/TestSuite" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/setupTests.js">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/setupTests.js" classname="/Users/mark/git/ci-speed-ui/src/setupTests" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/shared/Build.ts">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/shared/Build.ts" classname="/Users/mark/git/ci-speed-ui/src/shared/Build" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/shared/Datum.ts">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/shared/Datum.ts" classname="/Users/mark/git/ci-speed-ui/src/shared/Datum" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/shared/Project.ts">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/shared/Project.ts" classname="/Users/mark/git/ci-speed-ui/src/shared/Project" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/shared/TestRun.ts">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/shared/TestRun.ts" classname="/Users/mark/git/ci-speed-ui/src/shared/TestRun" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/shared/TestSuite.ts">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/shared/TestSuite.ts" classname="/Users/mark/git/ci-speed-ui/src/shared/TestSuite" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/shared/XAxisDataType.ts">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/shared/XAxisDataType.ts" classname="/Users/mark/git/ci-speed-ui/src/shared/XAxisDataType" />
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="1" errors="0" name="/Users/mark/git/ci-speed-ui/src/theme.ts">
+<testcase time="0" name="/Users/mark/git/ci-speed-ui/src/theme.ts" classname="/Users/mark/git/ci-speed-ui/src/theme" />
+</testsuite>
+</testsuites>
+
