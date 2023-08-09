@@ -67,8 +67,8 @@ class TestRunList(Resource):
 
     def _junit_to_test_suite(self, suite_details):
         test_cases = []
-        for case in suite_details["testcase"]:
-            test_case = self._junit_to_test_case(case)
+        for t_case in suite_details["testcase"]:
+            test_case = self._junit_to_test_case(t_case)
             test_cases.append(test_case)
         return TestSuite(suite_details["@name"], suite_details["@time"], test_cases)
 
@@ -77,8 +77,9 @@ class TestRunList(Resource):
         # having testsuites is optional
         if "testsuites" in junit_dict:
             for suite in junit_dict["testsuites"]:
-                test_suite = self._junit_to_test_suite(suite["testsuite"])
-                test_suites.append(test_suite)
+                for ts in suite["testsuite"]:
+                    test_suite = self._junit_to_test_suite(ts)
+                    test_suites.append(test_suite)
         else:
             test_suite = self._junit_to_test_suite(junit_dict["testsuite"])
             test_suites.append(test_suite)
@@ -106,7 +107,7 @@ class TestRunList(Resource):
         args = upload_parser.parse_args()
         uploaded_file = args["file"]  # This is FileStorage instance
         converted_dict = xmltodict.parse(
-            uploaded_file.read(), force_list=("testsuites", "testcase")
+            uploaded_file.read(), force_list=("testsuites", "testsuite", "testcase")
         )
         print("Uploaded dict:")
         pprint(converted_dict)
