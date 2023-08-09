@@ -66,6 +66,7 @@ class TestRunList(Resource):
         )
 
     def _junit_to_test_suite(self, suite_details):
+        print(suite_details["testcase"])
         test_cases = []
         for case in suite_details["testcase"]:
             test_case = self._junit_to_test_case(case)
@@ -106,7 +107,7 @@ class TestRunList(Resource):
         args = upload_parser.parse_args()
         uploaded_file = args["file"]  # This is FileStorage instance
         converted_dict = xmltodict.parse(
-            uploaded_file.read(), force_list=("testsuites", "testcase")
+            uploaded_file.read(), force_list=("testsuites", "testsuite", "testcase")
         )
         print("Uploaded dict:")
         pprint(converted_dict)

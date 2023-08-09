@@ -1,5 +1,5 @@
 from .TestRunList import TestRunList as ClassUnderTest
-from db.models import TestCase as ModelTestCase, TestSuite as ModelTestSuite
+from db.models import TestCase as ModelTestCase, TestSuite as ModelTestSuite, TestRun as ModelTestRun
 import pytest
 
 
@@ -36,9 +36,25 @@ def test_junit_to_test_suite(resource):
     assert isinstance(test_suite, ModelTestSuite)
 
 
-@pytest.mark.skip(reason="Not finished")
 def test_junit_to_test_run(resource):
     build_id = 1
-    junit = {}
+    junit = {
+      'testsuites': [
+          {
+              'testsuite': [
+                  {
+                      '@name': 'src_Example_t',
+                      '@time': '10.0766069889069',
+                      'testcase': [
+                          {
+                              '@name': '(init)',
+                              '@time': '0.0666670799255371'
+                          }
+                      ]
+                 }
+              ]
+         }
+      ]
+    }
     test_run = resource._junit_to_test_run(build_id, junit)
-    assert test_run
+    assert isinstance(test_run, ModelTestRun)
