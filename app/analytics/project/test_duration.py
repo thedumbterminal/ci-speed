@@ -14,6 +14,6 @@ def _get_test_duration_for_build(build):
     return result
 
 
-def get_test_duration(project_id):
+def get_test_duration(project_id, days):
     builds = Build.query.filter_by(project_id=project_id).all()
     return list(map(_get_test_duration_for_build, builds))

@@ -12,6 +12,6 @@ def _get_num_tests_for_build(build):
     return result
 
 
-def get_num_tests(project_id):
+def get_num_tests(project_id, days):
     builds = Build.query.filter_by(project_id=project_id).all()
     return list(map(_get_num_tests_for_build, builds))
