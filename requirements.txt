@@ -2,7 +2,7 @@ flask-restx == 1.1.0
 flask-marshmallow == 0.15.0
 flask-sqlalchemy == 3.0.5
 flask-cors == 4.0.0
-flask == 2.3.2
+flask == 2.3.3
 gunicorn == 21.2.0
 honcho == 1.1.0
 xmltodict == 0.13.0
