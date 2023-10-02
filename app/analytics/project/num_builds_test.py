@@ -12,5 +12,5 @@ def mock_function(mocker):
 
 
 def test_get_num_builds(mock_function):
-    result = get_num_builds(1)
+    result = get_num_builds(1, 30)
     assert result == [{"x": "2022-01-02", "y": 123}]

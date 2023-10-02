@@ -14,7 +14,7 @@ api = Namespace("projects", description="Project related operations")
 
 analytics_parser = api.parser()
 analytics_parser.add_argument(
-    "days", type=int, location="args", help="Duration", required=False, default=30
+    "days", type=int, location="args", help="Duration", required=False, default=90
 )
 
 
