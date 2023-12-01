@@ -20,6 +20,6 @@ def _get_test_success_for_build(build):
     return result
 
 
-def get_test_success(project_id):
+def get_test_success(project_id, days):
     builds = Build.query.filter_by(project_id=project_id).all()
     return list(map(_get_test_success_for_build, builds))

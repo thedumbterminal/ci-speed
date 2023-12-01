@@ -12,6 +12,11 @@ from models.project import find_by_id
 
 api = Namespace("projects", description="Project related operations")
 
+analytics_parser = api.parser()
+analytics_parser.add_argument(
+    "days", type=int, location="args", help="Duration", required=False, default=90
+)
+
 
 @api.route("/<int:project_id>")
 @api.param("project_id", "The project identifier")
@@ -30,9 +35,11 @@ class Project(Resource):
 class ProjectNumTests(Resource):
     @auth_required("token", "session")
     @api.doc(id="get_project_test_number_history", security=["apikey"])
+    @api.expect(analytics_parser)
     def get(self, project_id):
         """Retrieve a project's test number history"""
-        return get_num_tests(project_id)
+        args = analytics_parser.parse_args()
+        return get_num_tests(project_id, args["days"])
 
 
 @api.route("/<int:project_id>/num_builds")
@@ -40,9 +47,11 @@ class ProjectNumTests(Resource):
 class ProjectNumBuilds(Resource):
     @auth_required("token", "session")
     @api.doc(id="get_project_build_number_history", security=["apikey"])
+    @api.expect(analytics_parser)
     def get(self, project_id):
         """Retrieve a project's build number history"""
-        return get_num_builds(project_id)
+        args = analytics_parser.parse_args()
+        return get_num_builds(project_id, args["days"])
 
 
 @api.route("/<int:project_id>/test_duration")
@@ -50,9 +59,11 @@ class ProjectNumBuilds(Resource):
 class ProjectTestDuration(Resource):
     @auth_required("token", "session")
     @api.doc(id="get_project_test_duration_history", security=["apikey"])
+    @api.expect(analytics_parser)
     def get(self, project_id):
         """Retrieve a project's test duration history"""
-        return get_test_duration(project_id)
+        args = analytics_parser.parse_args()
+        return get_test_duration(project_id, args["days"])
 
 
 @api.route("/<int:project_id>/test_success")
@@ -60,9 +71,11 @@ class ProjectTestDuration(Resource):
 class ProjectTestSuccess(Resource):
     @auth_required("token", "session")
     @api.doc(id="get_project_test_success_history", security=["apikey"])
+    @api.expect(analytics_parser)
     def get(self, project_id):
         """Retrieve a project's test success history"""
-        return get_test_success(project_id)
+        args = analytics_parser.parse_args()
+        return get_test_success(project_id, args["days"])
 
 
 @api.route("/<int:project_id>/tests_skipped")
@@ -70,9 +83,11 @@ class ProjectTestSuccess(Resource):
 class ProjectTestsSkipped(Resource):
     @auth_required("token", "session")
     @api.doc(id="get_project_skipped_test_history", security=["apikey"])
+    @api.expect(analytics_parser)
     def get(self, project_id):
         """Retrieve a project's skipped test history"""
-        return get_skipped_test(project_id)
+        args = analytics_parser.parse_args()
+        return get_skipped_test(project_id, args["days"])
 
 
 @api.route("/<int:project_id>/total_test_duration")

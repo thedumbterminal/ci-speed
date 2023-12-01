@@ -19,6 +19,6 @@ def _get_skipped_test_for_build(build):
     return result
 
 
-def get_skipped_test(project_id):
+def get_skipped_test(project_id, days):
     builds = Build.query.filter_by(project_id=project_id).all()
     return list(map(_get_skipped_test_for_build, builds))
