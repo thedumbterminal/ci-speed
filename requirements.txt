@@ -1,18 +1,18 @@
-flask-restx == 1.1.0
+flask-restx == 1.2.0
 flask-marshmallow == 0.15.0
-flask-sqlalchemy == 3.0.5
+flask-sqlalchemy == 3.1.1
 flask-cors == 4.0.0
-flask == 2.3.2
+flask == 2.3.3
 gunicorn == 21.2.0
 honcho == 1.1.0
 xmltodict == 0.13.0
 marshmallow-sqlalchemy == 0.29.0
-psycopg2-binary == 2.9.7
-Flask-Migrate == 4.0.4
+psycopg2-binary == 2.9.8
+Flask-Migrate == 4.0.5
 Flask-Dance == 7.0.0
 Flask-Security-Too == 5.3.2
-email-validator == 2.0.0.post2
-yarl == 1.9.2
+email-validator == 2.1.0.post1
+yarl == 1.9.3
 
 #This is needed to be compatible with Werkzeug 3, until Flask-Security-Too updates
 Flask-Login == 0.6.3
@@ -20,7 +20,7 @@ Flask-Login == 0.6.3
 #dev includes
 flake8 == 6.1.0
 invoke == 2.2.0
-black == 23.7.0
-pytest == 7.4.0
+black == 23.11.0
+pytest == 7.4.2
 pytest-cov == 4.1.0
-pytest-mock == 3.11.1
+pytest-mock == 3.12.0
