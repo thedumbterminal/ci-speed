@@ -1,5 +1,7 @@
 from schemas import BuildSchema
 from db.models import Build
+from sqlalchemy import and_
+from lib.date import date_in_past
 
 
 def _get_skipped_test_for_build(build):
@@ -20,5 +22,9 @@ def _get_skipped_test_for_build(build):
 
 
 def get_skipped_test(project_id, days):
+    builds = Build.query.filter(
+        and_(Build.project_id == project_id, Build.created_at >= date_in_past(days))
+    ).all()
+
     builds = Build.query.filter_by(project_id=project_id).all()
     return list(map(_get_skipped_test_for_build, builds))
