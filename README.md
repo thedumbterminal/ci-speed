@@ -60,7 +60,7 @@ http://127.0.0.1:5000
 Or with github auth:
 
 ```
-GITHUB_OAUTH_CLIENT_ID=xxx GITHUB_OAUTH_CLIENT_SECRET=xxx invoke start
+GITHUB_OAUTH_CLIENT_ID=xxx GITHUB_OAUTH_CLIENT_SECRET=xxx SQLALCHEMY_ECHO=1 invoke start
 ```
 
 ### Production mode
@@ -110,7 +110,7 @@ PYTHONPATH=app FLASK_APP=main flask db upgrade
 To create a new migration:
 
 ```
-PYTHONPATH=app FLASK_APP=main flask db migrate -m "Some comment here"
+PYTHONPATH=app FLASK_APP=main flask db revision -m "Some comment here"
 ```
 
 To update your local DB to the latest version run:

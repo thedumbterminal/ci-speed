@@ -43,6 +43,7 @@ def start(c):
         " FLASK_DEBUG=1"
         " PYTHONPATH=app"
         " FLASK_ENV=development"
+        " SQLALCHEMY_ECHO=1"
         " flask run"
     )
 
