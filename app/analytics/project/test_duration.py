@@ -3,10 +3,11 @@ from db.models import Build
 from sqlalchemy import and_
 from lib.date import date_in_past
 
+build_schema = BuildSchema()
+test_suite_schema = SuiteSchema()
+
 
 def _get_test_duration_for_build(build):
-    build_schema = BuildSchema()
-    test_suite_schema = SuiteSchema()
     serialised_build = build_schema.dump(build)
     result = {"x": serialised_build["created_at"], "y": 0}
     for test_run in build.test_runs:

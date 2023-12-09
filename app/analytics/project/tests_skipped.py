@@ -4,8 +4,10 @@ from sqlalchemy import and_
 from lib.date import date_in_past
 
 
+build_schema = BuildSchema()
+
+
 def _get_skipped_test_for_build(build):
-    build_schema = BuildSchema()
     serialised_build = build_schema.dump(build)
     result = {"x": serialised_build["created_at"], "y": 0}
     total = 0
