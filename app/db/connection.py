@@ -12,6 +12,7 @@ configured_dsn = configured_dsn.replace(
 
 app.config["SQLALCHEMY_DATABASE_URI"] = configured_dsn
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_ECHO"] = True
+app.config["SQLALCHEMY_ECHO"] = os.environ.get("SQLALCHEMY_ECHO", False)
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
