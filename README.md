@@ -137,6 +137,7 @@ See also the built in flask environment variables.
 * GITHUB_OAUTH_CLIENT_ID - Set to github oauth app client ID.
 * GITHUB_OAUTH_CLIENT_SECRET - Set to github oauth app client secret.
 * OAUTHLIB_INSECURE_TRANSPORT - Set to `true` when testing auth locally.
+* SQLALCHEMY_ECHO - Log all SQL statements.
 
 ## Tech
 * Python
