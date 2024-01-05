@@ -9,7 +9,7 @@ xmltodict == 0.13.0
 marshmallow-sqlalchemy == 0.29.0
 psycopg2-binary == 2.9.9
 Flask-Migrate == 4.0.5
-Flask-Dance == 7.0.0
+Flask-Dance == 7.0.1
 Flask-Security-Too == 5.3.3
 email-validator == 2.1.0.post1
 yarl == 1.9.4
