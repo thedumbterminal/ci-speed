@@ -17,7 +17,7 @@ app.register_blueprint(blueprint, url_prefix="/oauth")
 security.init_app(app, user_datastore)
 
 
-ui_url_base = os.environ.get("UI_URL_BASE", "http://localhost:3000/")
+ui_url_base = os.environ.get("UI_URL_BASE", "http://localhost:8080/")
 ui_url_path = os.environ.get("UI_URL_PATH", "")
 
 
@@ -45,7 +45,7 @@ def static_js_proxy(path):
     return _proxy_request(new)
 
 
-@app.route("/static/media/<path:path>")
+@app.route("/static/font/<path:path>")
 def static_media_proxy(path):
     new = f"{ui_url_base}{ui_url_path}static/media/{path}"
     return _proxy_request(new)
