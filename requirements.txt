@@ -11,7 +11,7 @@ psycopg2-binary == 2.9.9
 Flask-Migrate == 4.0.5
 Flask-Dance == 7.0.1
 Flask-Security-Too == 5.3.3
-email-validator == 2.1.0.post1
+email-validator == 2.1.1
 yarl == 1.9.4
 
 #This is needed to be compatible with Werkzeug 3, until Flask-Security-Too updates
