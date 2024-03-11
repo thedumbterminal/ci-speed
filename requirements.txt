@@ -8,7 +8,7 @@ honcho == 1.1.0
 xmltodict == 0.13.0
 marshmallow-sqlalchemy == 1.0.0
 psycopg2-binary == 2.9.9
-Flask-Migrate == 4.0.5
+Flask-Migrate == 4.0.6
 Flask-Dance == 7.1.0
 Flask-Security-Too == 5.4.1
 email-validator == 2.1.1
