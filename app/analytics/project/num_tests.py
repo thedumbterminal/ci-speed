@@ -11,7 +11,7 @@ def get_num_tests(project_id, days):
         (
             "SELECT "
             "DATE(build.created_at) AS date_created, "
-            "count(test_case.id) AS num "
+            "COUNT(test_case.id) AS num "
             "FROM build "
             "LEFT JOIN test_run ON (test_run.build_id = build.id) "
             "LEFT JOIN test_suite ON (test_suite.test_run_id = test_run.id) "
