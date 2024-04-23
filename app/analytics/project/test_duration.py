@@ -1,24 +1,26 @@
-from schemas import BuildSchema, TestSuiteSchema as SuiteSchema
-from db.models import Build
-from sqlalchemy import and_
 from lib.date import date_in_past
-
-build_schema = BuildSchema()
-test_suite_schema = SuiteSchema()
+from db.query import query
 
 
-def _get_test_duration_for_build(build):
-    serialised_build = build_schema.dump(build)
-    result = {"x": serialised_build["created_at"], "y": 0}
-    for test_run in build.test_runs:
-        for test_suite in test_run.test_suites:
-            serialised_test_suite = test_suite_schema.dump(test_suite)
-            result["y"] += serialised_test_suite["time"]
-    return result
+def _format_result(build):
+    return {"x": build["date_created"].isoformat(), "y": build["total_time"]}
 
 
 def get_test_duration(project_id, days):
-    builds = Build.query.filter(
-        and_(Build.project_id == project_id, Build.created_at >= date_in_past(days))
-    ).all()
-    return list(map(_get_test_duration_for_build, builds))
+    builds = query(
+        (
+            "SELECT "
+            "DATE(build.created_at) AS date_created, "
+            "CAST(SUM(test_suite.time) AS INTEGER) AS total_time "
+            "FROM build "
+            "LEFT JOIN test_run ON (test_run.build_id = build.id) "
+            "LEFT JOIN test_suite ON (test_suite.test_run_id = test_run.id) "
+            "LEFT JOIN test_case ON (test_case.test_suite_id = test_suite.id) "
+            "WHERE "
+            "build.project_id = :project_id "
+            "AND build.created_at >= :date_in_past "
+            "GROUP BY DATE(build.created_at);"
+        ),
+        {"project_id": project_id, "date_in_past": date_in_past(days)},
+    )
+    return list(map(_format_result, builds))
