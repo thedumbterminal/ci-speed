@@ -1,16 +1,18 @@
-from .test_duration import _get_test_duration_for_build
-from db.models import Build
-from datetime import datetime
+from .test_duration import get_test_duration
+from datetime import date
 import pytest
 
 
 @pytest.fixture
-def empty_build():
-    build = Build(1, "test_duration")
-    build.created_at = datetime.fromisoformat("2011-11-04")
-    return build
+def mock_function(mocker):
+    return mocker.patch(
+        "app.analytics.project.test_duration.query",
+        return_value=[
+            {"date_created": date.fromisoformat("2022-01-02"), "total_time": 123}
+        ],
+    )
 
 
-def test_get_test_duration_for_build_with_no_test_cases(empty_build):
-    result = _get_test_duration_for_build(empty_build)
-    assert result == {"x": "2011-11-04T00:00:00", "y": 0}
+def test_get_test_duration(mock_function):
+    result = get_test_duration(1, 1)
+    assert result == [{"x": "2022-01-02", "y": 123}]
