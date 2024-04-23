@@ -11,7 +11,7 @@ def get_test_duration(project_id, days):
         (
             "SELECT "
             "DATE(build.created_at) AS date_created, "
-            "CAST(SUM(test_suite.time) AS INTEGER) AS total_time "
+            "CAST(SUM(test_suite.time) AS FLOAT) AS total_time "
             "FROM build "
             "LEFT JOIN test_run ON (test_run.build_id = build.id) "
             "LEFT JOIN test_suite ON (test_suite.test_run_id = test_run.id) "
