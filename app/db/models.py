@@ -86,12 +86,14 @@ class TestRun(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
     build_id = db.Column(db.Integer, db.ForeignKey("build.id"), nullable=False)
+    file_name = db.Column(db.String(), nullable=True)
     build = db.relationship(
         Build, backref="test_runs", cascade="all, delete", passive_deletes=True
     )
 
-    def __init__(self, build_id, test_suites=[]):
+    def __init__(self, build_id, file_name, test_suites=[]):
         self.build_id = build_id
+        self.file_name = file_name
         self.test_suites = test_suites
 
 

@@ -72,7 +72,7 @@ class TestRunList(Resource):
             test_cases.append(test_case)
         return TestSuite(suite_details["@name"], suite_details["@time"], test_cases)
 
-    def _junit_to_test_run(self, build_id, junit_dict):
+    def _junit_to_test_run(self, build_id, file_name, junit_dict):
         test_suites = []
         # having testsuites is optional
         if "testsuites" in junit_dict:
@@ -83,7 +83,7 @@ class TestRunList(Resource):
         else:
             test_suite = self._junit_to_test_suite(junit_dict["testsuite"])
             test_suites.append(test_suite)
-        return TestRun(build_id, test_suites)
+        return TestRun(build_id, file_name, test_suites)
 
     def _test_run_url(self, test_run):
         server_url_base = os.environ.get("SERVER_URL_BASE", "http://localhost:5000")
@@ -106,6 +106,7 @@ class TestRunList(Resource):
         """Upload a junit XML file to create a test run"""
         args = upload_parser.parse_args()
         uploaded_file = args["file"]  # This is FileStorage instance
+        print("filename: ", uploaded_file.filename)
         converted_dict = xmltodict.parse(
             uploaded_file.read(), force_list=("testsuites", "testsuite", "testcase")
         )
@@ -124,7 +125,9 @@ class TestRunList(Resource):
             db.session.add(build)
             db.session.commit()
         print("Found build", build)
-        test_run = self._junit_to_test_run(build.id, converted_dict)
+        test_run = self._junit_to_test_run(
+            build.id, uploaded_file.filename, converted_dict
+        )
         db.session.add(test_run)
         db.session.commit()
 
