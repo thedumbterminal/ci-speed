@@ -15,7 +15,6 @@ def get_test_duration(project_id, days):
             "FROM build "
             "LEFT JOIN test_run ON (test_run.build_id = build.id) "
             "LEFT JOIN test_suite ON (test_suite.test_run_id = test_run.id) "
-            "LEFT JOIN test_case ON (test_case.test_suite_id = test_suite.id) "
             "WHERE "
             "build.project_id = :project_id "
             "AND build.created_at >= :date_in_past "
