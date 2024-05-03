@@ -55,5 +55,5 @@ def test_junit_to_test_run(resource):
             }
         ]
     }
-    test_run = resource._junit_to_test_run(build_id, junit)
+    test_run = resource._junit_to_test_run(build_id, 'test-file', junit)
     assert isinstance(test_run, ModelTestRun)

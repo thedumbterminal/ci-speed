@@ -44,6 +44,7 @@ class BuildSchema(ma.SQLAlchemyAutoSchema):
 
 class TestRunSchema(ma.SQLAlchemyAutoSchema):
     test_suites = ma.auto_field()
+    file_name = fields.String()
 
     class Meta:
         model = TestRun
