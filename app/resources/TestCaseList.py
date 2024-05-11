@@ -11,6 +11,7 @@ search_parser.add_argument(
     "test_suite_id", type=int, location="args", help="Test suite ID", required=True
 )
 
+
 @api.route("/")
 class TestCaseList(Resource):
     @api.expect(search_parser)

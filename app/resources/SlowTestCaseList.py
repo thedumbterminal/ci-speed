@@ -11,6 +11,7 @@ search_parser.add_argument(
     "build_id", type=int, location="args", help="Build ID", required=True
 )
 
+
 @api.route("/")
 class SlowTestCaseList(Resource):
     @api.expect(search_parser)
