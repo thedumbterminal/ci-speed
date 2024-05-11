@@ -4,21 +4,21 @@ from schemas import TestCaseSchema
 from flask_security import auth_required
 
 
-api = Namespace("test_cases", description="Test case related operations")
+api = Namespace("slow test_cases", description="Slow test case related operations")
 
 search_parser = api.parser()
 search_parser.add_argument(
-    "test_suite_id", type=int, location="args", help="Test suite ID", required=True
+    "build_id", type=int, location="args", help="Build ID", required=True
 )
 
 @api.route("/")
-class TestCaseList(Resource):
+class SlowTestCaseList(Resource):
     @api.expect(search_parser)
     @auth_required("token", "session")
-    @api.doc(id="list_test_cases", security=["apikey"])
+    @api.doc(id="slow_test_cases", security=["apikey"])
     def get(self):
-        """List all test cases"""
+        """Retrieve the slowest test cases for a build"""
         args = search_parser.parse_args()
-        test_cases = TestCase.query.filter_by(test_suite_id=args["test_suite_id"]).all()
+        test_cases = []
         test_case_schema = TestCaseSchema()
         return test_case_schema.dump(test_cases, many=True)
