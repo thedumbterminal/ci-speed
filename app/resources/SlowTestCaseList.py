@@ -4,7 +4,7 @@ from schemas import TestCaseSchema
 from flask_security import auth_required
 
 
-api = Namespace("slow test_cases", description="Slow test case related operations")
+api = Namespace("slow_test_cases", description="Slow test case related operations")
 
 search_parser = api.parser()
 search_parser.add_argument(
