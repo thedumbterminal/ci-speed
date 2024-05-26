@@ -1,7 +1,7 @@
 from flask_restx import Resource, Namespace
-from db.models import TestCase
 from schemas import TestCaseSchema
 from flask_security import auth_required
+from analytics.build.slow_test_cases import get_results
 
 
 api = Namespace("slow_test_cases", description="Slow test case related operations")
@@ -20,6 +20,6 @@ class SlowTestCaseList(Resource):
     def get(self):
         """Retrieve the slowest test cases for a build"""
         args = search_parser.parse_args()
-        test_cases = []
+        test_cases = get_results(args["build_id"])
         test_case_schema = TestCaseSchema()
         return test_case_schema.dump(test_cases, many=True)
