@@ -5,5 +5,5 @@ runs:
   using: "composite"
   steps:
     - name: Upload
-      run: echo "it worked!"
+      run: upload_to_ci_speed.sh
       shell: bash
