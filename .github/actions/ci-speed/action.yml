@@ -11,13 +11,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Set GitHub Path
-      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+    - name: Upload
+      run: |
+        echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+        upload_to_ci_speed.sh ${{ github.repository }} ${{ github.run_id }} ${{ github.sha }} ${{ inputs.results }}
       shell: bash
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
-    - name: Upload
-      run: upload_to_ci_speed.sh ${{ github.repository }} ${{ github.run_id }} ${{ github.sha }} ${{ inputs.results }}
-      shell: bash
-      env:
         CI_SPEED_AUTH_TOKEN: ${{ inputs.token }}
