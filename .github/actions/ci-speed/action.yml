@@ -10,5 +10,7 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
     - name: Upload
-      run: upload_to_ci_speed.sh
+      run: upload_to_ci_speed.sh ${{ github.repository }} ${{ github.run_id }} ${{ github.sha }}
       shell: bash
+      env:
+        CI_SPEED_AUTH_TOKEN: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
