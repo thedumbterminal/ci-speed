@@ -5,6 +5,9 @@ inputs:
   token:
     description: 'API authentication token'
     required: true
+  results:
+    description: 'XML results file to upload'
+    required: true
 runs:
   using: "composite"
   steps:
@@ -14,7 +17,7 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
     - name: Upload
-      run: upload_to_ci_speed.sh ${{ github.repository }} ${{ github.run_id }} ${{ github.sha }}
+      run: upload_to_ci_speed.sh ${{ github.repository }} ${{ github.run_id }} ${{ github.sha }} ${{ inputs.results }}
       shell: bash
       env:
         CI_SPEED_AUTH_TOKEN: ${{ inputs.token }}

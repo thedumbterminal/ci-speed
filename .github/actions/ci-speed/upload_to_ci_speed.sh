@@ -7,10 +7,9 @@ set -e
 PROJECT_NAME=$1
 BUILD_REF=$2
 COMMIT=$3
+RESULTS=$4
 
 HOST=https://ci-speed.herokuapp.com
-#HOST=http://localhost:5000
-RESULTS=test_results.xml
 
 echo "Project: ${PROJECT_NAME} Build: ${BUILD_REF}"
 
@@ -26,4 +25,5 @@ if [ -f "$RESULTS" ]; then
     -F "commit_sha=${COMMIT}"
 else
   echo "No results file found"
+  exit 1
 fi
