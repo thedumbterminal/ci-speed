@@ -27,12 +27,14 @@ jobs:
     - name: CI
       run: |
         invoke ci
-    - name: Upload to CI-Speed
-      if: success() || failure()
-      env: # Or as an environment variable
-        CI_SPEED_AUTH_TOKEN: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
-      run: |
-        scripts/upload_to_ci_speed.sh ${{ github.repository }} ${{ github.run_id }} ${{ github.sha }}
+    - name: Use local ci-speed-action
+      uses: ./.github/actions/ci-speed
+#    - name: Upload to CI-Speed
+#      if: success() || failure()
+#      env: # Or as an environment variable
+#        CI_SPEED_AUTH_TOKEN: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
+#      run: |
+#        scripts/upload_to_ci_speed.sh ${{ github.repository }} ${{ github.run_id }} ${{ github.sha }}
 
   automerge:
     needs: build

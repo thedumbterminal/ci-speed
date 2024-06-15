@@ -1,0 +1,9 @@
+name: ci-speed
+author: thedumbterminal
+description: Interact with CI-Speed
+runs:
+  using: "composite"
+  steps:
+    - name: Upload
+      run: echo "it worked!"
+      shell: bash
