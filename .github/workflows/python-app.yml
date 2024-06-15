@@ -28,7 +28,10 @@ jobs:
       run: |
         invoke ci
     - name: Use local ci-speed-action
+      if: success() || failure()
       uses: ./.github/actions/ci-speed
+      with:
+        token: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
 #    - name: Upload to CI-Speed
 #      if: success() || failure()
 #      env: # Or as an environment variable

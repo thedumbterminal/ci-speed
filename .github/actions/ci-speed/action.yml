@@ -1,6 +1,10 @@
 name: ci-speed
 author: thedumbterminal
 description: Interact with CI-Speed
+inputs:
+  token:
+    description: 'API authentication token'
+    required: true
 runs:
   using: "composite"
   steps:
@@ -13,4 +17,4 @@ runs:
       run: upload_to_ci_speed.sh ${{ github.repository }} ${{ github.run_id }} ${{ github.sha }}
       shell: bash
       env:
-        CI_SPEED_AUTH_TOKEN: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
+        CI_SPEED_AUTH_TOKEN: ${{ inputs.token }}
