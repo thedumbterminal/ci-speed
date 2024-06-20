@@ -29,7 +29,7 @@ jobs:
         invoke ci
     - name: Use local ci-speed-action
       if: success() || failure()
-      uses: ./.github/actions/ci-speed
+      uses: thedumbterminal/ci-speed-github-action
       with:
         token: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
         results: test_results.xml
