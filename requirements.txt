@@ -10,7 +10,7 @@ marshmallow-sqlalchemy == 1.0.0
 psycopg2-binary == 2.9.9
 Flask-Migrate == 4.0.7
 Flask-Dance == 7.1.0
-Flask-Security-Too == 5.4.3
+Flask-Security-Too == 5.5.0
 email-validator == 2.2.0
 yarl == 1.9.4
 
