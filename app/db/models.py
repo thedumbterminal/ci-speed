@@ -105,6 +105,7 @@ class Waypoint(db.Model):
     build = db.relationship(
         Build, backref="waypoints", cascade="all, delete", passive_deletes=True
     )
+    db.UniqueConstraint("name", "build_id", name="uniq_name_build_id"),
 
     def __init__(self, build_id, name):
         self.build_id = build_id
