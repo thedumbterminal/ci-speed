@@ -3,6 +3,7 @@ from db.models import (
     User,
     Project,
     Build,
+    Waypoint,
     TestRun,
     TestSuite,
     TestCase,
@@ -48,6 +49,15 @@ class TestRunSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         model = TestRun
+        load_instance = True
+        include_fk = True
+
+
+class WaypointSchema(ma.SQLAlchemyAutoSchema):
+    name = fields.String()
+
+    class Meta:
+        model = Waypoint
         load_instance = True
         include_fk = True
 

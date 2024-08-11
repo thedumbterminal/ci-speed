@@ -109,8 +109,12 @@ PYTHONPATH=app FLASK_APP=main flask db upgrade
 
 To create a new migration:
 
+Create the changes to the DB models in `app/db/models.py` first.
+
+Then run:
+
 ```
-PYTHONPATH=app FLASK_APP=main flask db revision -m "Some comment here"
+PYTHONPATH=app FLASK_APP=main flask db migrate -m "Some comment here"
 ```
 
 To update your local DB to the latest version run:
