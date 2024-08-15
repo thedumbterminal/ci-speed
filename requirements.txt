@@ -6,7 +6,7 @@ flask == 3.0.3
 gunicorn == 23.0.0
 honcho == 1.1.0
 xmltodict == 0.13.0
-marshmallow-sqlalchemy == 1.0.0
+marshmallow-sqlalchemy == 1.1.0
 psycopg2-binary == 2.9.9
 Flask-Migrate == 4.0.7
 Flask-Dance == 7.1.0
