@@ -43,7 +43,7 @@ docker ps -a
 To access use:
 
 ```
-psql -h 127.0.0.1 -U myusername myusername
+invoke db-shell
 ```
 
 ## Run

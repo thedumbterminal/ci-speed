@@ -3,6 +3,9 @@ from db.models import Waypoint, Build
 from schemas import WaypointSchema as Schema
 from flask_security import auth_required, current_user
 from models.project import find_by_name
+from db.connection import db
+from pprint import pprint
+
 
 api = Namespace("waypoints", description="Waypoint related operations")
 
@@ -56,11 +59,11 @@ class WaypointList(Resource):
             db.session.commit()
         print("Found build", build)
 
-        waypoint = Waypoint(build.id, args["waypont"])
+        waypoint = Waypoint(build.id, args["waypoint"])
         db.session.add(waypoint)
         db.session.commit()
 
         print("Schema result:")
-        build_schema = BuildSchema()
-        pprint(build_schema.dump(build))
+        model_schema = Schema()
+        pprint(model_schema.dump(waypoint))
         return True

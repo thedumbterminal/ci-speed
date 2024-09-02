@@ -11,8 +11,8 @@ api = Namespace("waypoints", description="Waypoint related operations")
 class Waypoint(Resource):
     @auth_required("token", "session")
     @api.doc(id="get_waypoint", security=["apikey"])
-    def get(self, suite_id):
+    def get(self, waypoint_id):
         """Retrieve a waypoint"""
-        result = Model.query.get(suite_id)
+        result = Model.query.get(waypoint_id)
         model_schema = ModelSchema()
         return model_schema.dump(result)
