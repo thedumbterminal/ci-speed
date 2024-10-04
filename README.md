@@ -129,6 +129,12 @@ To update the production DB to the latest version run:
 heroku run 'PYTHONPATH=app FLASK_APP=main flask db upgrade'
 ```
 
+Other migration commands can be access via:
+
+```
+PYTHONPATH=app FLASK_APP=main flask db
+```
+
 ## Environment Variables
 
 See also the built in flask environment variables.

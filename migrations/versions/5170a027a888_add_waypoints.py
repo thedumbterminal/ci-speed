@@ -35,6 +35,7 @@ def upgrade():
             ["build.id"],
         ),
         sa.PrimaryKeyConstraint("id"),
+        sa.UniqueConstraint("build_id", "name", name="build_id_name")
     )
 
     # ### end Alembic commands ###
