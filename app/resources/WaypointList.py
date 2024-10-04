@@ -65,5 +65,4 @@ class WaypointList(Resource):
 
         print("Schema result:")
         model_schema = Schema()
-        pprint(model_schema.dump(waypoint))
-        return True
+        return model_schema.dump(waypoint)

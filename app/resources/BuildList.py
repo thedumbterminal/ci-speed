@@ -54,5 +54,4 @@ class BuildList(Resource):
 
         print("Schema result:")
         build_schema = BuildSchema()
-        pprint(build_schema.dump(build))
-        return True
+        return build_schema.dump(build)
