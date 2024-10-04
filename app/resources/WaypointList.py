@@ -4,7 +4,6 @@ from schemas import WaypointSchema as Schema
 from flask_security import auth_required, current_user
 from models.project import find_by_name
 from db.connection import db
-from pprint import pprint
 
 
 api = Namespace("waypoints", description="Waypoint related operations")

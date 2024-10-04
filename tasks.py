@@ -34,6 +34,7 @@ def db_upgrade(c):
     print("Running DB upgrade...")
     c.run("PYTHONPATH=app FLASK_APP=main flask db upgrade")
 
+
 @task
 def db_shell(c):
     """
@@ -41,6 +42,7 @@ def db_shell(c):
     """
     print("Running DB shell...")
     c.run("psql -h 127.0.0.1 -U myusername myusername", pty=True)
+
 
 @task
 def start(c):
