@@ -1,5 +1,4 @@
 from invoke import task
-from os import getcwd
 
 
 @task
@@ -18,9 +17,8 @@ def format(c):
 @task(help={"verbose": "Turn on verbose output"})
 def test(c, verbose=False):
     print("Running test...")
-    pwd = getcwd()
     cmd = (
-        #f"DATABASE_URL=sqlite://{pwd}/test.db"
+        # f"DATABASE_URL=sqlite://{pwd}/test.db"
         " PYTHONPATH=app:test"
         " pytest . --junitxml=test_results.xml --cov"
     )

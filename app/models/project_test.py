@@ -20,9 +20,10 @@ def test_find_by_id(mock_user):
     assert isinstance(result, Project)
     assert result.id == 1
 
+
 def test_find_by_id_not_found(mock_user):
     result = find_by_id(mock_user, 100)
-    assert result == None
+    assert result is None
 
 
 def test_find_by_name(mock_user):
@@ -33,4 +34,4 @@ def test_find_by_name(mock_user):
 
 def test_find_by_name_not_found(mock_user):
     result = find_by_name(mock_user, "not found")
-    assert result == None
+    assert result is None

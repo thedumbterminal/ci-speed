@@ -8,4 +8,6 @@ def find_by_id(user, project_id):
 
 
 def find_by_name(user, name):
-    return reduce(lambda acc, item: item if item.name == name else acc, user.projects, None)
+    return reduce(
+        lambda acc, item: item if item.name == name else acc, user.projects, None
+    )

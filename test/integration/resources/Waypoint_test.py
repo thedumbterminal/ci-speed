@@ -2,8 +2,7 @@ import pytest
 from main import app
 from db.models import User
 import json
-import uuid
-from test.helpers.db_setup import setup_db, test_user_email, test_project, test_build
+from test.helpers.db_setup_test import test_user_email
 
 
 @pytest.fixture()
@@ -22,11 +21,12 @@ def example_user_auth_token():
 
 def auth_get_request(token, url):
     with app.test_request_context(), app.test_client() as test_client:
-        response = test_client.get(url,
-            headers = {
-                'Authentication-Token': token,
-                'accept': 'application/json',
-            }
+        response = test_client.get(
+            url,
+            headers={
+                "Authentication-Token": token,
+                "accept": "application/json",
+            },
         )
         print(response.status_code)
         return json.loads(response.data)

@@ -7,7 +7,7 @@ from db.models import Project, Build
 def mock_project():
     project = Project("test")
     project.id = 1
-    build = Build(project.id, 'test')
+    build = Build(project.id, "test")
     project.builds.append(build)
     return project
 
@@ -20,4 +20,4 @@ def test_find_by_ref(mock_project):
 
 def test_find_by_ref_not_found(mock_project):
     result = find_by_ref(mock_project, "not found")
-    assert result == None
+    assert result is None
