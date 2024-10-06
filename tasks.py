@@ -20,8 +20,8 @@ def test(c, verbose=False):
     print("Running test...")
     pwd = getcwd()
     cmd = (
-        f"DATABASE_URL=sqlite://{pwd}/test.db"
-        " PYTHONPATH=app"
+        #f"DATABASE_URL=sqlite://{pwd}/test.db"
+        " PYTHONPATH=app:test"
         " pytest . --junitxml=test_results.xml --cov"
     )
     if verbose:

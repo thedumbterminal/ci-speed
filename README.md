@@ -77,6 +77,14 @@ Upload test run:
 curl -F 'file=@samples/junit_perl.xml' http://localhost:5000/test_runs/
 ```
 
+List projects:
+
+```
+curl -X "GET" "http://localhost:5000/api/projects/" \
+  -H "accept: application/json" \
+  -H "Authentication-Token: your_token"
+```
+
 ## Deploy
 
 Once code has been merged to the `main` branch, you can deploy from your local machine, using:
@@ -167,9 +175,6 @@ See also the built in flask environment variables.
 * Newest / oldest tests
 * Diff results from last run
 * Organisation support so multiple users can share projects
-
-### CI Integrations
-* Github actions
 
 ### Client libraries
 
