@@ -31,8 +31,7 @@ def upgrade():
         sa.Column("build_id", sa.Integer(), nullable=False),
         sa.Column("name", sa.String(), nullable=True),
         sa.ForeignKeyConstraint(
-            ["build_id"],
-            ["build.id"],
+            ["build_id"], ["build.id"], ondelete="CASCADE", onupdate="CASCADE"
         ),
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("build_id", "name", name="build_id_name"),

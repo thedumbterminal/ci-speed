@@ -42,7 +42,9 @@ def setup_db():
             db.session.commit()
 
         login_user(user)
+        db.session.commit()
         yield user
+        db.session.delete(project)
         db.session.delete(user)
         db.session.commit()
 
