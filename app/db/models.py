@@ -156,7 +156,8 @@ class TestSuite(db.Model):
         passive_deletes=True,
     )
 
-    def __init__(self, name, time, test_cases=[]):
+    def __init__(self, test_run_id, name, time, test_cases=[]):
+        self.test_run_id = test_run_id
         self.name = name
         self.time = time
         self.test_cases = test_cases
