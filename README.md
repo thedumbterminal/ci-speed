@@ -52,7 +52,7 @@ psql -h 127.0.0.1 -U myusername myusername
 invoke start
 ```
 
-Dev server available at:
+Dev server is available at:
 
 http://127.0.0.1:5000
 
