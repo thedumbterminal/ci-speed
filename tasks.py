@@ -1,5 +1,4 @@
 from invoke import task
-from os import getcwd
 
 
 @task
@@ -18,10 +17,9 @@ def format(c):
 @task(help={"verbose": "Turn on verbose output"})
 def test(c, verbose=False):
     print("Running test...")
-    pwd = getcwd()
     cmd = (
-        f"DATABASE_URL=sqlite://{pwd}/test.db"
-        " PYTHONPATH=app"
+        # f"DATABASE_URL=sqlite://{pwd}/test.db"
+        " PYTHONPATH=app:test"
         " pytest . --junitxml=test_results.xml --cov"
     )
     if verbose:
@@ -33,6 +31,15 @@ def test(c, verbose=False):
 def db_upgrade(c):
     print("Running DB upgrade...")
     c.run("PYTHONPATH=app FLASK_APP=main flask db upgrade")
+
+
+@task
+def db_shell(c):
+    """
+    Open the PostgreSQL CLI
+    """
+    print("Running DB shell...")
+    c.run("psql -h 127.0.0.1 -U myusername myusername", pty=True)
 
 
 @task
