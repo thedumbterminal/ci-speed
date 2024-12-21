@@ -39,7 +39,7 @@ def setup_db():
         project = setup_project(user)
         build = setup_build(project)
         test_run = setup_test_run(build)
-        test_suite = setup_test_suite(test_run)
+        setup_test_suite(test_run)
 
         login_user(user)
         db.session.commit()

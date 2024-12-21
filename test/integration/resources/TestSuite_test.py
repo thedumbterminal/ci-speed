@@ -1,9 +1,8 @@
 import pytest
 from main import app
 from db.models import User
-import json
 from test.helpers.db_setup_test import test_user_email
-from test.helpers.auth import example_user_auth_token, auth_get_request
+from test.helpers.auth import auth_get_request
 
 
 @pytest.fixture()
