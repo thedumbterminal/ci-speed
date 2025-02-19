@@ -43,7 +43,7 @@ docker ps -a
 To access use:
 
 ```
-psql -h 127.0.0.1 -U myusername myusername
+invoke db-shell
 ```
 
 ## Run
@@ -75,6 +75,14 @@ Upload test run:
 
 ```
 curl -F 'file=@samples/junit_perl.xml' http://localhost:5000/test_runs/
+```
+
+List projects:
+
+```
+curl -X "GET" "http://localhost:5000/api/projects/" \
+  -H "accept: application/json" \
+  -H "Authentication-Token: your_token"
 ```
 
 ## Deploy
@@ -109,8 +117,12 @@ PYTHONPATH=app FLASK_APP=main flask db upgrade
 
 To create a new migration:
 
+Create the changes to the DB models in `app/db/models.py` first.
+
+Then run:
+
 ```
-PYTHONPATH=app FLASK_APP=main flask db revision -m "Some comment here"
+PYTHONPATH=app FLASK_APP=main flask db migrate -m "Some comment here"
 ```
 
 To update your local DB to the latest version run:
@@ -123,6 +135,12 @@ To update the production DB to the latest version run:
 
 ```
 heroku run 'PYTHONPATH=app FLASK_APP=main flask db upgrade'
+```
+
+Other migration commands can be access via:
+
+```
+PYTHONPATH=app FLASK_APP=main flask db
 ```
 
 ## Environment Variables
@@ -157,9 +175,6 @@ See also the built in flask environment variables.
 * Newest / oldest tests
 * Diff results from last run
 * Organisation support so multiple users can share projects
-
-### CI Integrations
-* Github actions
 
 ### Client libraries
 
