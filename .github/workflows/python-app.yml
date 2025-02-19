@@ -15,6 +15,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Log start to ci-speed
+      if: success() || failure()
+      uses: thedumbterminal/ci-speed-github-action@more-actions
+      with:
+        token: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
+        action: start
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
@@ -27,12 +33,19 @@ jobs:
     - name: CI
       run: |
         invoke ci
-    - name: ci-speed
+    - name: Upload to ci-speed
       if: success() || failure()
-      uses: thedumbterminal/ci-speed-github-action@v1
+      uses: thedumbterminal/ci-speed-github-action@more-actions
       with:
         token: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
         results: test_results.xml
+        action: upload
+    - name: Log finish to ci-speed
+      if: success() || failure()
+      uses: thedumbterminal/ci-speed-github-action@more-actions
+      with:
+        token: ${{ secrets.CI_SPEED_AUTH_TOKEN }}
+        action: finish
 
   automerge:
     needs: build
