@@ -1,7 +1,6 @@
 from flask_restx import Resource, Namespace
 from db.models import Build
 from schemas import BuildSchema
-from pprint import pprint
 from db.connection import db
 from flask_security import auth_required, current_user
 from models.project import find_by_name
@@ -54,5 +53,4 @@ class BuildList(Resource):
 
         print("Schema result:")
         build_schema = BuildSchema()
-        pprint(build_schema.dump(build))
-        return True
+        return build_schema.dump(build)
