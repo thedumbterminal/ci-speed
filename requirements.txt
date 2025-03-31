@@ -18,7 +18,7 @@ yarl == 1.18.3
 Flask-Login == 0.6.3
 
 #dev includes
-flake8 == 7.1.2
+flake8 == 7.2.0
 invoke == 2.2.0
 black == 25.1.0
 pytest == 8.3.5
