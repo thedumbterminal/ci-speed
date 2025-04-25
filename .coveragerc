@@ -1,5 +1,5 @@
 [run]
-omit = *_test.py
+omit = *_test.py, test/helpers/*
 branch = True
 
 [report]

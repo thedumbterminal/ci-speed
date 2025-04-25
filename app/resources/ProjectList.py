@@ -47,4 +47,5 @@ class ProjectList(Resource):
         db.session.add(current_user)
         db.session.commit()
 
-        return True
+        project_schema = ProjectSchema()
+        return project_schema.dump(project)

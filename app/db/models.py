@@ -28,10 +28,16 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
     db.UniqueConstraint(name, name="uniq_name")
+    builds = db.relationship(
+        "Build",
+        back_populates="project",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
 
     def __init__(self, name, builds=[]):
         self.name = name
-        self.builds = builds
+        self._builds = builds
 
     @hybrid_property
     def vcs_url(self):
@@ -65,10 +71,25 @@ class Build(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
     ref = db.Column(db.String(), nullable=False)
-    project_id = db.Column(db.Integer, db.ForeignKey("project.id"), nullable=False)
+    project_id = db.Column(
+        db.Integer, db.ForeignKey("project.id", ondelete="CASCADE"), nullable=False
+    )
     commit_sha = db.Column(db.String(), nullable=True)
     project = db.relationship(
-        Project, backref="builds", cascade="all, delete", passive_deletes=True
+        "Project",
+        back_populates="builds",
+    )
+    waypoints = db.relationship(
+        "Waypoint",
+        back_populates="build",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
+    test_runs = db.relationship(
+        "TestRun",
+        back_populates="build",
+        cascade="all, delete",
+        passive_deletes=True,
     )
 
     def __init__(self, project_id, ref, commit_sha="", test_runs=[]):
@@ -85,10 +106,17 @@ class Build(db.Model):
 class TestRun(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
-    build_id = db.Column(db.Integer, db.ForeignKey("build.id"), nullable=False)
+    build_id = db.Column(
+        db.Integer, db.ForeignKey("build.id", ondelete="CASCADE"), nullable=False
+    )
     file_name = db.Column(db.String(), nullable=True)
-    build = db.relationship(
-        Build, backref="test_runs", cascade="all, delete", passive_deletes=True
+    build = db.relationship("Build", back_populates="test_runs")
+
+    test_suites = db.relationship(
+        "TestSuite",
+        back_populates="test_run",
+        cascade="all, delete",
+        passive_deletes=True,
     )
 
     def __init__(self, build_id, file_name, test_suites=[]):
@@ -97,16 +125,39 @@ class TestRun(db.Model):
         self.test_suites = test_suites
 
 
+class Waypoint(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
+    build_id = db.Column(
+        db.Integer, db.ForeignKey("build.id", ondelete="CASCADE"), nullable=False
+    )
+    name = db.Column(db.String(), nullable=True)
+    build = db.relationship("Build", back_populates="waypoints")
+    db.UniqueConstraint("name", "build_id", name="uniq_name_build_id"),
+
+    def __init__(self, build_id, name):
+        self.build_id = build_id
+        self.name = name
+
+
 class TestSuite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     time = db.Column(db.Numeric())
-    test_run_id = db.Column(db.Integer, db.ForeignKey("test_run.id"), nullable=False)
-    test_run = db.relationship(
-        TestRun, backref="test_suites", cascade="all, delete", passive_deletes=True
+    test_run_id = db.Column(
+        db.Integer, db.ForeignKey("test_run.id", ondelete="CASCADE"), nullable=False
+    )
+    test_run = db.relationship("TestRun", back_populates="test_suites")
+
+    test_cases = db.relationship(
+        "TestCase",
+        back_populates="test_suite",
+        cascade="all, delete",
+        passive_deletes=True,
     )
 
-    def __init__(self, name, time, test_cases=[]):
+    def __init__(self, test_run_id, name, time, test_cases=[]):
+        self.test_run_id = test_run_id
         self.name = name
         self.time = time
         self.test_cases = test_cases
@@ -117,10 +168,22 @@ class TestCase(db.Model):
     name = db.Column(db.String())
     time = db.Column(db.Numeric())
     test_suite_id = db.Column(
-        db.Integer, db.ForeignKey("test_suite.id"), nullable=False
+        db.Integer, db.ForeignKey("test_suite.id", ondelete="CASCADE"), nullable=False
     )
-    test_suite = db.relationship(
-        TestSuite, backref="test_cases", cascade="all, delete", passive_deletes=True
+    test_suite = db.relationship("TestSuite", back_populates="test_cases")
+
+    test_failures = db.relationship(
+        "TestFailure",
+        back_populates="test_case",
+        cascade="all, delete",
+        passive_deletes=True,
+    )
+
+    skipped_tests = db.relationship(
+        "SkippedTest",
+        back_populates="test_case",
+        cascade="all, delete",
+        passive_deletes=True,
     )
 
     def __init__(self, name, time, test_failures=[], skipped_tests=[]):
@@ -133,10 +196,10 @@ class TestCase(db.Model):
 class TestFailure(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     reason = db.Column(db.String(), nullable=False)
-    test_case_id = db.Column(db.Integer, db.ForeignKey("test_case.id"), nullable=False)
-    test_case = db.relationship(
-        TestCase, backref="test_failures", cascade="all, delete", passive_deletes=True
+    test_case_id = db.Column(
+        db.Integer, db.ForeignKey("test_case.id", ondelete="CASCADE"), nullable=False
     )
+    test_case = db.relationship("TestCase", back_populates="test_failures")
 
     def __init__(self, reason):
         self.reason = reason
@@ -145,10 +208,10 @@ class TestFailure(db.Model):
 class SkippedTest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     reason = db.Column(db.String(), nullable=False)
-    test_case_id = db.Column(db.Integer, db.ForeignKey("test_case.id"), nullable=False)
-    test_case = db.relationship(
-        TestCase, backref="skipped_tests", cascade="all, delete", passive_deletes=True
+    test_case_id = db.Column(
+        db.Integer, db.ForeignKey("test_case.id", ondelete="CASCADE"), nullable=False
     )
+    test_case = db.relationship("TestCase", back_populates="skipped_tests")
 
     def __init__(self, reason):
         self.reason = reason
