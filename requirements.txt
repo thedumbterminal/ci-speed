@@ -12,7 +12,7 @@ Flask-Migrate == 4.1.0
 Flask-Dance == 7.1.0
 Flask-Security-Too == 5.6.1
 email-validator == 2.2.0
-yarl == 1.19.0
+yarl == 1.20.1
 
 #This is needed to be compatible with Werkzeug 3, until Flask-Security-Too updates
 Flask-Login == 0.6.3
